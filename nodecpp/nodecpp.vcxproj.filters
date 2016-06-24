@@ -114,6 +114,9 @@
     <ClCompile Include="json11.cpp">
       <Filter>deps\json11</Filter>
     </ClCompile>
+    <ClCompile Include="hooker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer.h">
@@ -225,6 +228,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="nodecpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

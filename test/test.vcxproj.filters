@@ -90,6 +90,9 @@
     <ClInclude Include="url-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="detours-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -165,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="url-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detours-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

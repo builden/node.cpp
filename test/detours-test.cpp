@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "detours-test.h"
-#include <nodepp/hooker.h>
+#include <nodecpp/hooker.h>
 
-using namespace nodepp;
 #pragma comment(lib, "detours.lib")
 
 typedef BOOL(WINAPI* PFNBeep)(DWORD dwFreq, DWORD dwDuration);

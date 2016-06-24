@@ -1,9 +1,9 @@
 #ifndef __HOOKER_H__
 #define __HOOKER_H__
-#include "nodepp-def.h"
+#include "nodecpp-def.h"
 #include "singleton.h"
 
-namespace nodepp {
+namespace nodecpp {
   using std::string;
   using std::vector;
 

@@ -22,6 +22,7 @@
     <ClCompile Include="file-url.cpp" />
     <ClCompile Include="fmt\format.cc" />
     <ClCompile Include="fs.cpp" />
+    <ClCompile Include="hooker.cpp" />
     <ClCompile Include="http.cpp" />
     <ClCompile Include="iconv.cpp" />
     <ClCompile Include="ini.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="file-url.h" />
     <ClInclude Include="fmt\format.h" />
     <ClInclude Include="fs.h" />
+    <ClInclude Include="hooker.h" />
     <ClInclude Include="http.h" />
     <ClInclude Include="iconv.h" />
     <ClInclude Include="ini.h" />
@@ -118,7 +120,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../include;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,7 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../include;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -2,9 +2,9 @@
 #include "fmt/format.h"
 
 #include <windows.h>
-#include <detours/detours.h>
+#include <detours.h>
 
-namespace nodepp {
+namespace nodecpp {
 
   bool Hooker::addFuncInfo(const string& moduleName, const string& funcName, void **originFuncPtr, void *newFunc) {
     if (originFuncPtr == nullptr || newFunc == nullptr) return false;
