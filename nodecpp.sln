@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nodecpp", "nodecpp\nodecpp.vcxproj", "{00E710AB-46DF-4797-8B94-6C834474F604}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deps", "deps", "{219D9332-5FD1-4CB3-867C-461F3DB550D1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "deps\gtest\gtest.vcxproj", "{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libuv", "deps\uv\libuv.vcxproj", "{603C6853-166F-A229-0CE7-B001CAF96C76}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openssl", "deps\openssl\openssl.vcxproj", "{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "http_parser", "deps\http_parser\http_parser.vcxproj", "{3D75A4D7-C52C-EA52-8959-BDF659A0ED66}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "deps\zlib\zlib.vcxproj", "{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{C133BA05-7878-42C2-ACA0-C26A693D70CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00E710AB-46DF-4797-8B94-6C834474F604}.Debug|Win32.ActiveCfg = Debug|Win32
+		{00E710AB-46DF-4797-8B94-6C834474F604}.Debug|Win32.Build.0 = Debug|Win32
+		{00E710AB-46DF-4797-8B94-6C834474F604}.Release|Win32.ActiveCfg = Release|Win32
+		{00E710AB-46DF-4797-8B94-6C834474F604}.Release|Win32.Build.0 = Release|Win32
+		{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4}.Debug|Win32.Build.0 = Debug|Win32
+		{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4}.Release|Win32.ActiveCfg = Release|Win32
+		{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4}.Release|Win32.Build.0 = Release|Win32
+		{603C6853-166F-A229-0CE7-B001CAF96C76}.Debug|Win32.ActiveCfg = Debug|Win32
+		{603C6853-166F-A229-0CE7-B001CAF96C76}.Debug|Win32.Build.0 = Debug|Win32
+		{603C6853-166F-A229-0CE7-B001CAF96C76}.Release|Win32.ActiveCfg = Release|Win32
+		{603C6853-166F-A229-0CE7-B001CAF96C76}.Release|Win32.Build.0 = Release|Win32
+		{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1}.Debug|Win32.Build.0 = Debug|Win32
+		{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1}.Release|Win32.ActiveCfg = Release|Win32
+		{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1}.Release|Win32.Build.0 = Release|Win32
+		{3D75A4D7-C52C-EA52-8959-BDF659A0ED66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3D75A4D7-C52C-EA52-8959-BDF659A0ED66}.Debug|Win32.Build.0 = Debug|Win32
+		{3D75A4D7-C52C-EA52-8959-BDF659A0ED66}.Release|Win32.ActiveCfg = Release|Win32
+		{3D75A4D7-C52C-EA52-8959-BDF659A0ED66}.Release|Win32.Build.0 = Release|Win32
+		{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1}.Debug|Win32.Build.0 = Debug|Win32
+		{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1}.Release|Win32.ActiveCfg = Release|Win32
+		{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1}.Release|Win32.Build.0 = Release|Win32
+		{C133BA05-7878-42C2-ACA0-C26A693D70CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C133BA05-7878-42C2-ACA0-C26A693D70CB}.Debug|Win32.Build.0 = Debug|Win32
+		{C133BA05-7878-42C2-ACA0-C26A693D70CB}.Release|Win32.ActiveCfg = Release|Win32
+		{C133BA05-7878-42C2-ACA0-C26A693D70CB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02FDA48E-FCE2-F31A-04B9-3E62B04C95A4} = {219D9332-5FD1-4CB3-867C-461F3DB550D1}
+		{603C6853-166F-A229-0CE7-B001CAF96C76} = {219D9332-5FD1-4CB3-867C-461F3DB550D1}
+		{5C6460DB-F7B1-5315-A0DE-79A9DFC525A1} = {219D9332-5FD1-4CB3-867C-461F3DB550D1}
+		{3D75A4D7-C52C-EA52-8959-BDF659A0ED66} = {219D9332-5FD1-4CB3-867C-461F3DB550D1}
+		{7FF6F247-3828-69AF-7EDB-FB0A9FF393E1} = {219D9332-5FD1-4CB3-867C-461F3DB550D1}
+	EndGlobalSection
+EndGlobal
