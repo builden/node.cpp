@@ -21,6 +21,7 @@ fs.readFile(filePath, [](const Buffer& buf) {
 ## 内置库
 - [x] core-math  // js内置的math库
 - [x] child_process
+- [ ] crypto
 - [x] buffer
 - [x] fs
 - [ ] http

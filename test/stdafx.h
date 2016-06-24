@@ -12,4 +12,13 @@
 
 #include <gtest/gtest.h>
 
+#include <nodecpp/nodecpp.h>
+using namespace nodecpp;
+
+#include <nodecpp/fmt/format.h>
+#include <nodecpp/json11.hpp>
+using namespace json11;
+
+using namespace std;
+
 // TODO: reference additional headers your program requires here

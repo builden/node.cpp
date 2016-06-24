@@ -41,11 +41,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>../$(Configuration)/lib;../$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>../$(Configuration)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>../$(Configuration)/lib;../$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>../$(Configuration)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/gtest/include;../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/gtest/include;../include;../;../deps/uv/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,7 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/gtest/include;../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/gtest/include;../include;../;../deps/uv/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,17 +86,61 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="one.h" />
+    <ClInclude Include="buffer-test.h" />
+    <ClInclude Include="core-math-test.h" />
+    <ClInclude Include="core-test.h" />
+    <ClInclude Include="events-test.h" />
+    <ClInclude Include="file-url-test.h" />
+    <ClInclude Include="fmt-test.h" />
+    <ClInclude Include="fs-test.h" />
+    <ClInclude Include="http-test.h" />
+    <ClInclude Include="iconv-test.h" />
+    <ClInclude Include="ini-test.h" />
+    <ClInclude Include="json11-test.h" />
+    <ClInclude Include="keyboard-code-trans-test.h" />
+    <ClInclude Include="lodash-test.h" />
+    <ClInclude Include="moment-test.h" />
+    <ClInclude Include="os-test.h" />
+    <ClInclude Include="path-test.h" />
+    <ClInclude Include="pe-cert-test.h" />
+    <ClInclude Include="process-test.h" />
+    <ClInclude Include="querystring-test.h" />
+    <ClInclude Include="regex-test.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="timers-test.h" />
+    <ClInclude Include="underscore.string-test.h" />
+    <ClInclude Include="url-test.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="one.cpp" />
+    <ClCompile Include="buffer-test.cpp" />
+    <ClCompile Include="core-math-test.cpp" />
+    <ClCompile Include="core-test.cpp" />
+    <ClCompile Include="events-test.cpp" />
+    <ClCompile Include="file-url-test.cpp" />
+    <ClCompile Include="fmt-test.cpp" />
+    <ClCompile Include="fs-test.cpp" />
+    <ClCompile Include="http-test.cpp" />
+    <ClCompile Include="iconv-test.cpp" />
+    <ClCompile Include="ini-test.cpp" />
+    <ClCompile Include="json11-test.cpp" />
+    <ClCompile Include="keyboard-code-trans-test.cpp" />
+    <ClCompile Include="lodash-test.cpp" />
+    <ClCompile Include="moment-test.cpp" />
+    <ClCompile Include="os-test.cpp" />
+    <ClCompile Include="path-test.cpp" />
+    <ClCompile Include="pe-cert-test.cpp" />
+    <ClCompile Include="process-test.cpp" />
+    <ClCompile Include="querystring-test.cpp" />
+    <ClCompile Include="regex-test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="timers-test.cpp" />
+    <ClCompile Include="underscore.string-test.cpp" />
+    <ClCompile Include="url-test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

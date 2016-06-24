@@ -21,7 +21,73 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="one.h">
+    <ClInclude Include="fmt-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="json11-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core-math-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="events-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file-url-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fs-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iconv-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ini-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard-code-trans-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lodash-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moment-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="os-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="path-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pe-cert-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="querystring-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="regex-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timers-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="underscore.string-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="url-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,7 +98,73 @@
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="one.cpp">
+    <ClCompile Include="fmt-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="json11-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core-math-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="events-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file-url-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fs-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iconv-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ini-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard-code-trans-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lodash-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moment-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="os-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="path-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pe-cert-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="querystring-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="regex-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timers-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="underscore.string-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="url-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
