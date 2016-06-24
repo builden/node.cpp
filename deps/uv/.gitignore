@@ -48,13 +48,10 @@ Makefile.in
 /test/run-benchmarks.exe
 /test/run-benchmarks.dSYM
 
-*.sln
 *.sln.cache
 *.ncb
 *.vcproj
 *.vcproj*.user
-*.vcxproj
-*.vcxproj.filters
 *.vcxproj.user
 _UpgradeReport_Files/
 UpgradeLog*.XML
