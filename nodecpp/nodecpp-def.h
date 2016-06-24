@@ -21,4 +21,10 @@ typedef std::vector<std::string> svec_t;
 typedef std::map<int, std::string> ismap_t;
 typedef std::map<std::string, std::string> ssmap_t;
 
+using std::string;
+using std::wstring;
+using std::unique_ptr;
+using std::shared_ptr;
+using std::function;
+
 #endif // !__NODEPP_DEF_H__

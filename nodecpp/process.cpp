@@ -6,10 +6,18 @@
 
 namespace nodecpp {
 
-  Process::Process() {
+  class Process::impl {
+  public:
+    void initArgv(svec_t& argv);
+    void initEnv(Json& env);
+
+    string cwd_;
+  };
+
+  Process::Process() : pimpl(new impl) {
     char cur_path[MAX_PATH] = { 0 };
     ::GetCurrentDirectoryA(MAX_PATH, cur_path);
-    cwd_ = cur_path;
+    pimpl->cwd_ = cur_path;
 
     char exec_path[MAX_PATH] = { 0 };
     ::GetModuleFileNameA(NULL, exec_path, MAX_PATH);
@@ -17,12 +25,12 @@ namespace nodecpp {
 
     pid = ::GetCurrentProcessId();
 
-    initArgv();
-    initEnv();
+    pimpl->initArgv(argv);
+    pimpl->initEnv(env);
   }
 
   string Process::cwd() {
-    return cwd_;
+    return pimpl->cwd_;
   }
 
   Process &process = Process::instance();
@@ -31,7 +39,7 @@ namespace nodecpp {
     setTimeout(cb, 0);
   }
 
-  void Process::initArgv() {
+  void Process::impl::initArgv(svec_t& argv) {
     LPWSTR *szArglist = nullptr;
     int nArgs = 0;
     szArglist = CommandLineToArgvW(GetCommandLine(), &nArgs);
@@ -48,7 +56,7 @@ namespace nodecpp {
     LocalFree(szArglist);
   }
 
-  void Process::initEnv() {
+  void Process::impl::initEnv(Json& env) {
     WCHAR* environment = GetEnvironmentStringsW();
     if (environment == nullptr)
       return;  // This should not happen.

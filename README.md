@@ -72,3 +72,4 @@ fs.readFile(filePath, [](const Buffer& buf) {
 * [http_parser](https://github.com/nodejs/http-parser)
 * [zlib](https://github.com/madler/zlib)
 * [detours](http://research.microsoft.com/en-us/projects/detours/)
+* [simpleini](https://github.com/brofield/simpleini)

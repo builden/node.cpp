@@ -2,7 +2,6 @@
 #define __ERROR_H__
 
 #include "nodecpp-def.h"
-#include <uv.h>
 #include <exception>
 
 namespace nodecpp {
@@ -15,8 +14,8 @@ namespace nodecpp {
   public:
     operator bool() const { return err_ < 0; }
     int code() const { return err_; }
-    const char* name() const { return uv_err_name(err_); }
-    const char* str() const { return uv_strerror(err_); }
+    const char* name() const;
+    const char* str() const;
 
     virtual const char* what() const throw() {
       return str();

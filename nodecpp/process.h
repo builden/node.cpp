@@ -7,8 +7,6 @@
 #include "json11.hpp"
 
 namespace nodecpp {
-  using std::string;
-  using std::function;
   using json11::Json;
   using NextTickCb_t = function<void(void)>;
 
@@ -28,11 +26,8 @@ namespace nodecpp {
     string platform = "win32";
 
   private:
-    void initArgv();
-    void initEnv();
-
-  private:
-    string cwd_;
+    class impl;
+    unique_ptr<impl> pimpl;
   };
 
   extern Process &process;

@@ -2,13 +2,13 @@
 #define __INI_H__
 #include "nodecpp-def.h"
 
-#include "SimpleIni.h"
-
 namespace nodecpp {
   using std::string;
 
   class Ini {
   public:
+    Ini();
+
     bool loadFile(const string& path);
     bool loadData(const char *data, uint32_t size);
 
@@ -28,7 +28,8 @@ namespace nodecpp {
     bool saveFile(const string& path);
 
   private:
-    CSimpleIniA ini_;
+    class impl;
+    unique_ptr<impl> pimpl;
   };
 }
 

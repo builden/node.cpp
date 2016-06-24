@@ -18,6 +18,7 @@
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="dll-util.cpp" />
+    <ClCompile Include="error.cpp" />
     <ClCompile Include="events.cpp" />
     <ClCompile Include="file-url.cpp" />
     <ClCompile Include="fmt\format.cc" />
@@ -43,44 +44,44 @@
     <ClCompile Include="url.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\nodecpp\buffer.h" />
+    <ClInclude Include="..\include\nodecpp\callback.h" />
+    <ClInclude Include="..\include\nodecpp\child_process.h" />
+    <ClInclude Include="..\include\nodecpp\core-math.h" />
+    <ClInclude Include="..\include\nodecpp\core.h" />
+    <ClInclude Include="..\include\nodecpp\dll-util.h" />
+    <ClInclude Include="..\include\nodecpp\error.h" />
+    <ClInclude Include="..\include\nodecpp\events.h" />
+    <ClInclude Include="..\include\nodecpp\file-url.h" />
+    <ClInclude Include="..\include\nodecpp\fs.h" />
+    <ClInclude Include="..\include\nodecpp\hooker.h" />
+    <ClInclude Include="..\include\nodecpp\http.h" />
+    <ClInclude Include="..\include\nodecpp\iconv.h" />
+    <ClInclude Include="..\include\nodecpp\ini.h" />
+    <ClInclude Include="..\include\nodecpp\json11.hpp" />
+    <ClInclude Include="..\include\nodecpp\keyboard-code-trans.h" />
+    <ClInclude Include="..\include\nodecpp\keyboard-codes.h" />
+    <ClInclude Include="..\include\nodecpp\lodash.h" />
+    <ClInclude Include="..\include\nodecpp\moment.h" />
+    <ClInclude Include="..\include\nodecpp\net.h" />
+    <ClInclude Include="..\include\nodecpp\nodecpp-def.h" />
+    <ClInclude Include="..\include\nodecpp\nodecpp.h" />
+    <ClInclude Include="..\include\nodecpp\os.h" />
+    <ClInclude Include="..\include\nodecpp\path.h" />
+    <ClInclude Include="..\include\nodecpp\pe-cert.h" />
+    <ClInclude Include="..\include\nodecpp\process.h" />
+    <ClInclude Include="..\include\nodecpp\querystring.h" />
+    <ClInclude Include="..\include\nodecpp\shm.h" />
+    <ClInclude Include="..\include\nodecpp\singleton.h" />
+    <ClInclude Include="..\include\nodecpp\std-regex-ex.h" />
+    <ClInclude Include="..\include\nodecpp\timers.h" />
+    <ClInclude Include="..\include\nodecpp\underscore.string.h" />
+    <ClInclude Include="..\include\nodecpp\url.h" />
     <ClInclude Include="base64\base64.h" />
     <ClInclude Include="base64\modp_b64.h" />
     <ClInclude Include="base64\modp_b64_data.h" />
-    <ClInclude Include="buffer.h" />
-    <ClInclude Include="callback.h" />
-    <ClInclude Include="child_process.h" />
-    <ClInclude Include="core-math.h" />
-    <ClInclude Include="core.h" />
-    <ClInclude Include="dll-util.h" />
-    <ClInclude Include="error.h" />
-    <ClInclude Include="events.h" />
-    <ClInclude Include="file-url.h" />
     <ClInclude Include="fmt\format.h" />
-    <ClInclude Include="fs.h" />
-    <ClInclude Include="hooker.h" />
-    <ClInclude Include="http.h" />
-    <ClInclude Include="iconv.h" />
-    <ClInclude Include="ini.h" />
-    <ClInclude Include="json11.hpp" />
-    <ClInclude Include="keyboard-code-trans.h" />
-    <ClInclude Include="keyboard-codes.h" />
-    <ClInclude Include="lodash.h" />
-    <ClInclude Include="moment.h" />
-    <ClInclude Include="net.h" />
-    <ClInclude Include="nodecpp-def.h" />
-    <ClInclude Include="nodecpp.h" />
-    <ClInclude Include="os.h" />
-    <ClInclude Include="path.h" />
-    <ClInclude Include="pe-cert.h" />
-    <ClInclude Include="process.h" />
-    <ClInclude Include="querystring.h" />
-    <ClInclude Include="shm.h" />
-    <ClInclude Include="SimpleIni.h" />
-    <ClInclude Include="singleton.h" />
-    <ClInclude Include="std-regex-ex.h" />
-    <ClInclude Include="timers.h" />
-    <ClInclude Include="underscore.string.h" />
-    <ClInclude Include="url.h" />
+    <ClInclude Include="SimpleIni\SimpleIni.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C4C58E7-4488-45CD-BFCD-098D95BC5D01}</ProjectGuid>
@@ -120,7 +121,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../include;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../include/nodecpp;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -140,7 +141,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../include;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../include/nodecpp;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

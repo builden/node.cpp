@@ -25,6 +25,9 @@
     <Filter Include="deps\base64">
       <UniqueIdentifier>{06210a63-ccb5-445b-9d3b-5a6f7cd8ec48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\simpleini">
+      <UniqueIdentifier>{bf94779c-fd26-425f-8031-7bc55347daeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -117,98 +120,11 @@
     <ClCompile Include="hooker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="child_process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core-math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dll-util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="events.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="file-url.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="http.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iconv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ini.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard-codes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard-code-trans.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lodash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="moment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="os.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="path.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pe-cert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="querystring.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleIni.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="std-regex-ex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="timers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="underscore.string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="url.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="base64\base64.h">
       <Filter>deps\base64</Filter>
     </ClInclude>
@@ -221,17 +137,107 @@
     <ClInclude Include="fmt\format.h">
       <Filter>deps\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="json11.hpp">
+    <ClInclude Include="SimpleIni\SimpleIni.h">
+      <Filter>deps\simpleini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\child_process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\core-math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\dll-util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\file-url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\fs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\hooker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\http.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\iconv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\ini.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\keyboard-codes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\keyboard-code-trans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\lodash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\moment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\net.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\nodecpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\nodecpp-def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\pe-cert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\querystring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\shm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\std-regex-ex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\timers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\underscore.string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\nodecpp\json11.hpp">
       <Filter>deps\json11</Filter>
-    </ClInclude>
-    <ClInclude Include="nodecpp-def.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nodecpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hooker.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
