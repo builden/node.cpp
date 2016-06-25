@@ -1,7 +1,7 @@
 #include "child_process.h"
 #include <windows.h>
-// #include <detours/detours.h>
-// #pragma comment(lib, "detours.lib")
+#include <detours.h>
+#pragma comment(lib, "detours.lib")
 
 namespace nodecpp {
 
@@ -32,7 +32,6 @@ namespace nodecpp {
   }
 
   bool ChildProcess::execWithDll(const string& command, const string& dllPath) {
-/*
     STARTUPINFOA si = { 0 };
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi = { 0 };
@@ -57,7 +56,7 @@ namespace nodecpp {
       return false;
     }
 
-    ResumeThread(pi.hThread);*/
+    ResumeThread(pi.hThread);
     return true;
   }
 

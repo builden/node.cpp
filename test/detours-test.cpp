@@ -2,8 +2,6 @@
 #include "detours-test.h"
 #include <nodecpp/hooker.h>
 
-#pragma comment(lib, "detours.lib")
-
 typedef BOOL(WINAPI* PFNBeep)(DWORD dwFreq, DWORD dwDuration);
 void * g_oldBeep = NULL;
 BOOL WINAPI newBeep(DWORD dwFreq, DWORD dwDuration) {
