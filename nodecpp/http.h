@@ -7,7 +7,6 @@
 #include "net.h"
 
 namespace nodecpp {
-  using std::string;
   class HttpServer;
   using HttpServerPtr_t = shared_ptr<HttpServer>;
 

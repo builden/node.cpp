@@ -28,8 +28,6 @@ Note that this doesn't turn fs.open() into a synchronous blocking call. If that'
 
 namespace nodecpp {
   using std::map;
-  using std::string;
-  using std::function;
 
   using OpenCb_t = function<void(const Error&, int)>;
   using ReadCb_t = function<void(const Error&, const Buffer&)>;

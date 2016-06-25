@@ -3,8 +3,7 @@
 
 #include "nodecpp-def.h"
 #include "singleton.h"
-#include <string>
-#include "json11.hpp"
+#include "json11/json11.hpp"
 
 namespace nodecpp {
   using json11::Json;

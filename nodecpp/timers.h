@@ -3,7 +3,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-  using std::function;
   using TimerCb_t = function<void()>;
 
   int setTimeout(const TimerCb_t& cb, int after);

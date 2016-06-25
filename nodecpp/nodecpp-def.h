@@ -23,6 +23,7 @@ typedef std::map<std::string, std::string> ssmap_t;
 
 using std::string;
 using std::wstring;
+using std::vector;
 using std::unique_ptr;
 using std::shared_ptr;
 using std::function;

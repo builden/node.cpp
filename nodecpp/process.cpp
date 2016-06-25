@@ -14,7 +14,7 @@ namespace nodecpp {
     string cwd_;
   };
 
-  Process::Process() : pimpl(new impl) {
+  Process::Process() : pimpl(new Process::impl) {
     char cur_path[MAX_PATH] = { 0 };
     ::GetCurrentDirectoryA(MAX_PATH, cur_path);
     pimpl->cwd_ = cur_path;

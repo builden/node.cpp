@@ -9,7 +9,8 @@ namespace nodecpp {
     CSimpleIniA ini_;
   };
 
-  Ini::Ini(): pimpl(new impl) {}
+  Ini::Ini() : pimpl(new Ini::impl) {}
+  Ini::~Ini() {}
 
   bool Ini::loadFile(const string& path) {
     SI_Error rc = pimpl->ini_.LoadFile(path.c_str());

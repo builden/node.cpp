@@ -3,11 +3,10 @@
 
 #include "nodecpp-def.h"
 #include "singleton.h"
-#include "json11.hpp"
+#include "json11/json11.hpp"
 
 namespace nodecpp {
   using namespace json11;
-  using std::string;
 
   class Querystring : public Singleton<Querystring> {
   public:

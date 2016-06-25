@@ -5,7 +5,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::string;
 
   class UrlObj {
   public:

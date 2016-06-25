@@ -6,7 +6,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::wstring;
 
   class PeCert: public Singleton<PeCert> {
   public:

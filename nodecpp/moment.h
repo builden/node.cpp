@@ -6,7 +6,6 @@
 #include <uv.h>
 
 namespace nodecpp {
-  using std::string;
 
   class Moment {
   public:

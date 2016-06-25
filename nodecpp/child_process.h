@@ -4,7 +4,7 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::string;
+
   class ChildProcess : public Singleton<ChildProcess> {
   public:
     bool exec(const string& command);

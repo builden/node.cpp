@@ -5,7 +5,7 @@
 
 // ¹²ÏíÄÚ´æ
 namespace nodecpp {
-  using std::string;
+
   class Shm {
   public:
     ~Shm();

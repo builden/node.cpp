@@ -12,9 +12,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-  using std::string;
-  using std::wstring;
-  using std::vector;
 
   class Buffer {
   public:

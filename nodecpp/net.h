@@ -6,14 +6,12 @@
 #include "singleton.h"
 #include <uv.h>
 
-#include "json11.hpp"
+#include "json11/json11.hpp"
 using namespace json11;
 
 namespace nodecpp {
-  using std::string;
-  using std::function;
+
   using std::bind;
-  using std::shared_ptr;
 
   class Socket;
   class Server;

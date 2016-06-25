@@ -42,5 +42,5 @@ TEST_F(ProcessTest, env) {
 
   EXPECT_EQ(process.env["NOTEXIST"].is_null(), true);
   EXPECT_EQ(process.env["NOTEXIST"].string_value(), "");
-  EXPECT_EQ(process.env["windir"].string_value(), "C:\\windows");
+  EXPECT_EQ(s.toLower(process.env["windir"].string_value()), "c:\\windows");
 }

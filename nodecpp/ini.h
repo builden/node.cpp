@@ -3,11 +3,11 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-  using std::string;
 
   class Ini {
   public:
     Ini();
+    ~Ini();
 
     bool loadFile(const string& path);
     bool loadData(const char *data, uint32_t size);

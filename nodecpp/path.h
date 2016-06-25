@@ -4,7 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::string;
 
   class Path : public Singleton<Path> {
   public:

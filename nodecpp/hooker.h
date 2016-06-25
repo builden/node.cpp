@@ -4,8 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::string;
-  using std::vector;
 
   class Hooker : public Singleton<Hooker> {
   public:

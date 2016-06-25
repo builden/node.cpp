@@ -5,8 +5,7 @@
 #include "keyboard-codes.h"
 
 namespace nodecpp {
-  using std::string;
-  using std::vector;
+
   using KeyboardCodes = vector<KeyboardCode>;
 
   KeyboardCode keyboardCodeFromStr(const string& str, bool* shifted);

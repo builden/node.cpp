@@ -7,8 +7,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  using std::string;
-  using std::wstring;
 
   class Iconv : public Singleton<Iconv> {
   public:

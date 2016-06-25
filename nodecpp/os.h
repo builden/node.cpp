@@ -5,7 +5,6 @@
 
 namespace nodecpp {
 
-  using std::string;
   class Os: public Singleton<Os> {
   public:
     string platform();

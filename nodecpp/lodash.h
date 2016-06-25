@@ -27,11 +27,9 @@
 #undef max
 
 namespace nodecpp {
-  using std::string;
-  using std::vector;
+
   using std::begin;
   using std::end;
-  using std::function;
   using std::stringstream;
 
   class Lodash : public Singleton<Lodash> {

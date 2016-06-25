@@ -38,5 +38,5 @@ TEST_F(PathTest, resolve) {
 
   EXPECT_EQ(path.resolve("a"), path.join(process.cwd(), "a"));
 
-  EXPECT_EQ(path.resolve("%windir%"), "C:\\windows");
+  EXPECT_EQ(s.toLower(path.resolve("%windir%")), "c:\\windows");
 }
