@@ -5,7 +5,6 @@
 
 #pragma comment(lib, "dbghelp.lib")
 #pragma comment(lib, "gtest.lib")
-#pragma comment(lib, "nodecpp.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
