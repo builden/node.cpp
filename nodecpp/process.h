@@ -3,10 +3,8 @@
 
 #include "nodecpp-def.h"
 #include "singleton.h"
-#include "json11/json11.hpp"
 
 namespace nodecpp {
-  using json11::Json;
   using NextTickCb_t = function<void(void)>;
 
   class Process : public Singleton<Process> {

@@ -7,7 +7,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class Iconv : public Singleton<Iconv> {
   public:
     string decode(const Buffer& buf, const string& encoding, bool stripBOM = false);

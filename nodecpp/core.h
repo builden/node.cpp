@@ -3,7 +3,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-
   string encodeURI(const string& str);
   string decodeURI(const string& str);
   string encodeURIComponent(const string& str);

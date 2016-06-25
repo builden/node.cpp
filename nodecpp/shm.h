@@ -5,7 +5,6 @@
 
 // ¹²ÏíÄÚ´æ
 namespace nodecpp {
-
   class Shm {
   public:
     ~Shm();

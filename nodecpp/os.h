@@ -4,7 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class Os: public Singleton<Os> {
   public:
     string platform();

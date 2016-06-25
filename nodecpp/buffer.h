@@ -12,7 +12,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-
   class Buffer {
   public:
     Buffer();

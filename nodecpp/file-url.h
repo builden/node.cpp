@@ -3,7 +3,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-
   string fileUrl(const string& str, bool isResolve = true);
 }
 

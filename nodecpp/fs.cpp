@@ -154,10 +154,10 @@ namespace nodecpp {
       stats.blksize = s->st_blksize;
       stats.ino = s->st_ino;
       stats.size = s->st_size;
-      stats.atime = Moment(s->st_atim);
-      stats.mtime = Moment(s->st_mtim);
-      stats.ctime = Moment(s->st_ctim);
-      stats.birthtime = Moment(s->st_birthtim);
+      stats.atime = Moment(s->st_atim.tv_sec, s->st_atim.tv_nsec);
+      stats.mtime = Moment(s->st_mtim.tv_sec, s->st_mtim.tv_nsec);
+      stats.ctime = Moment(s->st_ctim.tv_sec, s->st_ctim.tv_nsec);
+      stats.birthtime = Moment(s->st_birthtim.tv_sec, s->st_birthtim.tv_nsec);
     }
     else {
       uv_fs_req_cleanup(&req);

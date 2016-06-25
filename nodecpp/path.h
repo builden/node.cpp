@@ -4,7 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class Path : public Singleton<Path> {
   public:
     string basename(const string& p, const string& ext = "");

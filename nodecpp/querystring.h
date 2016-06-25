@@ -3,11 +3,8 @@
 
 #include "nodecpp-def.h"
 #include "singleton.h"
-#include "json11/json11.hpp"
 
 namespace nodecpp {
-  using namespace json11;
-
   class Querystring : public Singleton<Querystring> {
   public:
     Json parse(const string& str, const string& sep = "&", const string& eq = "=");

@@ -6,11 +6,7 @@
 #include "singleton.h"
 #include <uv.h>
 
-#include "json11/json11.hpp"
-using namespace json11;
-
 namespace nodecpp {
-
   using std::bind;
 
   class Socket;

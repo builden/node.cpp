@@ -1,18 +1,15 @@
 #ifndef __MOMENT_H__
 #define __MOMENT_H__
 #include "nodecpp-def.h"
-
 #include <chrono>
-#include <uv.h>
 
 namespace nodecpp {
-
   class Moment {
   public:
     Moment();
     Moment(uint64_t milliseconds);  // ∫¡√Î
     Moment(uint32_t seconds);       // √Î
-    Moment(const uv_timespec_t& timespec);
+    Moment(uint32_t seconds, uint32_t nanoseconds);
 
     string format();
 

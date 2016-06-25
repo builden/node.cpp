@@ -4,7 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class Hooker : public Singleton<Hooker> {
   public:
     /**

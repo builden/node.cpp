@@ -5,7 +5,6 @@
 #include <windows.h>
 
 namespace nodecpp {
-
   // HMODULE from dllmain function param
   string getDllPath(HMODULE hModule);
 }

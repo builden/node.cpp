@@ -3,7 +3,6 @@
 #include "nodecpp-def.h"
 
 namespace nodecpp {
-
   class Ini {
   public:
     Ini();

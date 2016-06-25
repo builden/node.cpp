@@ -1,5 +1,4 @@
 #include "moment.h"
-
 #include <sys/timeb.h> 
 
 namespace nodecpp {
@@ -38,9 +37,9 @@ namespace nodecpp {
     milliseconds_ *= 1000;
   }
 
-  Moment::Moment(const uv_timespec_t& timespec) {
-    milliseconds_ = timespec.tv_sec;
-    milliseconds_ = milliseconds_ * 1000 + timespec.tv_nsec / 1000000;
+  Moment::Moment(uint32_t seconds, uint32_t nanoseconds) {
+    milliseconds_ = seconds;
+    milliseconds_ = milliseconds_ * 1000 + nanoseconds / 1000000;
   }
 
   string Moment::format() {

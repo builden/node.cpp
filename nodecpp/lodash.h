@@ -27,7 +27,6 @@
 #undef max
 
 namespace nodecpp {
-
   using std::begin;
   using std::end;
   using std::stringstream;

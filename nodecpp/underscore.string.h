@@ -4,7 +4,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class UnderscoreString : public Singleton<UnderscoreString> {
   public:
     string slice(const string& str, int start);

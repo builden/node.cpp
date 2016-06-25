@@ -5,7 +5,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class UrlObj {
   public:
     string protocol;

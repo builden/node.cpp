@@ -6,7 +6,6 @@
 #include "singleton.h"
 
 namespace nodecpp {
-
   class PeCert: public Singleton<PeCert> {
   public:
     bool verifyTrust(const wstring& filePath);
