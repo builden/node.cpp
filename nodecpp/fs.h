@@ -17,40 +17,15 @@ Note that this doesn't turn fs.open() into a synchronous blocking call. If that'
 */
 #ifndef __FS_H__
 #define __FS_H__
-#include "nodecpp-def.h"
-#include "buffer.h"
-#include <uv.h>
-#include "error.h"
+#include "fs-wrap.h"
 #include "singleton.h"
 #include "moment.h"
 
 #include <iostream>
 
 namespace nodecpp {
-  using std::map;
-
   using OpenCb_t = function<void(const Error&, int)>;
-  using ReadCb_t = function<void(const Error&, const Buffer&)>;
   using ReadStrCb_t = function<void(const Error&, const string&)>;
-  using WriteCb_t = function<void(const Error&)>;
-
-  class FsWrap {
-  public:
-    FsWrap(int fd): fd_(fd) {}
-
-    void readFile(ReadCb_t cb);
-    void writeFile(const Buffer& buf, WriteCb_t cb);
-
-  private:
-    static void readCb(uv_fs_t* req);
-    static void writeCb(uv_fs_t* req);
-  private:
-    uv_buf_t iov_;
-    char buffer_[1024];
-    int fd_;
-    uv_fs_t req_;
-    Buffer buf_;
-  };
 
   class Fs : public Singleton<Fs> {
   public:
@@ -76,12 +51,10 @@ namespace nodecpp {
       // "Birth Time" - Time of file creation. Set once when the file is created. On filesystems where birthtime is not available, this field may instead hold either the ctime or 1970-01-01T00:00Z (ie, unix epoch timestamp 0). Note that this value may be greater than atime or mtime in this case. On Darwin and other FreeBSD variants, also set if the atime is explicitly set to an earlier value than the current birthtime using the utimes(2) system call.
       Moment birthtime;
 
-      bool isFile() { return ((mode & S_IFMT) == S_IFREG); }
-      bool isDirectory() { return ((mode & S_IFMT) == S_IFDIR); }
-      bool isCharacterDevice() { return ((mode & S_IFMT) == S_IFCHR); }
-      bool isSymbolicLink() { return ((mode & S_IFMT) == S_IFLNK); }
-//       bool isFIFO() { return mode & S_IFIFO; }
-//       bool isSocket() { return mode & S_IFSOCK; }
+      bool isFile();
+      bool isDirectory();
+      bool isCharacterDevice();
+      bool isSymbolicLink();
     };
     using StatCb_t = function<void(const Error&, const Stats&)>;
     using ExistsCb_t = function<void(bool)>;

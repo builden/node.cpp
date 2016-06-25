@@ -40,6 +40,9 @@
     <Filter Include="utils">
       <UniqueIdentifier>{e8699736-104d-4041-94a7-4eb2c44dffd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\inner">
+      <UniqueIdentifier>{95b6b00c-d909-4917-b870-4e68c857c277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -134,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="json11\json11.cpp">
       <Filter>deps\json11</Filter>
+    </ClCompile>
+    <ClCompile Include="fs-wrap.cpp">
+      <Filter>core\inner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="json11\json11.hpp">
       <Filter>deps\json11</Filter>
+    </ClInclude>
+    <ClInclude Include="fs-wrap.h">
+      <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

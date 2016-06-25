@@ -31,6 +31,7 @@ TEST_F(FsTest, readFile) {
   // string file = "F:\\中文 中文\\我是中国人.txt";
   fs.readFile(file, [&](const Error& err, const Buffer& buf) {
     EXPECT_EQ(buf, fs.readFileSync(file));
+    fmt::print("read file succ: {}\n", file);
   });
 
   fs.readFile("C:\\Windows\\not.exe", [](const Error& err, const Buffer&buf) {

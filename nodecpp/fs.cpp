@@ -3,12 +3,11 @@
 #include "callback.h"
 #include "fmt/format.h"
 
+#include <uv.h>
 #include <fcntl.h>
 
 namespace nodecpp {
   using OpenCb = Callback<OpenCb_t>;
-  using ReadCb = Callback<ReadCb_t>;
-  using WriteCb = Callback<WriteCb_t>;
 
   void Fs::open(const string& path, const string& flags, OpenCb_t cb) {
     auto openReq = new uv_fs_t;
@@ -223,7 +222,11 @@ namespace nodecpp {
 
   void Fs::renameSync(const string& oldPath, const string& newPath) {
     uv_fs_t req;
-    int rc = uv_fs_rename(uv_default_loop(), &req, iconv.strToUtf8(oldPath).c_str(), iconv.strToUtf8(newPath).c_str(), nullptr);
+    int rc = uv_fs_rename(uv_default_loop()
+      , &req
+      , iconv.strToUtf8(oldPath).c_str()
+      , iconv.strToUtf8(newPath).c_str()
+      , nullptr);
     uv_fs_req_cleanup(&req);
 
     if (rc != 0) throw Error(rc);
@@ -231,51 +234,20 @@ namespace nodecpp {
 
   Fs &fs = Fs::instance();
 
-  void FsWrap::readFile(ReadCb_t cb) {
-    iov_ = uv_buf_init(buffer_, sizeof(buffer_));
-    req_.data = new ReadCb(cb, (void *)this);
-    uv_fs_read(uv_default_loop(), &req_, fd_,
-      &iov_, 1, -1, readCb);
+  bool Fs::Stats::isFile() {
+    return ((mode & S_IFMT) == S_IFREG);
   }
 
-  void FsWrap::readCb(uv_fs_t* req) {
-    auto innerCb = (ReadCb *)req->data;
-    auto fsWrap = (FsWrap *)innerCb->getData();
-    if (req->result < 0) {
-      innerCb->invoke(Error(req->result), fsWrap->buf_);
-      uv_fs_req_cleanup(req);
-    }
-    else if (req->result == 0) {
-      innerCb->invoke(Error(0), fsWrap->buf_);
-      delete innerCb;
-      delete fsWrap;
-      uv_fs_req_cleanup(req);
-    }
-    else {
-      fsWrap->buf_.append(fsWrap->iov_.base, req->result);
-      uv_fs_read(uv_default_loop(), &fsWrap->req_, fsWrap->fd_,
-        &fsWrap->iov_, 1, -1, readCb);
-    }
+  bool Fs::Stats::isDirectory() {
+    return ((mode & S_IFMT) == S_IFDIR);
   }
 
-  void FsWrap::writeFile(const Buffer& buf, WriteCb_t cb) {
-    buf_ = buf;
-    auto iov = uv_buf_init(const_cast<char*>(buf_.data()), buf_.length());
-    req_.data = new WriteCb(cb, this);
-    uv_fs_write(uv_default_loop(), &req_, fd_, &iov, 1, 0, writeCb);
+  bool Fs::Stats::isCharacterDevice() {
+    return ((mode & S_IFMT) == S_IFCHR);
   }
 
-  void FsWrap::writeCb(uv_fs_t* req) {
-    auto innerCb = (WriteCb *)req->data;
-    auto fsWrap = (FsWrap *)innerCb->getData();
-
-    if (req->result < 0) {
-      innerCb->invoke(Error(req->result));
-    }
-    else {
-      innerCb->invoke(Error(0));
-    }
-    uv_fs_req_cleanup(req);
+  bool Fs::Stats::isSymbolicLink() {
+    return ((mode & S_IFMT) == S_IFLNK);
   }
 
 }

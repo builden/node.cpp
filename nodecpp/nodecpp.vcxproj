@@ -22,6 +22,7 @@
     <ClCompile Include="events.cpp" />
     <ClCompile Include="file-url.cpp" />
     <ClCompile Include="fmt\format.cc" />
+    <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="hooker.cpp" />
     <ClCompile Include="http.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="events.h" />
     <ClInclude Include="file-url.h" />
     <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="hooker.h" />
     <ClInclude Include="http.h" />
