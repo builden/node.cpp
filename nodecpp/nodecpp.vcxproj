@@ -32,6 +32,8 @@
     <ClCompile Include="keyboard-code-trans.cpp" />
     <ClCompile Include="lodash.cpp" />
     <ClCompile Include="moment.cpp" />
+    <ClCompile Include="net-server.cpp" />
+    <ClCompile Include="net-socket.cpp" />
     <ClCompile Include="net.cpp" />
     <ClCompile Include="nodepp.cpp" />
     <ClCompile Include="os.cpp" />
@@ -69,6 +71,8 @@
     <ClInclude Include="keyboard-codes.h" />
     <ClInclude Include="lodash.h" />
     <ClInclude Include="moment.h" />
+    <ClInclude Include="net-server.h" />
+    <ClInclude Include="net-socket.h" />
     <ClInclude Include="net.h" />
     <ClInclude Include="nodecpp-def.h" />
     <ClInclude Include="nodecpp.h" />

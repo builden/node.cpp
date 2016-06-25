@@ -18,6 +18,7 @@ App& app = App::instance();
 
 void App::run() {
   server_ = net.createServer([this](SocketPtr_t sock) {
+    cout << "have one client connected" << endl;
     client_ = sock;
     sock->on<const Buffer&>("data", [this](const Buffer& buf) {
       cout << buf.format() << endl;

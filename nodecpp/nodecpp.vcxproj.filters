@@ -141,6 +141,12 @@
     <ClCompile Include="fs-wrap.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="net-server.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="net-socket.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -258,6 +264,12 @@
       <Filter>deps\json11</Filter>
     </ClInclude>
     <ClInclude Include="fs-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="net-server.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="net-socket.h">
       <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
