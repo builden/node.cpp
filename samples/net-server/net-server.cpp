@@ -21,7 +21,7 @@ void App::run() {
     cout << "have one client connected" << endl;
     client_ = sock;
     sock->on<const Buffer&>("data", [this](const Buffer& buf) {
-      cout << buf.format() << endl;
+      cout << "recv: " << buf.toString() << endl;
 
       client_->write(Buffer("welcome to server"));
     });

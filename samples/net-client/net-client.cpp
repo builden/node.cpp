@@ -18,7 +18,6 @@ App& app = App::instance();
 void App::run() {
   client_ = net.connect(pipeName, [this]() {
     cout << "client connected to " << pipeName << endl;
-    client_->write(Buffer("hello server, i am client."));
   });
 
   client_->on<const Error&>("error", [](const Error& err) {
@@ -26,8 +25,12 @@ void App::run() {
   });
 
   client_->on<const Buffer&>("data", [](const Buffer& buf) {
-    cout << "recv from svr: " << buf.format() << endl;
+    cout << "recv from svr: " << buf.toString() << endl;
   });
+
+  setTimeout([this]() {
+    client_->write(Buffer("hello server, i am client."));
+  }, 1000);
 
   nodecpp::run();
 }
