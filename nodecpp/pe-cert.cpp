@@ -377,12 +377,12 @@ namespace nodecpp {
       }
       _tprintf(_T("\n"));
       // Get Issuer name size.
-      if (!(dwData = CertGetNameString(pCertContext,
+      if ((dwData = CertGetNameString(pCertContext,
         CERT_NAME_SIMPLE_DISPLAY_TYPE,
         CERT_NAME_ISSUER_FLAG,
         NULL,
         NULL,
-        0)))
+        0)) == 0)
       {
         _tprintf(_T("CertGetNameString failed.\n"));
         __leave;
@@ -410,12 +410,12 @@ namespace nodecpp {
       LocalFree(szName);
       szName = NULL;
       // Get Subject name size.
-      if (!(dwData = CertGetNameString(pCertContext,
+      if ((dwData = CertGetNameString(pCertContext,
         CERT_NAME_SIMPLE_DISPLAY_TYPE,
         0,
         NULL,
         NULL,
-        0)))
+        0)) == 0)
       {
         _tprintf(_T("CertGetNameString failed.\n"));
         __leave;

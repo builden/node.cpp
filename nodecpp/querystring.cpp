@@ -4,6 +4,7 @@
 #include "lodash.h"
 #include "fmt/format.h"
 #include "iconv.h"
+#include "error.h"
 
 namespace nodecpp {
   uint32_t maxPairs = 1000;
@@ -278,11 +279,11 @@ namespace nodecpp {
       }
       // Surrogate pair
       ++i;
-      uint32_t c2;
+      uint32_t c2 = 0;
       if (i < wstr.length())
         c2 = iconv.charCodeAt(wstr, i) & 0x3FF;
-//       else
-//         throw new URIError('URI malformed');
+      else
+        throw Error(-2001, "URI malformed");
       lastPos = i + 1;
       c = 0x10000 + (((c & 0x3FF) << 10) | c2);
       out += hexTable[0xF0 | (c >> 18)] +

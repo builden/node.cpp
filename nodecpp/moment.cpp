@@ -1,5 +1,6 @@
 #include "moment.h"
-#include <sys/timeb.h> 
+#include <sys/timeb.h>
+#include "fmt/format.h"
 
 namespace nodecpp {
   string Moment::millisecond_to_str(int64_t milliseconds) {
@@ -7,11 +8,18 @@ namespace nodecpp {
     std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::milliseconds> t1(ms);
     std::time_t t = std::chrono::system_clock::to_time_t(t1);
 
-    std::ostringstream oss;
-    oss.fill('0');
     auto const msecs = ms.count() % 1000;
-    oss << std::put_time(&localtime(t), "%Y-%m-%d %H:%M:%S") << "." << std::setw(3) << msecs;
-    return oss.str();
+    fmt::MemoryWriter out;
+    tm _tm = localtime(t);
+    out.write("{:04}-{:02}-{:02} {:02}:{:02}:{:02}"
+      , _tm.tm_year + 1900
+      , _tm.tm_mon + 1
+      , _tm.tm_mday
+      , _tm.tm_hour
+      , _tm.tm_min
+      , _tm.tm_sec);
+    out.write(".{:03}", msecs);
+    return out.str();
   }
 
   string Moment::put_time(const struct tm *tmb, const char *c_time_format) {

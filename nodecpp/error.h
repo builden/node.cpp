@@ -9,6 +9,7 @@ namespace nodecpp {
   public:
     Error() : Error(0) {}
     Error(int err) : err_(err) {}
+    Error(int err, const string& msg);
     ~Error() = default;
 
   public:
@@ -22,6 +23,8 @@ namespace nodecpp {
     }
   private:
     int err_;
+    bool isCustom = false;
+    string customMsg;
   };
 }
 

@@ -11,7 +11,7 @@ namespace nodecpp {
   }
 
   void runInterval(int interval /*= 1*/) {
-    SetTimer(NULL, NULL, interval, [](HWND hWnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime) {
+    SetTimer(NULL, NULL, interval, [](HWND /*hWnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/) {
       uv_run(uv_default_loop(), UV_RUN_NOWAIT);
     });
   }

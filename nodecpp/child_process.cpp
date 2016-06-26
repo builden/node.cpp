@@ -9,7 +9,7 @@ namespace nodecpp {
     STARTUPINFOA si = { 0 };
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi = { 0 };
-    DWORD dwFlags = CREATE_SUSPENDED;
+    // DWORD dwFlags = CREATE_SUSPENDED;
 
     BOOL rst = CreateProcessA(
       NULL,
@@ -35,7 +35,7 @@ namespace nodecpp {
     STARTUPINFOA si = { 0 };
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi = { 0 };
-    DWORD dwFlags = CREATE_SUSPENDED;
+    // DWORD dwFlags = CREATE_SUSPENDED;
     BOOL rst = DetourCreateProcessWithDllA(
       NULL,  // Application Name
       const_cast<LPSTR>(command.c_str()),  // CommandLine

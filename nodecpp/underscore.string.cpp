@@ -28,7 +28,7 @@ namespace nodecpp {
     pos1 = 0;
     while (string::npos != pos2) {
       v.push_back(str.substr(pos1, pos2 - pos1));
-      if (limit > 0 && v.size() == limit) return v;
+      if (limit > 0 && static_cast<int>(v.size()) == limit) return v;
 
       pos1 = pos2 + separator.size();
       pos2 = str.find(separator, pos1);
@@ -47,20 +47,19 @@ namespace nodecpp {
     return v;
   }
 
-  bool UnderscoreString::startsWith(const string& str, const string& starts, int position /*= 0*/) {
-    position = Math.min(position, (int)str.length());
+  bool UnderscoreString::startsWith(const string& str, const string& starts, uint32_t position /*= 0*/) {
+    position = Math.min(position, str.length());
     return str.find(starts) == position;
   }
 
-  bool UnderscoreString::endsWith(const string& str, const string& ends, int position /*= -1*/) {
-    if (position == -1) {
-      position = str.length() - ends.length();
-    }
-    else {
-      position = Math.min(position, (int)str.length()) - ends.length();
-    }
-    
+  bool UnderscoreString::endsWith(const string& str, const string& ends, uint32_t position) {
+    position = Math.min(position, str.length()) - ends.length();
     return position >= 0 && str.rfind(ends) == position;
+  }
+
+
+  bool UnderscoreString::endsWith(const string& str, const string& end) {
+    return endsWith(str, end, str.length());
   }
 
   string UnderscoreString::ltrim(const string& str, const string& characters /*= " \t\r\n"*/) {
@@ -221,7 +220,7 @@ namespace nodecpp {
   }
 
   string UnderscoreString::decapitalize(const string& str) {
-    string rst(1, tolower(str[0]));
+    string rst(1, char(tolower(str[0])));
     return rst + slice(str, 1);
   }
 

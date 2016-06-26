@@ -5,7 +5,7 @@ namespace nodecpp {
   // Return key code of the char, and also determine whether the SHIFT key is
   // pressed.
   KeyboardCode KeyboardCodeFromCharCode(char c, bool* shifted) {
-    c = tolower(c);
+    c = char(tolower(c));
     *shifted = false;
     switch (c) {
     case 0x08: return VKEY_BACK;

@@ -8,7 +8,7 @@ using std::codecvt_utf8;
 
 namespace nodecpp {
 
-  string Iconv::decode(const Buffer& buf, const string& encoding, bool stripBOM /*= false*/) {
+  string Iconv::decode(const Buffer& buf, const string& encoding, bool /*stripBOM*/ /*= false*/) {
     if (encoding == "utf-8" || encoding == "utf8") {
       int nwLen = MultiByteToWideChar(CP_UTF8, 0, buf.data(), -1, NULL, 0);
 
@@ -37,7 +37,7 @@ namespace nodecpp {
     return "";
   }
 
-  Buffer Iconv::encode(const string& str, const string& encoding, bool stripBOM /*= false*/) {
+  Buffer Iconv::encode(const string& str, const string& encoding, bool /*stripBOM*/ /*= false*/) {
     if (encoding == "utf-8" || encoding == "utf8") {
       int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
 
@@ -67,7 +67,7 @@ namespace nodecpp {
     return buf;
   }
 
-  Buffer Iconv::encode(const wstring& str, const string& encoding, bool stripBOM /*= false*/) {
+  Buffer Iconv::encode(const wstring& /*str*/, const string& /*encoding*/, bool /*stripBOM*/ /*= false*/) {
     Buffer buf((size_t)0);
     return buf;
   }

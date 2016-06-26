@@ -46,7 +46,7 @@ namespace nodecpp {
 
     pipePath_ = pipePath;
     int r = 0;
-    if ((r = uv_pipe_bind(&pipeServer_, pipePath_.c_str()))) {
+    if ((r = uv_pipe_bind(&pipeServer_, pipePath_.c_str())) != 0) {
       process.nextTick([this, r] {
         svr_->emit<const Error&>("error", Error(r));
       });
@@ -54,7 +54,7 @@ namespace nodecpp {
     }
 
     pipeServer_.data = this;
-    if ((r = uv_listen((uv_stream_t*)&pipeServer_, 128, connectionCb))) {
+    if ((r = uv_listen((uv_stream_t*)&pipeServer_, 128, connectionCb)) != 0) {
       process.nextTick([this, r] {
         svr_->emit<const Error&>("error", Error(r));
       });
@@ -73,7 +73,7 @@ namespace nodecpp {
     uv_ip4_addr("0.0.0.0", port, &addr);
 
     int r = 0;
-    if ((r = uv_tcp_bind(&tcpServer_, (const struct sockaddr*)&addr, 0))) {
+    if ((r = uv_tcp_bind(&tcpServer_, (const struct sockaddr*)&addr, 0)) != 0) {
       process.nextTick([this, r] {
         svr_->emit<const Error&>("error", Error(r));
       });
@@ -81,7 +81,7 @@ namespace nodecpp {
     }
 
     tcpServer_.data = this;
-    if ((r = uv_listen((uv_stream_t*)&tcpServer_, 128, connectionCb))) {
+    if ((r = uv_listen((uv_stream_t*)&tcpServer_, 128, connectionCb)) != 0) {
       process.nextTick([this, r] {
         svr_->emit<const Error&>("error", Error(r));
       });
@@ -100,7 +100,7 @@ namespace nodecpp {
   void Server::impl::connectionCb(uv_stream_t *server, int status) {
     auto svr = (Server::impl *)server->data;
     if (status == -1) {
-      svr->svr_->emit("error", "ConnectionCb Error");
+      svr->svr_->emit("error", Error(status));
     }
 
     auto sock = SocketPtr_t(new Socket(svr->isTcp_));

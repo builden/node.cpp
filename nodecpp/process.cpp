@@ -75,7 +75,7 @@ namespace nodecpp {
       if (!s) {
         s = p + wcslen(p);
       }
-      const uint16_t* two_byte_buffer = reinterpret_cast<const uint16_t*>(p);
+      // const uint16_t* two_byte_buffer = reinterpret_cast<const uint16_t*>(p);
       const size_t two_byte_buffer_len = s - p;
       
       std::wstring key(p, two_byte_buffer_len);

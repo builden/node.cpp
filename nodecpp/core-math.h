@@ -17,13 +17,13 @@ namespace nodecpp {
     static int floor(double x); // 下舍入
     static int round(double x); // 四舍五入
 
-    template<typename T, typename U>
-    static auto min(T x, U y) -> decltype(x) {
+    template<typename T>
+    static auto min(T x, T y) -> decltype(x) {
       return ((x > y) ? y : x);
     };
 
-    template<typename T, typename U>
-    static auto max(T x, U y) -> decltype(x) {
+    template<typename T>
+    static auto max(T x, T y) -> decltype(x) {
       return ((x > y) ? x : y);
     }
   };

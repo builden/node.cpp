@@ -130,7 +130,7 @@ namespace nodecpp {
     return;
   }
 
-  void Fs::stat(const string& file, StatCb_t cb) {
+  void Fs::stat(const string& /*file*/, StatCb_t /*cb*/) {
 
   }
 
@@ -166,7 +166,7 @@ namespace nodecpp {
     return stats;
   }
 
-  void Fs::exists(const string& path, ExistsCb_t cb) {
+  void Fs::exists(const string& /*path*/, ExistsCb_t /*cb*/) {
 
   }
 
@@ -180,7 +180,7 @@ namespace nodecpp {
     }
   }
 
-  void Fs::mkdir(const string& path, MkdirCb_t cb) {
+  void Fs::mkdir(const string& /*path*/, MkdirCb_t /*cb*/) {
 
   }
 
@@ -192,7 +192,7 @@ namespace nodecpp {
     if (rc != 0) throw Error(rc);
   }
 
-  void Fs::rmdir(const string& path, RmdirCb_t cb) {
+  void Fs::rmdir(const string& /*path*/, RmdirCb_t /*cb*/) {
 
   }
 
@@ -204,7 +204,7 @@ namespace nodecpp {
     if (rc != 0) throw Error(rc);
   }
 
-  void Fs::unlink(const string& path, UnlinkCb_t cb) {
+  void Fs::unlink(const string& /*path*/, UnlinkCb_t /*cb*/) {
 
   }
 
@@ -216,7 +216,7 @@ namespace nodecpp {
     if (rc != 0) throw Error(rc);
   }
 
-  void Fs::rename(const string& oldPath, const string& newPath, RenameCb_t cb) {
+  void Fs::rename(const string& /*oldPath*/, const string& /*newPath*/, RenameCb_t /*cb*/) {
 
   }
 

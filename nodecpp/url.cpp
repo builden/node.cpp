@@ -46,7 +46,7 @@ namespace nodecpp {
     }
   }
 
-  string Url::format(const UrlObj& urlObj) {
+  string Url::format(const UrlObj& /*urlObj*/) {
     return "";
   }
 
@@ -355,7 +355,7 @@ namespace nodecpp {
     return urlObj;
   }
 
-  string Url::resolve(const string& from, const string& to) {
+  string Url::resolve(const string& /*from*/, const string& /*to*/) {
     return "";
   }
 

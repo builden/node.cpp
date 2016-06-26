@@ -23,7 +23,7 @@ namespace nodecpp {
 
   class HttpServer : public Server {
   public:
-    HttpServer(requestListener_t& cb) : Server(tcpCb_) {
+    HttpServer(requestListener_t& /*cb*/) : Server(tcpCb_) {
     }
 
     ConnectionCb_t tcpCb_;

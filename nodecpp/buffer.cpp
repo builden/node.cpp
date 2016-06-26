@@ -139,19 +139,19 @@ namespace nodecpp {
     buf_.insert(buf_.end(), buffer.buf_.begin(), buffer.buf_.end());
   }
 
-  double Buffer::readDoubleBE(uint32_t offset /*= 0*/) const {
+  double Buffer::readDoubleBE(uint32_t /*offset*/ /*= 0*/) const {
     return 0;
   }
 
-  double Buffer::readDoubleLE(uint32_t offset /*= 0*/) const {
+  double Buffer::readDoubleLE(uint32_t /*offset*/ /*= 0*/) const {
     return 0;
   }
 
-  float Buffer::readFloatBE(uint32_t offset /*= 0*/) const {
+  float Buffer::readFloatBE(uint32_t /*offset*/ /*= 0*/) const {
     return 0;
   }
 
-  float Buffer::readFloatLE(uint32_t offset /*= 0*/) const {
+  float Buffer::readFloatLE(uint32_t /*offset*/ /*= 0*/) const {
     return 0;
   }
 
@@ -225,19 +225,19 @@ namespace nodecpp {
     return rst;
   }
 
-  uint32_t Buffer::writeDoubleBE(double value, uint32_t offset /*= 0*/) {
+  uint32_t Buffer::writeDoubleBE(double /*value*/, uint32_t /*offset*/ /*= 0*/) {
     return 0;
   }
 
-  uint32_t Buffer::writeDoubleLE(double value, uint32_t offset /*= 0*/) {
+  uint32_t Buffer::writeDoubleLE(double /*value*/, uint32_t /*offset*/ /*= 0*/) {
     return 0;
   }
 
-  uint32_t Buffer::writeFloatBE(float value, uint32_t offset /*= 0*/) {
+  uint32_t Buffer::writeFloatBE(float /*value*/, uint32_t /*offset*/ /*= 0*/) {
     return 0;
   }
 
-  uint32_t Buffer::writeFloatLE(float value, uint32_t offset /*= 0*/) {
+  uint32_t Buffer::writeFloatLE(float /*value*/, uint32_t /*offset*/ /*= 0*/) {
     return 0;
   }
 
@@ -252,14 +252,14 @@ namespace nodecpp {
     if (offset + 2 > buf_.size()) return offset;
 
     buf_[offset] = (value >> 8);
-    buf_[offset + 1] = (value >> 0);
+    buf_[offset + 1] = char(value >> 0);
     return offset + 2;
   }
 
   uint32_t Buffer::writeInt16LE(int16_t value, uint32_t offset /*= 0*/) {
     if (offset + 2 > buf_.size()) return offset;
 
-    buf_[offset] = value >> 0;
+    buf_[offset] = char(value >> 0);
     buf_[offset + 1] = (value >> 8);
     return offset + 2;
   }
@@ -268,19 +268,19 @@ namespace nodecpp {
     if (offset + 4 > buf_.size()) return offset;
 
     buf_[offset] = (value >> 24);
-    buf_[offset + 1] = (value >> 16);
-    buf_[offset + 2] = (value >> 8);
-    buf_[offset + 3] = (value >> 0);
+    buf_[offset + 1] = char(value >> 16);
+    buf_[offset + 2] = char(value >> 8);
+    buf_[offset + 3] = char(value >> 0);
     return offset + 4;
   }
 
   uint32_t Buffer::writeInt32LE(int32_t value, uint32_t offset /*= 0*/) {
     if (offset + 4 > buf_.size()) return offset;
 
-    buf_[offset] = (value >> 0);
-    buf_[offset + 1] = (value >> 8);
-    buf_[offset + 2] = (value >> 16);
-    buf_[offset + 3] = (value >> 24);
+    buf_[offset] = char(value >> 0);
+    buf_[offset + 1] = char(value >> 8);
+    buf_[offset + 2] = char(value >> 16);
+    buf_[offset + 3] = char(value >> 24);
     return offset + 4;
   }
 
@@ -295,14 +295,14 @@ namespace nodecpp {
     if (offset + 2 > buf_.size()) return offset;
 
     buf_[offset] = (value >> 8);
-    buf_[offset + 1] = (value >> 0);
+    buf_[offset + 1] = char(value >> 0);
     return offset + 2;
   }
 
   uint32_t Buffer::writeUInt16LE(uint16_t value, uint32_t offset /*= 0*/) {
     if (offset + 2 > buf_.size()) return offset;
 
-    buf_[offset] = (value >> 0);
+    buf_[offset] = char(value >> 0);
     buf_[offset + 1] = (value >> 8);
     return offset + 2;
   }
@@ -311,9 +311,9 @@ namespace nodecpp {
     if (offset + 4 > buf_.size()) return offset;
 
     buf_[offset] = (value >> 24);
-    buf_[offset + 1] = (value >> 16);
-    buf_[offset + 2] = (value >> 8);
-    buf_[offset + 3] = value;
+    buf_[offset + 1] = char(value >> 16);
+    buf_[offset + 2] = char(value >> 8);
+    buf_[offset + 3] = char(value);
     return offset + 4;
   }
 
@@ -321,9 +321,9 @@ namespace nodecpp {
     if (offset + 4 > buf_.size()) return offset;
 
     buf_[offset + 3] = (value >> 24);
-    buf_[offset + 2] = (value >> 16);
-    buf_[offset + 1] = (value >> 8);
-    buf_[offset] = value;
+    buf_[offset + 2] = char(value >> 16);
+    buf_[offset + 1] = char(value >> 8);
+    buf_[offset] = char(value);
     return offset + 4;
   }
 

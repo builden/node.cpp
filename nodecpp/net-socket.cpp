@@ -5,7 +5,7 @@
 namespace nodecpp {
   class Socket::impl {
   public:
-    impl(bool isTcp, Socket* sock) : isTcp_(isTcp_), sock_(sock) {
+    impl(bool isTcp, Socket* sock) : isTcp_(isTcp), sock_(sock) {
       if (isTcp_) {
         uv_tcp_init(uv_default_loop(), &tcpClient_);
         tcpClient_.data = sock;
@@ -59,7 +59,7 @@ namespace nodecpp {
     pimpl->write(buf);
   }
 
-  void Socket::impl::newBuffer(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
+  void Socket::impl::newBuffer(uv_handle_t* /*handle*/, size_t suggested_size, uv_buf_t *buf) {
     buf->base = new char[suggested_size];
     buf->len = suggested_size;
   }

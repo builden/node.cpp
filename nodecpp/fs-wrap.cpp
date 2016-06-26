@@ -46,7 +46,7 @@ namespace nodecpp {
     }
     static void writeCb(uv_fs_t* req) {
       auto innerCb = (WriteCb *)req->data;
-      auto fsWrap = (impl *)innerCb->getData();
+      // auto fsWrap = (impl *)innerCb->getData();
 
       if (req->result < 0) {
         innerCb->invoke(Error(req->result));

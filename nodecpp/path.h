@@ -6,6 +6,8 @@
 namespace nodecpp {
   class Path : public Singleton<Path> {
   public:
+    Path();
+
     string basename(const string& p, const string& ext = "");
     string dirname(const string& p);
     string extname(const string& p);
@@ -30,7 +32,7 @@ namespace nodecpp {
       , const string& path2 = ""
       , const string& path3 = "");
   public:
-    char sep = char('//');
+    string sep;
 
   private:
     string normalizeStringWin32(const string& p, bool allowAboveRoot);

@@ -119,11 +119,11 @@ namespace nodecpp {
     return iconv.utf8ToStr(result);
   }
 
-  string escape(const string& str) {
+  string escape(const string& /*str*/) {
     return "";
   }
 
-  string unescape(const string& str) {
+  string unescape(const string& /*str*/) {
     return "";
   }
 

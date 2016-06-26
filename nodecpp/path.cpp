@@ -6,6 +6,8 @@
 
 namespace nodecpp {
 
+  Path::Path() : sep("//") {}
+
   string Path::basename(const string& path, const string& ext /*= ""*/) {
     auto start = 0;
     auto end = -1;
@@ -490,10 +492,10 @@ namespace nodecpp {
       else
         code = 47/*/*/;
       if (code == 47/*/*/ || code == 92/*\*/) {
-        if (lastSlash == i - 1 || dots == 1) {
+        if (lastSlash == int(i - 1) || dots == 1) {
           // NOOP
         }
-        else if (lastSlash != i - 1 && dots == 2) {
+        else if (lastSlash != int(i - 1) && dots == 2) {
           if (res.length() < 2 ||
             res[(res.length() - 1)] != 46/*.*/ ||
             res[res.length() - 2] != 46/*.*/) {

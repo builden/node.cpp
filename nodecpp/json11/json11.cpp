@@ -25,6 +25,12 @@
 #include <cstdlib>
 #include <cstdio>
 #include <limits>
+#pragma warning( push )
+#pragma warning( disable : 4127 )
+#pragma warning( disable : 4244 )
+#pragma warning( disable : 4510 )
+#pragma warning( disable : 4512 )
+#pragma warning( disable : 4610 )
 
 namespace json11 {
 
@@ -767,3 +773,5 @@ bool Json::has_shape(const shape & types, string & err) const {
 }
 
 } // namespace json11
+
+#pragma warning( pop )
