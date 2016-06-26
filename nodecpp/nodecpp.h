@@ -9,6 +9,7 @@
 #include "lodash.h"
 #include "core.h"
 
+#include "crypto.h"
 #include "timers.h"
 #include "process.h"
 #include "path.h"

@@ -147,6 +147,9 @@
     <ClCompile Include="net-socket.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="crypto.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="net-socket.h">
       <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto.h">
+      <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

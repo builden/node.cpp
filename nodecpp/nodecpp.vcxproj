@@ -17,6 +17,7 @@
     <ClCompile Include="child_process.cpp" />
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
+    <ClCompile Include="crypto.cpp" />
     <ClCompile Include="dll-util.cpp" />
     <ClCompile Include="error.cpp" />
     <ClCompile Include="events.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="child_process.h" />
     <ClInclude Include="core-math.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="crypto.h" />
     <ClInclude Include="dll-util.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="events.h" />
@@ -129,7 +131,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,7 +151,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../include/nodecpp;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
