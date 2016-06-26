@@ -21,6 +21,7 @@ namespace nodecpp {
     void accept(uv_stream_t* server);
     void read();
     void write(const Buffer& buf);
+    void end();
 
   private:
     static void newBuffer(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf);
@@ -57,6 +58,10 @@ namespace nodecpp {
 
   void Socket::write(const Buffer& buf) {
     pimpl->write(buf);
+  }
+
+  void Socket::end() {
+    pimpl->end();
   }
 
   void Socket::impl::newBuffer(uv_handle_t* /*handle*/, size_t suggested_size, uv_buf_t *buf) {
@@ -132,4 +137,10 @@ namespace nodecpp {
       uv_close((uv_handle_t*)&stream, NULL);
     }
   }
+
+  void Socket::impl::end() {
+//     auto handle = isTcp_ ? (uv_stream_t*)&tcpClient_ : (uv_stream_t*)&pipeClient_;
+//     uv_close((uv_handle_t*)&handle, nullptr);
+  }
+
 }

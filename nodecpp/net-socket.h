@@ -15,6 +15,7 @@ namespace nodecpp {
     void accept(uv_stream_s* server);
     void read();
     void write(const Buffer& buf);
+    void end();
 
   private:
     class impl;
