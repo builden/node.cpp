@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "regex-test.h"
-#include <regex>
+#include <nodecpp/std-regex-ex.h>
 
 TEST_F(RegexTest, match) {
   std::regex portPattern(R"(:[0-9]*$)");
@@ -26,4 +26,22 @@ TEST_F(RegexTest, replace) {
   std::regex replacePattern(R"(/)", std::regex_constants::icase);
   string result = std::regex_replace(str, replacePattern, replaceToStr);
   EXPECT_EQ(result, R"(D:\1\2\3)");
+}
+
+TEST_F(RegexTest, replace_ex) {
+  regex re(R"((YYYY|YY|MM|DD|HH|mm|ss|SSS))");
+  string rst = regex_replace("YYYY-MM-DD HH:mm:ss.SSS", re, [](const smatch& m) {
+    string matched = m[1].str();
+    if (matched == "YYYY") return "1970";
+    else if (matched == "YYYY") return "70";
+    else if (matched == "MM") return "12";
+    else if (matched == "DD") return "01";
+    else if (matched == "HH") return "01";
+    else if (matched == "mm") return "02";
+    else if (matched == "ss") return "03";
+    else if (matched == "SSS") return "001";
+    else return matched.c_str();
+  });
+
+  EXPECT_EQ(rst, "1970-12-01 01:02:03.001");
 }

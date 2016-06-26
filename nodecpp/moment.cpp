@@ -1,25 +1,33 @@
 #include "moment.h"
 #include <sys/timeb.h>
 #include "fmt/format.h"
+#include "std-regex-ex.h"
 
 namespace nodecpp {
-  string Moment::millisecond_to_str(int64_t milliseconds) {
+  string Moment::millisecond_to_str(int64_t milliseconds, const string& fmtStr) {
     std::chrono::milliseconds ms(milliseconds);
     std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::milliseconds> t1(ms);
     std::time_t t = std::chrono::system_clock::to_time_t(t1);
 
+    string _fmtStr = fmtStr;
+    if (_fmtStr.empty()) _fmtStr = "YYYY-MM-DD HH:mm:ss.SSS";
     auto const msecs = ms.count() % 1000;
-    fmt::MemoryWriter out;
     tm _tm = localtime(t);
-    out.write("{:04}-{:02}-{:02} {:02}:{:02}:{:02}"
-      , _tm.tm_year + 1900
-      , _tm.tm_mon + 1
-      , _tm.tm_mday
-      , _tm.tm_hour
-      , _tm.tm_min
-      , _tm.tm_sec);
-    out.write(".{:03}", msecs);
-    return out.str();
+
+    std::regex re(R"((YYYY|YY|MM|DD|HH|mm|ss|SSS))");
+    string rst = std::regex_replace(_fmtStr, re, [&_tm, &msecs](const std::smatch& m) {
+      string matched = m[1].str();
+      if (matched == "YYYY") return fmt::format("{:04}", _tm.tm_year + 1900);
+      else if (matched == "YY") return fmt::format("{:02}", (_tm.tm_year + 1900) % 100);
+      else if (matched == "MM") return fmt::format("{:02}", _tm.tm_mon + 1);
+      else if (matched == "DD") return fmt::format("{:02}", _tm.tm_mday);
+      else if (matched == "HH") return fmt::format("{:02}", _tm.tm_hour);
+      else if (matched == "mm") return fmt::format("{:02}", _tm.tm_min);
+      else if (matched == "ss") return fmt::format("{:02}", _tm.tm_sec);
+      else if (matched == "SSS") return fmt::format("{:03}", msecs);
+      else return matched;
+    });
+    return rst;
   }
 
   string Moment::put_time(const struct tm *tmb, const char *c_time_format) {
@@ -50,8 +58,8 @@ namespace nodecpp {
     milliseconds_ = milliseconds_ * 1000 + nanoseconds / 1000000;
   }
 
-  string Moment::format() {
-    return millisecond_to_str(milliseconds_);
+  string Moment::format(const string& fmtStr) {
+    return millisecond_to_str(milliseconds_, fmtStr);
   }
 
   uint64_t Moment::valueOf() {

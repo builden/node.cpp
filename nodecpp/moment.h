@@ -11,7 +11,7 @@ namespace nodecpp {
     Moment(uint32_t seconds);       // √Î
     Moment(uint32_t seconds, uint32_t nanoseconds);
 
-    string format();
+    string format(const string& fmtStr = "");
 
     uint64_t valueOf();  // ∫¡√Î
     uint32_t unix();     // √Î
@@ -24,7 +24,7 @@ namespace nodecpp {
     tm localtime(const std::time_t &time);
     string localtime_formatted(const std::time_t &time_snapshot, const string &time_format);
 
-    string millisecond_to_str(int64_t milliseconds);
+    string millisecond_to_str(int64_t milliseconds, const string& fmtStr);
     string put_time(const struct tm *tmb, const char *c_time_format);
 
     uint64_t milliseconds_;

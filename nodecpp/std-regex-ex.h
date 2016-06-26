@@ -6,9 +6,11 @@
 // 扩展regex_replace，使其支持回调
 namespace std
 {
-  template<class BidirIt, class Traits, class CharT, class UnaryFunction>
+  using ReplaceFunc_t = std::function<string(const smatch&)>;
+
+  template<class BidirIt, class Traits, class CharT>
   std::basic_string<CharT> regex_replace(BidirIt first, BidirIt last,
-    const std::basic_regex<CharT, Traits>& re, UnaryFunction f)
+    const std::basic_regex<CharT, Traits>& re, ReplaceFunc_t f)
   {
     std::basic_string<CharT> s;
 
@@ -43,9 +45,9 @@ namespace std
     return s;
   }
 
-  template<class Traits, class CharT, class UnaryFunction>
+  template<class Traits, class CharT>
   std::string regex_replace(const std::string& s,
-    const std::basic_regex<CharT, Traits>& re, UnaryFunction f)
+    const std::basic_regex<CharT, Traits>& re, ReplaceFunc_t f)
   {
     return regex_replace(s.cbegin(), s.cend(), re, f);
   }

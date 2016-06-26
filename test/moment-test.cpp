@@ -16,3 +16,9 @@ TEST_F(MomentTest, constructor) {
   EXPECT_EQ(Moment(1u, 1000000u).valueOf(), 1001);
   EXPECT_EQ(Moment(1u, 1000000u).format(), "1970-01-01 08:00:01.001");
 }
+
+TEST_F(MomentTest, format) {
+  EXPECT_EQ(Moment(1u).format("YYYY-MM-DD"), "1970-01-01");
+  EXPECT_EQ(Moment(1u).format("HH:mm:ss.SSS"), "08:00:01.000");
+  EXPECT_EQ(Moment(1u).format("YY"), "70");
+}
