@@ -15,6 +15,7 @@
     <ClCompile Include="base64\modp_b64.cc" />
     <ClCompile Include="buffer.cpp" />
     <ClCompile Include="child_process.cpp" />
+    <ClCompile Include="client-request.cpp" />
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="hooker.cpp" />
+    <ClCompile Include="http-server.cpp" />
     <ClCompile Include="http.cpp" />
     <ClCompile Include="iconv.cpp" />
     <ClCompile Include="ini.cpp" />
@@ -42,6 +44,7 @@
     <ClCompile Include="pe-cert.cpp" />
     <ClCompile Include="process.cpp" />
     <ClCompile Include="querystring.cpp" />
+    <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
@@ -54,6 +57,7 @@
     <ClInclude Include="buffer.h" />
     <ClInclude Include="callback.h" />
     <ClInclude Include="child_process.h" />
+    <ClInclude Include="client-request.h" />
     <ClInclude Include="core-math.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="crypto.h" />
@@ -65,6 +69,7 @@
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="hooker.h" />
+    <ClInclude Include="http-server.h" />
     <ClInclude Include="http.h" />
     <ClInclude Include="iconv.h" />
     <ClInclude Include="ini.h" />
@@ -83,6 +88,7 @@
     <ClInclude Include="pe-cert.h" />
     <ClInclude Include="process.h" />
     <ClInclude Include="querystring.h" />
+    <ClInclude Include="server-response.h" />
     <ClInclude Include="shm.h" />
     <ClInclude Include="SimpleIni\SimpleIni.h" />
     <ClInclude Include="singleton.h" />

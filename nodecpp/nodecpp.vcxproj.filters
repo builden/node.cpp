@@ -150,6 +150,15 @@
     <ClCompile Include="crypto.cpp">
       <Filter>core</Filter>
     </ClCompile>
+    <ClCompile Include="client-request.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="server-response.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="http-server.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -277,6 +286,15 @@
     </ClInclude>
     <ClInclude Include="crypto.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="client-request.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="server-response.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="http-server.h">
+      <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

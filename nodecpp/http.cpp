@@ -3,7 +3,7 @@
 
 namespace nodecpp {
 
-  HttpServerPtr_t Http::createServer(requestListener_t cb) {
+  HttpServerPtr_t Http::createServer(RequestListener_t cb) {
     return shared_ptr<HttpServer>(new HttpServer(cb));
   }
 
