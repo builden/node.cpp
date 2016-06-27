@@ -25,7 +25,7 @@ TEST_F(FsTest, open) {
 
 TEST_F(FsTest, readFile) {
   string file = path.dirname(process.execPath);
-  file = path.join(file, "../test/fs-test.cpp");
+  // file = path.join(file, "../test/fs-test.cpp");
 
   // libuv 路径需要采用utf8编码
   // string file = "F:\\中文 中文\\我是中国人.txt";

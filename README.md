@@ -33,6 +33,7 @@ fs.readFile(filePath, [](const Buffer& buf) {
 - [x] querystring
 - [x] timers
 - [x] url
+- [ ] zlib
 
 ## 第三方库
 - [x] lodash
