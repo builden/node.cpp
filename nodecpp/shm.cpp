@@ -25,13 +25,13 @@ namespace nodecpp {
       name.c_str()
       );
     if (fileMapping_ == NULL) {
-      fmt::odebug("[nodepp] CreateFileMapping failed {}", GetLastError());
+      fmt::odebug("[nodecpp] CreateFileMapping failed {}", GetLastError());
       return false;
     }
 
     buf_ = (char *)MapViewOfFile(fileMapping_, FILE_MAP_ALL_ACCESS, 0, 0, 0);
     if (buf_ == nullptr) {
-      fmt::odebug("[nodepp] MapViewOfFile failed {}", GetLastError());
+      fmt::odebug("[nodecpp] MapViewOfFile failed {}", GetLastError());
       CloseHandle(fileMapping_);
       fileMapping_ = NULL;
       return false;
@@ -43,13 +43,13 @@ namespace nodecpp {
   bool Shm::open(const string& name) {
     fileMapping_ = OpenFileMappingA(FILE_MAP_ALL_ACCESS, FALSE, name.c_str());
     if (fileMapping_ == NULL) {
-      fmt::odebug("[nodepp] OpenFileMapping failed {}", GetLastError());
+      fmt::odebug("[nodecpp] OpenFileMapping failed {}", GetLastError());
       return false;
     }
 
     buf_ = (char*)MapViewOfFile(fileMapping_, FILE_MAP_ALL_ACCESS, 0, 0, 0);
     if (buf_ == nullptr) {
-      fmt::odebug("[nodepp] MapViewOfFile failed {}", GetLastError());
+      fmt::odebug("[nodecpp] MapViewOfFile failed {}", GetLastError());
       CloseHandle(fileMapping_);
       fileMapping_ = NULL;
       return false;

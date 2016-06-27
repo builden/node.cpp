@@ -62,8 +62,8 @@ TEST_F(UnderscoreStringTest, repeat) {
 }
 
 TEST_F(UnderscoreStringTest, toLower_toUpper) {
-  EXPECT_EQ(s.toLower("Hello Nodepp"), "hello nodepp");
-  EXPECT_EQ(s.toUpper("Hello Nodepp"), "HELLO NODEPP");
+  EXPECT_EQ(s.toLower("Hello Nodecpp"), "hello nodecpp");
+  EXPECT_EQ(s.toUpper("Hello NodeCpp"), "HELLO NODECPP");
 }
 
 TEST_F(UnderscoreStringTest, pad) {

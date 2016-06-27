@@ -12,11 +12,11 @@ namespace nodecpp {
     void * originFunc = nullptr;
     HMODULE hMoudle = GetModuleHandleA(moduleName.c_str());
     if (hMoudle == NULL) {
-      fmt::odebug("[nodepp] GetModuleHandleA \"{}\" failed!", moduleName);
+      fmt::odebug("[nodecpp] GetModuleHandleA \"{}\" failed!", moduleName);
 
       hMoudle = LoadLibraryA(moduleName.c_str());
       if (hMoudle == NULL) {
-        fmt::odebug("[nodepp] LoadLibraryA \"{}\" failed!", moduleName);
+        fmt::odebug("[nodecpp] LoadLibraryA \"{}\" failed!", moduleName);
         return false;
       }
     }
@@ -25,11 +25,11 @@ namespace nodecpp {
     if (originFunc != nullptr) {
       *originFuncPtr = originFunc;
       vecFuncInfo_.push_back(FuncInfo{ moduleName, funcName, originFuncPtr, newFunc });
-      fmt::odebug("[nodepp] GetProcAddress {}:{} succ!", moduleName, funcName);
+      fmt::odebug("[nodecpp] GetProcAddress {}:{} succ!", moduleName, funcName);
       return true;
     }
     else {
-      fmt::odebug("[nodepp] GetProcAddress {}:{} failed!", moduleName, funcName);
+      fmt::odebug("[nodecpp] GetProcAddress {}:{} failed!", moduleName, funcName);
     }
 
     return false;
@@ -45,10 +45,10 @@ namespace nodecpp {
     }
     LONG commitRst = DetourTransactionCommit();
     if (commitRst == NO_ERROR) {
-      fmt::odebug("[nodepp] hook succ");
+      fmt::odebug("[nodecpp] hook succ");
     }
     else {
-      fmt::odebug("[nodepp] hook failed {}", commitRst);
+      fmt::odebug("[nodecpp] hook failed {}", commitRst);
     }
   }
 

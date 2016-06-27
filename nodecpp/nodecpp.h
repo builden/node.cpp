@@ -1,5 +1,4 @@
-#ifndef __NODEPP_H__
-#define __NODEPP_H__
+#pragma once
 
 #include "nodecpp-def.h"
 #include "core-math.h"
@@ -24,7 +23,7 @@
 #include "net.h"
 
 namespace nodecpp {
-  // nodepp的消息循环，阻塞
+  // nodecpp的消息循环，阻塞
   // 所有的事情处理完成后，自动推出
   void run();
 
@@ -43,5 +42,3 @@ namespace nodecpp {
 #pragma comment(lib, "userenv.lib")
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "psapi.lib")
-
-#endif // !__NODEPP_H__
