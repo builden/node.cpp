@@ -41,6 +41,7 @@ fs.readFile(filePath, [](const Buffer& buf) {
 - [x] moment
 - [x] iconv
 - [x] file-url
+- [ ] commander
 
 ## 自用库
 - [x] keyboard-code-trans
@@ -75,3 +76,10 @@ fs.readFile(filePath, [](const Buffer& buf) {
 * [zlib](https://github.com/madler/zlib)
 * [detours](http://research.microsoft.com/en-us/projects/detours/)
 * [simpleini](https://github.com/brofield/simpleini)
+
+## 参考
+* [node.native](https://github.com/d5/node.native)
+* [uvbook中文文档](http://luohaha.github.io/Chinese-uvbook/source/introduction.html)
+* [C++11 uvpp](https://github.com/larroy/uvpp)
+* [C++ uvpp](https://github.com/derekdai/uvpp)
+* [libuv_tcp](https://github.com/wqvbjhc/libuv_tcp)
