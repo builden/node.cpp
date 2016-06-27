@@ -41,11 +41,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>../../$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)$(Configuration);$(SolutionDir)$(Configuration)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>../../$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)$(Configuration);$(SolutionDir)$(Configuration)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
