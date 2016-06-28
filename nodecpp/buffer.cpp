@@ -30,6 +30,13 @@ namespace nodecpp {
     else if (encoding == "base64") {
       Base64Decode(str, &utf8str);
     }
+    else if (encoding == "hex") {
+      for (unsigned int i = 0; i < str.length(); i += 2) {
+        string byteString = str.substr(i, 2);
+        char byte = (char)strtol(byteString.c_str(), NULL, 16);
+        utf8str.push_back(byte);
+      }
+    }
 
     buf_.assign(utf8str.begin(), utf8str.end());
   }

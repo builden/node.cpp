@@ -38,6 +38,7 @@
     <ClCompile Include="net-server.cpp" />
     <ClCompile Include="net-socket.cpp" />
     <ClCompile Include="net.cpp" />
+    <ClCompile Include="node-zlib.cpp" />
     <ClCompile Include="nodepp.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="path.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="net-server.h" />
     <ClInclude Include="net-socket.h" />
     <ClInclude Include="net.h" />
+    <ClInclude Include="node-zlib.h" />
     <ClInclude Include="nodecpp-def.h" />
     <ClInclude Include="nodecpp.h" />
     <ClInclude Include="os.h" />
@@ -137,7 +139,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4239</DisableSpecificWarnings>
     </ClCompile>
@@ -159,7 +161,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4239</DisableSpecificWarnings>
     </ClCompile>

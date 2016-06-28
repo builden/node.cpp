@@ -43,6 +43,9 @@
     <Filter Include="core\inner">
       <UniqueIdentifier>{95b6b00c-d909-4917-b870-4e68c857c277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\inner-zlib">
+      <UniqueIdentifier>{b8804b1c-dfcb-4ab1-aa1b-c5eccc0f25f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -158,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="http-server.cpp">
       <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="node-zlib.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="http-server.h">
       <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="node-zlib.h">
+      <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

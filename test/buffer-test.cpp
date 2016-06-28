@@ -46,6 +46,8 @@ TEST_F(BufferTest, constructor) {
 
   Buffer buf9("YWJj5Lit5paHYWJj", "base64");
   EXPECT_EQ(buf9.format(), "<Buffer 61 62 63 e4 b8 ad e6 96 87 61 62 63>");
+
+  EXPECT_EQ(Buffer("616263646566", "hex").toString(), "abcdef");
 }
 
 TEST_F(BufferTest, equals) {
@@ -100,6 +102,7 @@ TEST_F(BufferTest, toString) {
   EXPECT_EQ(buf1.toString("ansi", 1), "bcdef");
   EXPECT_EQ(buf1.toString("ansi", 1, 2), "b");
   EXPECT_EQ(buf1.toString("base64"), "YWJjZGVm");
+  EXPECT_EQ(buf1.toString("hex"), "616263646566");
 
   Buffer buf2("abc中文abc");
   EXPECT_EQ(buf2.toString("ansi", 2), "c中文abc");

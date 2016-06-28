@@ -28,12 +28,14 @@ fs.readFile(filePath, [](const Buffer& buf) {
 - [ ] http
 - [x] net
 - [x] os
+- [ ] stream
 - [x] path
 - [x] process
 - [x] querystring
+- [ ] thread
 - [x] timers
 - [x] url
-- [ ] zlib
+- [x] zlib
 
 ## 第三方库
 - [x] lodash
