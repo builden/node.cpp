@@ -20,6 +20,7 @@
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
     <ClCompile Include="dll-util.cpp" />
+    <ClCompile Include="dns.cpp" />
     <ClCompile Include="error.cpp" />
     <ClCompile Include="events.cpp" />
     <ClCompile Include="file-url.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="core.h" />
     <ClInclude Include="crypto.h" />
     <ClInclude Include="dll-util.h" />
+    <ClInclude Include="dns.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="events.h" />
     <ClInclude Include="file-url.h" />

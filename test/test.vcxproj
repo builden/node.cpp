@@ -91,6 +91,7 @@
     <ClInclude Include="core-test.h" />
     <ClInclude Include="crypto-test.h" />
     <ClInclude Include="detours-test.h" />
+    <ClInclude Include="dns-test.h" />
     <ClInclude Include="events-test.h" />
     <ClInclude Include="file-url-test.h" />
     <ClInclude Include="fmt-test.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="core-test.cpp" />
     <ClCompile Include="crypto-test.cpp" />
     <ClCompile Include="detours-test.cpp" />
+    <ClCompile Include="dns-test.cpp" />
     <ClCompile Include="events-test.cpp" />
     <ClCompile Include="file-url-test.cpp" />
     <ClCompile Include="fmt-test.cpp" />

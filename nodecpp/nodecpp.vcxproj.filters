@@ -165,6 +165,9 @@
     <ClCompile Include="node-zlib.cpp">
       <Filter>core</Filter>
     </ClCompile>
+    <ClCompile Include="dns.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -303,6 +306,9 @@
       <Filter>core\inner</Filter>
     </ClInclude>
     <ClInclude Include="node-zlib.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="dns.h">
       <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>

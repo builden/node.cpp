@@ -19,6 +19,7 @@
 #include "url.h"
 #include "http.h"
 #include "node-zlib.h"
+#include "dns.h"
 
 #include "fs.h"
 #include "net.h"

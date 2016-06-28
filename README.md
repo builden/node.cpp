@@ -23,7 +23,7 @@ fs.readFile(filePath, [](const Buffer& buf) {
 - [x] core-math  // js内置的math库
 - [x] child_process
 - [x] crypto
-- [ ] dns
+- [x] dns
 - [x] fs
 - [ ] http
 - [x] net
