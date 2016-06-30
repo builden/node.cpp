@@ -46,6 +46,9 @@
     <Filter Include="core\inner-zlib">
       <UniqueIdentifier>{b8804b1c-dfcb-4ab1-aa1b-c5eccc0f25f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\inner-http">
+      <UniqueIdentifier>{3c567979-588c-40bf-8558-e6b540858561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -153,20 +156,23 @@
     <ClCompile Include="crypto.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="client-request.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="server-response.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="http-server.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
     <ClCompile Include="node-zlib.cpp">
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="dns.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="client-request.cpp">
+      <Filter>core\inner-http</Filter>
+    </ClCompile>
+    <ClCompile Include="http-server.cpp">
+      <Filter>core\inner-http</Filter>
+    </ClCompile>
+    <ClCompile Include="server-response.cpp">
+      <Filter>core\inner-http</Filter>
+    </ClCompile>
+    <ClCompile Include="http-common.cpp">
+      <Filter>core\inner-http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,20 +302,23 @@
     <ClInclude Include="crypto.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="client-request.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="server-response.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="http-server.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
     <ClInclude Include="node-zlib.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="dns.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="client-request.h">
+      <Filter>core\inner-http</Filter>
+    </ClInclude>
+    <ClInclude Include="http-server.h">
+      <Filter>core\inner-http</Filter>
+    </ClInclude>
+    <ClInclude Include="server-response.h">
+      <Filter>core\inner-http</Filter>
+    </ClInclude>
+    <ClInclude Include="http-common.h">
+      <Filter>core\inner-http</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,6 +12,8 @@ namespace nodecpp {
     HttpServer(RequestListener_t& /*cb*/);
     ~HttpServer();
 
+    void listen(uint32_t port);
+
   private:
     class impl;
     unique_ptr<impl> pimpl;

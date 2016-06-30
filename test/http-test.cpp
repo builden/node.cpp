@@ -7,5 +7,8 @@ TEST_F(HttpTest, get) {
       cout << "on res" << endl;
     });
 
+  EXPECT_EQ(http.METHODS.size(), 33);
+  EXPECT_EQ(http.STATUS_CODES.size(), 62);
+
   run();
 }

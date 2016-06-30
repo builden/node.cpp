@@ -8,6 +8,10 @@ namespace nodecpp {
     ClientRequest();
     ~ClientRequest();
 
+    void setHeader(const string& name, const string& value);
+    string getHeader(const string& name);
+    void removeHeader(const string& name);
+
   private:
     class impl;
     unique_ptr<impl> pimpl;

@@ -28,6 +28,7 @@
     <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="hooker.cpp" />
+    <ClCompile Include="http-common.cpp" />
     <ClCompile Include="http-server.cpp" />
     <ClCompile Include="http.cpp" />
     <ClCompile Include="iconv.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="hooker.h" />
+    <ClInclude Include="http-common.h" />
     <ClInclude Include="http-server.h" />
     <ClInclude Include="http.h" />
     <ClInclude Include="iconv.h" />
