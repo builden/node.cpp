@@ -102,6 +102,9 @@
     <ClInclude Include="dns-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="winreg-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -189,6 +192,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dns-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winreg-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

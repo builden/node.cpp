@@ -114,6 +114,7 @@
     <ClInclude Include="timers-test.h" />
     <ClInclude Include="underscore.string-test.h" />
     <ClInclude Include="url-test.h" />
+    <ClInclude Include="winreg-test.h" />
     <ClInclude Include="zlib-test.h" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,7 @@
     <ClCompile Include="timers-test.cpp" />
     <ClCompile Include="underscore.string-test.cpp" />
     <ClCompile Include="url-test.cpp" />
+    <ClCompile Include="winreg-test.cpp" />
     <ClCompile Include="zlib-test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

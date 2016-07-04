@@ -52,6 +52,7 @@
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
     <ClCompile Include="url.cpp" />
+    <ClCompile Include="winreg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="timers.h" />
     <ClInclude Include="underscore.string.h" />
     <ClInclude Include="url.h" />
+    <ClInclude Include="winreg.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C4C58E7-4488-45CD-BFCD-098D95BC5D01}</ProjectGuid>
