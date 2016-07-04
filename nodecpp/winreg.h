@@ -18,16 +18,22 @@ namespace nodecpp {
 
     void values();
     void keys();
+
     bool get(const string& name, string& value);       // REG_SZ
     bool get(const string& name, uint32_t& value);     // REG_DWORD
     bool get(const string& name, uint64_t& value);     // REG_QWORD
+
+    // if not exist, will create
     bool set(const string& name, const string& value); // REG_SZ
     bool set(const string& name, uint32_t value);      // REG_DWORD
     bool set(const string& name, uint64_t value);      // REG_QWORD
-    void remove(const string& name);
+
+    bool remove(const string& name);
     void create();
     void erase();
-    bool isOpen();
+
+    bool keyExists();
+    bool valueExists(const string& name);
 
   private:
     class impl;

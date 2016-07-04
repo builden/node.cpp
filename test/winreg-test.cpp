@@ -4,6 +4,8 @@
 
 TEST_F(WinregTest, get) {
   Winreg reg(Winreg::HKLM, "SOFTWARE\\Wow6432Node\\Tencent\\QQ2009");
+  EXPECT_TRUE(reg.keyExists());
+
   string value;
   EXPECT_TRUE(reg.get("Install", value));
   cout << "Install: " << value << endl;
@@ -18,8 +20,11 @@ TEST_F(WinregTest, get) {
   EXPECT_EQ(nShortcutDesktop, 3);
   EXPECT_TRUE(reg.set("nShortcutDesktop", 1u));
 
-//   EXPECT_TRUE(reg.set("testString", "abc中文"));
-//   string testString;
-//   EXPECT_TRUE(reg.get("testString", testString));
-//   EXPECT_EQ(testString, "abc中文");
+  EXPECT_FALSE(reg.valueExists("testString"));
+  EXPECT_TRUE(reg.set("testString", "abc中文"));
+  string testString;
+  EXPECT_TRUE(reg.get("testString", testString));
+  EXPECT_EQ(testString, "abc中文");
+
+  EXPECT_TRUE(reg.remove("testString"));
 }

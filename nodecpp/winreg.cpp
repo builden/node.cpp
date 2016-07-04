@@ -11,7 +11,7 @@ namespace nodecpp {
 
       }
       else {
-        isOpen_ = true;
+        keyExists_ = true;
       }
     }
 
@@ -19,10 +19,14 @@ namespace nodecpp {
       if (subKey_ != 0) RegCloseKey(subKey_);
     }
 
-    bool isOpen() {
-      return isOpen_;
+    bool keyExists() {
+      return keyExists_;
     }
 
+    bool valueExists(const string& name) {
+      string str;
+      return get(name, str);
+    }
 
     bool get(const string& name, string& value) {
       BYTE buf[MAX_PATH] = { 0 };
@@ -73,6 +77,11 @@ namespace nodecpp {
       LSTATUS rst = RegSetValueExA(subKey_, name.c_str(), 0, REG_QWORD, (const LPBYTE)&value, sizeof(value));
       return (rst == ERROR_SUCCESS);
     }
+    
+    bool remove(const string& name) {
+      LSTATUS rst = RegDeleteValueA(subKey_, name.c_str());
+      return (rst == ERROR_SUCCESS);
+    }
 
   private:
     HKEY hiveToHkey(HiveType hive) {
@@ -87,7 +96,7 @@ namespace nodecpp {
   private:
     HKEY hkey_ = HKEY_LOCAL_MACHINE;
     HKEY subKey_ = 0;
-    bool isOpen_ = false;
+    bool keyExists_ = false;
   };
 
   Winreg::Winreg(HiveType hive, const string& key) : pimpl(new impl(hive, key)) {}
@@ -106,10 +115,6 @@ namespace nodecpp {
     return pimpl->get(name, value);
   }
 
-  bool Winreg::isOpen() {
-    return pimpl->isOpen();
-  }
-
   bool Winreg::set(const string& name, const string& value) {
     return pimpl->set(name, value);
   }
@@ -122,5 +127,16 @@ namespace nodecpp {
     return pimpl->set(name, value);
   }
 
-  
+  bool Winreg::remove(const string& name) {
+    return pimpl->remove(name);
+  }
+
+  bool Winreg::keyExists() {
+    return pimpl->keyExists();
+  }
+
+  bool Winreg::valueExists(const string& name) {
+    return pimpl->valueExists(name);
+  }
+
 }
