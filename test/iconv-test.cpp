@@ -48,3 +48,9 @@ TEST_F(IconvTest, charCodeAt) {
   EXPECT_EQ(iconv.charCodeAt(str, 3), 20013);
   EXPECT_EQ(iconv.charCodeAt(str, 4), 25991);
 }
+
+TEST_F(IconvTest, utf8Length) {
+  string str = "abcÖÐÎÄ";
+  EXPECT_EQ(iconv.utf8Length(iconv.strToUtf8(str)), 5);
+  EXPECT_EQ(iconv.ansiLength(str), 5);
+}

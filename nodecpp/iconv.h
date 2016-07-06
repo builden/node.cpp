@@ -1,5 +1,10 @@
 /**
- *
+ * BOM
+ * UTF-8	0xEF 0xBB 0xBF
+ * UTF-16 BE	0xFE 0xFF
+ * UTF-16 LE	0xFF 0xFE
+ * UTF-32 BE	0x00 0x00 0xFE 0xFF
+ * UTF-32 LE	0xFF 0xFE 0x00 0x00
  */
 #ifndef __ICONV_H__
 #define __ICONV_H__
@@ -26,6 +31,9 @@ namespace nodecpp {
 
     uint32_t charCodeAt(const string& ansiStr, uint32_t idx);
     uint32_t charCodeAt(const wstring& ws, uint32_t idx);
+
+    uint32_t utf8Length(const string& u8Str);
+    uint32_t ansiLength(const string& str);
   };
 
   extern Iconv &iconv;

@@ -1,6 +1,10 @@
 #include "iconv.h"
 #include <windows.h>
 #include <codecvt>
+#include <comutil.h>
+
+#pragma comment(lib, "comsuppw.lib")
+
 using std::wstring_convert;
 using std::codecvt;
 using std::mbstate_t;
@@ -111,4 +115,35 @@ namespace nodecpp {
   }
 
   Iconv &iconv = Iconv::instance();
+
+  uint32_t Iconv::utf8Length(const string& u8Str) {
+    uint32_t len = 0;
+    auto begin = u8Str.begin(), end = u8Str.end();
+    while (begin != end) {
+      unsigned char c = *begin;
+      int n = 0;
+      if ((c & 0x80) == 0)    n = 1;
+      else if ((c & 0xE0) == 0xC0) n = 2;
+      else if ((c & 0xF0) == 0xE0) n = 3;
+      else if ((c & 0xF8) == 0xF0) n = 4;
+      else throw std::runtime_error("utf8_length: invalid UTF-8");
+
+      if (end - begin < n) {
+        throw std::runtime_error("utf8_length: string too short");
+      }
+      for (int i = 1; i < n; ++i) {
+        if ((begin[i] & 0xC0) != 0x80) {
+          throw std::runtime_error("utf8_length: expected continuation byte");
+        }
+      }
+      len += 1;
+      begin += n;
+    }
+    return len;
+  }
+
+  uint32_t Iconv::ansiLength(const string& str) {
+    return _bstr_t(str.c_str()).length();
+  }
+
 }

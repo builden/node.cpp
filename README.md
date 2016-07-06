@@ -44,6 +44,9 @@ fs.readFile(filePath, [](const Buffer& buf) {
 - [x] iconv
 - [x] file-url
 - [ ] commander
+- [ ] later
+- [ ] semver
+- [x] winreg
 
 ## 自用库
 - [x] keyboard-code-trans
