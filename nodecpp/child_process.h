@@ -2,15 +2,18 @@
 #define __CHILD_PROCESS_H__
 #include "nodecpp-def.h"
 #include "singleton.h"
+#include "child-process.h"
 
 namespace nodecpp {
-  class ChildProcess : public Singleton<ChildProcess> {
+  class OuterChildProcess : public Singleton<OuterChildProcess> {
   public:
     bool exec(const string& command);
     bool execWithDll(const string& command, const string& dllPath);
+
+    shared_ptr<ChildProcess> spawn();
   };
 
-  extern ChildProcess &child_process;
+  extern OuterChildProcess &child_process;
 }
 
 #endif // !__CHILD_PROCESS_H__

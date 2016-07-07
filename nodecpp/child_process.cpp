@@ -5,7 +5,7 @@
 
 namespace nodecpp {
 
-  bool ChildProcess::exec(const string& command) {
+  bool OuterChildProcess::exec(const string& command) {
     STARTUPINFOA si = { 0 };
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi = { 0 };
@@ -31,7 +31,7 @@ namespace nodecpp {
     return true;
   }
 
-  bool ChildProcess::execWithDll(const string& command, const string& dllPath) {
+  bool OuterChildProcess::execWithDll(const string& command, const string& dllPath) {
     STARTUPINFOA si = { 0 };
     si.cb = sizeof(si);
     PROCESS_INFORMATION pi = { 0 };
@@ -60,6 +60,12 @@ namespace nodecpp {
     return true;
   }
 
-  ChildProcess &child_process = ChildProcess::instance();
+  shared_ptr<ChildProcess> OuterChildProcess::spawn() {
+    shared_ptr<ChildProcess> child(new ChildProcess());
+    child->spawn();
+    return child;
+  }
+
+  OuterChildProcess &child_process = OuterChildProcess::instance();
 
 }

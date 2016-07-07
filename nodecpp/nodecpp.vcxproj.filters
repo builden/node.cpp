@@ -49,6 +49,9 @@
     <Filter Include="core\inner-http">
       <UniqueIdentifier>{3c567979-588c-40bf-8558-e6b540858561}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\inner-child-process">
+      <UniqueIdentifier>{d8c03b05-2af1-4fa4-b4fa-88eb8de883a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -176,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="winreg.cpp">
       <Filter>third</Filter>
+    </ClCompile>
+    <ClCompile Include="child-process.cpp">
+      <Filter>core\inner-child-process</Filter>
+    </ClCompile>
+    <ClCompile Include="process-wrap.cpp">
+      <Filter>core\inner-child-process</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +334,12 @@
     </ClInclude>
     <ClInclude Include="winreg.h">
       <Filter>third</Filter>
+    </ClInclude>
+    <ClInclude Include="child-process.h">
+      <Filter>core\inner-child-process</Filter>
+    </ClInclude>
+    <ClInclude Include="process-wrap.h">
+      <Filter>core\inner-child-process</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
