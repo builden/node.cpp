@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../;../deps/gtest/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,7 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../;../deps/gtest/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -96,6 +96,7 @@
     <ClInclude Include="file-url-test.h" />
     <ClInclude Include="fmt-test.h" />
     <ClInclude Include="fs-test.h" />
+    <ClInclude Include="http-parse-test.h" />
     <ClInclude Include="http-test.h" />
     <ClInclude Include="iconv-test.h" />
     <ClInclude Include="ini-test.h" />
@@ -128,6 +129,7 @@
     <ClCompile Include="file-url-test.cpp" />
     <ClCompile Include="fmt-test.cpp" />
     <ClCompile Include="fs-test.cpp" />
+    <ClCompile Include="http-parse-test.cpp" />
     <ClCompile Include="http-test.cpp" />
     <ClCompile Include="iconv-test.cpp" />
     <ClCompile Include="ini-test.cpp" />
