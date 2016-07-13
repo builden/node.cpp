@@ -111,6 +111,9 @@
     <ClInclude Include="promise-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="uv-thread-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -207,6 +210,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="promise-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uv-thread-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

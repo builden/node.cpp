@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser;../deps/uv/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,7 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../deps/gtest/include;../deps/http_parser;../deps/uv/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +116,7 @@
     <ClInclude Include="timers-test.h" />
     <ClInclude Include="underscore.string-test.h" />
     <ClInclude Include="url-test.h" />
+    <ClInclude Include="uv-thread-test.h" />
     <ClInclude Include="winreg-test.h" />
     <ClInclude Include="zlib-test.h" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClCompile Include="timers-test.cpp" />
     <ClCompile Include="underscore.string-test.cpp" />
     <ClCompile Include="url-test.cpp" />
+    <ClCompile Include="uv-thread-test.cpp" />
     <ClCompile Include="winreg-test.cpp" />
     <ClCompile Include="zlib-test.cpp" />
   </ItemGroup>
