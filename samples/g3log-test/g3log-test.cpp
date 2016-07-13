@@ -7,6 +7,7 @@
 #include <g3log/logmessage.hpp>
 #include <iostream>
 #include <iomanip>
+#include "json-file-sink.h"
 
 #pragma comment(lib, "g3logger.lib")
 #pragma comment(lib, "dbghelp.lib")
@@ -25,9 +26,11 @@ int _tmain(int argc, _TCHAR* argv[])
   float pi_f = 3.1415926535897932384626433832795f;
 
   auto worker = g3::LogWorker::createLogWorker();
-  auto handle = worker->addDefaultLogger("log", "./logs");
+  // auto handle = worker->addDefaultLogger("log", "./logs");
+  auto handle = worker->addSink(std2::make_unique<g3::JsonFileSink>("log", "./logs"),
+    &g3::JsonFileSink::fileWrite);
   g3::initializeLogging(worker.get());
-  std::future<std::string> log_file_name = handle->call(&g3::FileSink::fileName);
+  std::future<std::string> log_file_name = handle->call(&g3::JsonFileSink::fileName);
   std::cout << "*   This is an example of g3log. It WILL exit by a failed CHECK(...)" << std::endl;
   std::cout << "*   that acts as a FATAL trigger. Please see the generated log and " << std::endl;
   std::cout << "*   compare to the code at:\n*  \t g3log/test_example/main_contract.cpp" << std::endl;
