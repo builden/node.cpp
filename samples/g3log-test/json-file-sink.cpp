@@ -2,6 +2,9 @@
 #include "json-file-sink.h"
 #include "jsonfilesinkhelper.h"
 #include <cassert>
+#include <nodecpp/nodecpp.h>
+#include <nodecpp/json11/json11.hpp>
+using namespace json11;
 
 namespace g3 {
   using namespace jsoninternal;
@@ -43,7 +46,10 @@ namespace g3 {
   // The actual log receiving function
   void JsonFileSink::fileWrite(LogMessageMover message) {
     std::ofstream &out(filestream());
-    out << message.get().toString() << std::flush;
+    Json j = Json::object{
+      { "msg", message.get().message() }
+    };
+    out << j.dump() << "\n";
   }
 
   std::string JsonFileSink::changeLogFile(const std::string &directory, const std::string &logger_id) {
