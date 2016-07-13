@@ -108,6 +108,7 @@
     <ClInclude Include="path-test.h" />
     <ClInclude Include="pe-cert-test.h" />
     <ClInclude Include="process-test.h" />
+    <ClInclude Include="promise-test.h" />
     <ClInclude Include="querystring-test.h" />
     <ClInclude Include="regex-test.h" />
     <ClInclude Include="stdafx.h" />
@@ -141,6 +142,7 @@
     <ClCompile Include="path-test.cpp" />
     <ClCompile Include="pe-cert-test.cpp" />
     <ClCompile Include="process-test.cpp" />
+    <ClCompile Include="promise-test.cpp" />
     <ClCompile Include="querystring-test.cpp" />
     <ClCompile Include="regex-test.cpp" />
     <ClCompile Include="stdafx.cpp">
