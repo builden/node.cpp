@@ -2,9 +2,6 @@
 #include "json-file-sink.h"
 #include "jsonfilesinkhelper.h"
 #include <cassert>
-#include <nodecpp/nodecpp.h>
-#include <nodecpp/json11/json11.hpp>
-using namespace json11;
 
 namespace g3 {
   using namespace jsoninternal;
@@ -35,19 +32,27 @@ namespace g3 {
 
 
   JsonFileSink::~JsonFileSink() {
-    std::string exit_msg{ "\ng3log g3FileSink shutdown at: " };
-    exit_msg.append(localtime_formatted(systemtime_now(), internal::time_formatted));
-    filestream() << exit_msg << std::flush;
-
-    exit_msg.append({ "\nLog file at: [" }).append(_log_file_with_path).append({ "]\n\n" });
-    std::cerr << exit_msg << std::flush;
+    Json exit_msg = Json::object{
+      { "time", localtime_formatted(systemtime_now(), internal::time_formatted) },
+      { "msg", "g3log g3FileSink shutdown" }
+    };
+    filestream() << exit_msg.dump() << std::flush;
+    std::cerr << exit_msg.dump() << std::flush;
   }
 
   // The actual log receiving function
   void JsonFileSink::fileWrite(LogMessageMover message) {
     std::ofstream &out(filestream());
+    auto msg = message.get();
     Json j = Json::object{
-      { "msg", message.get().message() }
+      { "time", msg.timestamp() },
+      { "tick", msg.microseconds() },
+      { "tid", msg.threadID() },
+      { "msg", msg.message() },
+      { "level", msg.level() },
+      { "file", msg.file() },
+      { "line", msg.line() },
+      { "func", msg.function() }
     };
     out << j.dump() << "\n";
   }
@@ -84,7 +89,7 @@ namespace g3 {
     return _log_file_with_path;
   }
   void JsonFileSink::addLogFileHeader() {
-    filestream() << header();
+    // filestream() << header();
   }
 
 } // g3

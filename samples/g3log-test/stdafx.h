@@ -10,6 +10,6 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
-
+#include <nodecpp/nodecpp.h>
+using namespace nodecpp;
 // TODO: reference additional headers your program requires here
