@@ -412,7 +412,7 @@ static DWORD CALLBACK uv_tty_line_read_thread(void* data) {
   WCHAR utf16[MAX_INPUT_BUFFER_LENGTH / 3];
   DWORD chars, read_chars;
   LONG status;
-  COORD pos;
+//   COORD pos;
 
   assert(data);
 
@@ -461,32 +461,32 @@ static DWORD CALLBACK uv_tty_line_read_thread(void* data) {
     SET_REQ_ERROR(req, GetLastError());
   }
 
-  InterlockedExchange(&uv__read_console_status, COMPLETED);
-
-  /* If we canceled the read by sending a VK_RETURN event, restore the screen
-     state to undo the visual effect of the VK_RETURN*/
-  if (InterlockedOr(&uv__restore_screen_state, 0)) {
-    HANDLE active_screen_buffer = CreateFileA("conout$",
-                                         GENERIC_READ | GENERIC_WRITE,
-                                         FILE_SHARE_READ | FILE_SHARE_WRITE,
-                                         NULL,
-                                         OPEN_EXISTING,
-                                         FILE_ATTRIBUTE_NORMAL,
-                                         NULL);
-    if (active_screen_buffer != INVALID_HANDLE_VALUE) {
-      pos = uv__saved_screen_state.dwCursorPosition;
-
-      /* If the cursor was at the bottom line of the screen buffer, the
-         VK_RETURN would have caused the buffer contents to scroll up by
-         one line. The right position to reset the cursor to is therefore one
-         line higher */
-      if (pos.Y == uv__saved_screen_state.dwSize.Y - 1)
-        pos.Y--;
-
-      SetConsoleCursorPosition(active_screen_buffer, pos);
-      CloseHandle(active_screen_buffer);
-    }
-  }
+//   InterlockedExchange(&uv__read_console_status, COMPLETED);
+// 
+//   /* If we canceled the read by sending a VK_RETURN event, restore the screen
+//      state to undo the visual effect of the VK_RETURN*/
+//   if (InterlockedOr(&uv__restore_screen_state, 0)) {
+//     HANDLE active_screen_buffer = CreateFileA("conout$",
+//                                          GENERIC_READ | GENERIC_WRITE,
+//                                          FILE_SHARE_READ | FILE_SHARE_WRITE,
+//                                          NULL,
+//                                          OPEN_EXISTING,
+//                                          FILE_ATTRIBUTE_NORMAL,
+//                                          NULL);
+//     if (active_screen_buffer != INVALID_HANDLE_VALUE) {
+//       pos = uv__saved_screen_state.dwCursorPosition;
+// 
+//       /* If the cursor was at the bottom line of the screen buffer, the
+//          VK_RETURN would have caused the buffer contents to scroll up by
+//          one line. The right position to reset the cursor to is therefore one
+//          line higher */
+//       if (pos.Y == uv__saved_screen_state.dwSize.Y - 1)
+//         pos.Y--;
+// 
+//       SetConsoleCursorPosition(active_screen_buffer, pos);
+//       CloseHandle(active_screen_buffer);
+//     }
+//   }
 
   POST_COMPLETION_FOR_REQ(loop, req);
   return 0;
@@ -1009,32 +1009,32 @@ static int uv__cancel_read_console(uv_tty_t* handle) {
   INPUT_RECORD record;
   DWORD written;
   DWORD err = 0;
-  LONG status;
+  // LONG status;
 
   assert(!(handle->flags & UV_HANDLE_CANCELLATION_PENDING));
 
-  status = InterlockedExchange(&uv__read_console_status, TRAP_REQUESTED);
-  if (status != IN_PROGRESS) {
-    /* Either we have managed to set a trap for the other thread before
-       ReadConsole is called, or ReadConsole has returned because the user
-       has pressed ENTER. In either case, there is nothing else to do. */
-    return 0;
-  }
-
-  /* Save screen state before sending the VK_RETURN event */
-  active_screen_buffer = CreateFileA("conout$",
-                                     GENERIC_READ | GENERIC_WRITE,
-                                     FILE_SHARE_READ | FILE_SHARE_WRITE,
-                                     NULL,
-                                     OPEN_EXISTING,
-                                     FILE_ATTRIBUTE_NORMAL,
-                                     NULL);
-
-  if (active_screen_buffer != INVALID_HANDLE_VALUE &&
-      GetConsoleScreenBufferInfo(active_screen_buffer,
-                                 &uv__saved_screen_state)) {
-    InterlockedOr(&uv__restore_screen_state, 1);
-  }
+//   status = InterlockedExchange(&uv__read_console_status, TRAP_REQUESTED);
+//   if (status != IN_PROGRESS) {
+//     /* Either we have managed to set a trap for the other thread before
+//        ReadConsole is called, or ReadConsole has returned because the user
+//        has pressed ENTER. In either case, there is nothing else to do. */
+//     return 0;
+//   }
+// 
+//   /* Save screen state before sending the VK_RETURN event */
+//   active_screen_buffer = CreateFileA("conout$",
+//                                      GENERIC_READ | GENERIC_WRITE,
+//                                      FILE_SHARE_READ | FILE_SHARE_WRITE,
+//                                      NULL,
+//                                      OPEN_EXISTING,
+//                                      FILE_ATTRIBUTE_NORMAL,
+//                                      NULL);
+// 
+//   if (active_screen_buffer != INVALID_HANDLE_VALUE &&
+//       GetConsoleScreenBufferInfo(active_screen_buffer,
+//                                  &uv__saved_screen_state)) {
+//     InterlockedOr(&uv__restore_screen_state, 1);
+//   }
 
   /* Write enter key event to force the console wait to return. */
   record.EventType = KEY_EVENT;
