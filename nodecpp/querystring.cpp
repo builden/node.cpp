@@ -16,7 +16,7 @@ namespace nodecpp {
     }
   }
 
-  Json Querystring::parse(const string& qs, const string& sep /*= '&'*/, const string& eq /*= '='*/) {
+  Json Querystring::parse(const string& querys, const string& sep /*= '&'*/, const string& eq /*= '='*/) {
     Json::object obj = {};
 
     auto sepLen = sep.length();
@@ -33,8 +33,8 @@ namespace nodecpp {
     bool keyEncoded = customDecode;
     bool valEncoded = customDecode;
     int encodeCheck = 0;
-    for (size_t i = 0; i < qs.length(); ++i) {
-      auto code = qs[i];
+    for (size_t i = 0; i < querys.length(); ++i) {
+      auto code = querys[i];
 
       // Try matching key/value pair separator (e.g. '&')
       if (code == sep[sepIdx]) {
@@ -45,10 +45,10 @@ namespace nodecpp {
             // If we didn't find the key/value separator, treat the substring as
             // part of the key instead of the value
             if (lastPos < end)
-              key += s.slice(qs, lastPos, end);
+              key += s.slice(querys, lastPos, end);
           }
           else if (lastPos < end)
-            value += s.slice(qs, lastPos, end);
+            value += s.slice(querys, lastPos, end);
           if (keyEncoded)
             key = decodeStr(key);
           if (valEncoded)
@@ -111,7 +111,7 @@ namespace nodecpp {
             // Key/value separator match!
             auto end = i - eqIdx + 1;
             if (lastPos < end)
-              key += s.slice(qs, lastPos, end);
+              key += s.slice(querys, lastPos, end);
             encodeCheck = 0;
             lastPos = i + 1;
           }
@@ -142,13 +142,13 @@ namespace nodecpp {
       if (code == 43/*+*/) {
         if (eqIdx < eqLen) {
           if (i - lastPos > 0)
-            key += s.slice(qs, lastPos, i);
+            key += s.slice(querys, lastPos, i);
           key += "%20";
           keyEncoded = true;
         }
         else {
           if (i - lastPos > 0)
-            value += s.slice(qs, lastPos, i);
+            value += s.slice(querys, lastPos, i);
           value += "%20";
           valEncoded = true;
         }
@@ -157,12 +157,12 @@ namespace nodecpp {
     }
 
     // Check if we have leftover key or value data
-    if (pairs > 0 && (lastPos < qs.length() || eqIdx > 0)) {
-      if (lastPos < qs.length()) {
+    if (pairs > 0 && (lastPos < querys.length() || eqIdx > 0)) {
+      if (lastPos < querys.length()) {
         if (eqIdx < eqLen)
-          key += s.slice(qs, lastPos);
+          key += s.slice(querys, lastPos);
         else if (sepIdx < sepLen)
-          value += s.slice(qs, lastPos);
+          value += s.slice(querys, lastPos);
       }
       if (keyEncoded)
         key = decodeStr(key);

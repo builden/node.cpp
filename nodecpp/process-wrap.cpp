@@ -40,7 +40,7 @@ namespace nodecpp {
 
   private:
     static void on_child_exit(uv_process_t* req, int64_t exit_status, int term_signal) {
-      fprintf(stderr, "Process exited with status %d, signal %d\n", exit_status, term_signal);
+      fprintf(stderr, "Process exited with status %lld, signal %d\n", exit_status, term_signal);
       uv_close((uv_handle_t*)req, NULL);
     }
 

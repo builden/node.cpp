@@ -40,8 +40,8 @@ namespace nodecpp {
   string UnderscoreString::join(const svec_t& svec, const string& separator /*= ""*/) {
     string v;
     size_t idx = 0, len = svec.size();
-    for (auto &s : svec) {
-      v += s;
+    for (auto &str : svec) {
+      v += str;
       if (++idx != len) v += separator;
     }
     return v;
@@ -63,19 +63,19 @@ namespace nodecpp {
   }
 
   string UnderscoreString::ltrim(const string& str, const string& characters /*= " \t\r\n"*/) {
-    string s = str;
-    return s.erase(0, s.find_first_not_of(characters));
+    string _str = str;
+    return _str.erase(0, _str.find_first_not_of(characters));
   }
 
   string UnderscoreString::rtrim(const string& str, const string& characters /*= " \t\r\n"*/) {
-    string s = str;
-    return s.erase(s.find_last_not_of(characters) + 1);
+    string _str = str;
+    return _str.erase(_str.find_last_not_of(characters) + 1);
   }
 
   string UnderscoreString::trim(const string& str, const string& characters /*= " \t\r\n"*/) {
-    string s = str;
-    s.erase(0, s.find_first_not_of(characters));
-    return s.erase(s.find_last_not_of(characters) + 1);
+    string _str = str;
+    _str.erase(0, _str.find_first_not_of(characters));
+    return _str.erase(_str.find_last_not_of(characters) + 1);
   }
 
 

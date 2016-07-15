@@ -40,6 +40,9 @@
 #include <vector>
 #include <utility>
 
+#pragma warning( push )
+#pragma warning( disable : 4702 )
+
 #ifdef _SECURE_SCL
 # define FMT_SECURE_SCL _SECURE_SCL
 #else
@@ -3838,3 +3841,4 @@ operator"" _a(const wchar_t *s, std::size_t) { return {s}; }
 #endif
 
 #endif  // FMT_FORMAT_H_
+#pragma warning( pop )

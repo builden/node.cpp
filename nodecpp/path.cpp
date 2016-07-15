@@ -8,7 +8,7 @@ namespace nodecpp {
 
   Path::Path() : sep("//") {}
 
-  string Path::basename(const string& path, const string& ext /*= ""*/) {
+  string Path::basename(const string& p, const string& ext /*= ""*/) {
     auto start = 0;
     auto end = -1;
     auto matchedSlash = true;
@@ -17,22 +17,22 @@ namespace nodecpp {
     // Check for a drive letter prefix so as not to mistake the following
     // path separator as an extra separator at the end of the path that can be
     // disregarded
-    if (path.length() >= 2) {
-      auto drive = path[0];
+    if (p.length() >= 2) {
+      auto drive = p[0];
       if ((drive >= 65/*A*/ && drive <= 90/*Z*/) ||
         (drive >= 97/*a*/ && drive <= 122/*z*/)) {
-        if (path[1] == 58/*:*/)
+        if (p[1] == 58/*:*/)
           start = 2;
       }
     }
 
-    if (ext.length() > 0 && ext.length() <= path.length()) {
-      if (ext.length() == path.length() && ext == path)
+    if (ext.length() > 0 && ext.length() <= p.length()) {
+      if (ext.length() == p.length() && ext == p)
         return "";
       int extIdx = ext.length() - 1;
       auto firstNonSlashEnd = -1;
-      for (i = path.length() - 1; i >= start; --i) {
-        auto code = path[i];
+      for (i = p.length() - 1; i >= start; --i) {
+        auto code = p[i];
         if (code == 47/*/*/ || code == 92/*\*/) {
           // If we reached a path separator that was not part of a set of path
           // separators at the end of the string, stop now
@@ -69,11 +69,11 @@ namespace nodecpp {
 
       if (end == -1)
         return "";
-      return s.slice(path, start, end);
+      return s.slice(p, start, end);
     }
     else {
-      for (i = path.length() - 1; i >= start; --i) {
-        auto code = path[i];
+      for (i = p.length() - 1; i >= start; --i) {
+        auto code = p[i];
         if (code == 47/*/*/ || code == 92/*\*/) {
           // If we reached a path separator that was not part of a set of path
           // separators at the end of the string, stop now
@@ -92,19 +92,19 @@ namespace nodecpp {
 
       if (end == -1)
         return "";
-      return s.slice(path, start, end);
+      return s.slice(p, start, end);
     }
   }
 
-  string Path::dirname(const string& path) {
-    int len = path.length();
+  string Path::dirname(const string& p) {
+    int len = p.length();
     if (len == 0)
       return ".";
     auto rootEnd = -1;
     auto end = -1;
     auto matchedSlash = true;
     auto offset = 0;
-    auto code = path[0];
+    auto code = p[0];
 
     // Try to match a root
     if (len > 1) {
@@ -113,14 +113,14 @@ namespace nodecpp {
 
         rootEnd = offset = 1;
 
-        code = path[1];
+        code = p[1];
         if (code == 47/*/*/ || code == 92/*\*/) {
           // Matched double path separator at beginning
           auto j = 2;
           auto last = j;
           // Match 1 or more non-path separators
           for (; j < len; ++j) {
-            code = path[j];
+            code = p[j];
             if (code == 47/*/*/ || code == 92/*\*/)
               break;
           }
@@ -129,7 +129,7 @@ namespace nodecpp {
             last = j;
             // Match 1 or more path separators
             for (; j < len; ++j) {
-              code = path[j];
+              code = p[j];
               if (code != 47/*/*/ && code != 92/*\*/)
                 break;
             }
@@ -138,13 +138,13 @@ namespace nodecpp {
               last = j;
               // Match 1 or more non-path separators
               for (; j < len; ++j) {
-                code = path[j];
+                code = p[j];
                 if (code == 47/*/*/ || code == 92/*\*/)
                   break;
               }
               if (j == len) {
                 // We matched a UNC root only
-                return path;
+                return p;
               }
               if (j != last) {
                 // We matched a UNC root with leftovers
@@ -161,11 +161,11 @@ namespace nodecpp {
         (code >= 97/*a*/ && code <= 122/*z*/)) {
         // Possible device root
 
-        code = path[1];
-        if (path[1] == 58/*:*/) {
+        code = p[1];
+        if (p[1] == 58/*:*/) {
           rootEnd = offset = 2;
           if (len > 2) {
-            code = path[2];
+            code = p[2];
             if (code == 47/*/*/ || code == 92/*\*/)
               rootEnd = offset = 3;
           }
@@ -173,11 +173,11 @@ namespace nodecpp {
       }
     }
     else if (code == 47/*/*/ || code == 92/*\*/) {
-      return "" + path[0];
+      return "" + p[0];
     }
 
     for (auto i = len - 1; i >= offset; --i) {
-      code = path[i];
+      code = p[i];
       if (code == 47/*/*/ || code == 92/*\*/) {
         if (!matchedSlash) {
           end = i;
@@ -196,10 +196,10 @@ namespace nodecpp {
       else
         end = rootEnd;
     }
-    return s.slice(path, 0, end);
+    return s.slice(p, 0, end);
   }
 
-  string Path::extname(const string& path) {
+  string Path::extname(const string& p) {
     auto startDot = -1;
     auto startPart = 0;
     auto end = -1;
@@ -207,8 +207,8 @@ namespace nodecpp {
     // Track the state of characters (if any) we see before our first dot and
     // after any path separator we find
     auto preDotState = 0;
-    for (auto i = path.length() - 1; i >= 0; --i) {
-      auto code = path[i];
+    for (auto i = p.length() - 1; i >= 0; --i) {
+      auto code = p[i];
       if (code == 47/*/*/ || code == 92/*\*/) {
         // If we reached a path separator that was not part of a set of path
         // separators at the end of the string, stop now
@@ -248,7 +248,7 @@ namespace nodecpp {
       startDot == startPart + 1)) {
       return "";
     }
-    return s.slice(path, startDot, end);
+    return s.slice(p, startDot, end);
   }
 
   string Path::join(const string& path1
@@ -324,12 +324,12 @@ namespace nodecpp {
     return normalize(joined);
   }
 
-  string Path::normalize(const string& path) {
-    auto len = path.length();
+  string Path::normalize(const string& p) {
+    auto len = p.length();
     if (len == 0)
       return ".";
     size_t rootEnd = 0;
-    auto code = path[0];
+    auto code = p[0];
     string device;
     bool isAbsolute = false;
 
@@ -342,24 +342,24 @@ namespace nodecpp {
         // path of some kind (UNC or otherwise)
         isAbsolute = true;
 
-        code = path[1];
+        code = p[1];
         if (code == 47/*/*/ || code == 92/*\*/) {
           // Matched double path separator at beginning
           size_t j = 2;
           auto last = j;
           // Match 1 or more non-path separators
           for (; j < len; ++j) {
-            code = path[j];
+            code = p[j];
             if (code == 47/*/*/ || code == 92/*\*/)
               break;
           }
           if (j < len && j != last) {
-            string firstPart = s.slice(path, last, j);
+            string firstPart = s.slice(p, last, j);
             // Matched!
             last = j;
             // Match 1 or more path separators
             for (; j < len; ++j) {
-              code = path[j];
+              code = p[j];
               if (code != 47/*/*/ && code != 92/*\*/)
                 break;
             }
@@ -368,7 +368,7 @@ namespace nodecpp {
               last = j;
               // Match 1 or more non-path separators
               for (; j < len; ++j) {
-                code = path[j];
+                code = p[j];
                 if (code == 47/*/*/ || code == 92/*\*/)
                   break;
               }
@@ -377,12 +377,12 @@ namespace nodecpp {
                 // Return the normalized version of the UNC root since there
                 // is nothing left to process
 
-                return "\\\\" + firstPart + "\\" + s.slice(path, last) + "\\";
+                return "\\\\" + firstPart + "\\" + s.slice(p, last) + "\\";
               }
               else if (j != last) {
                 // We matched a UNC root with leftovers
 
-                device = "\\\\" + firstPart + "\\" + s.slice(path, last, j);
+                device = "\\\\" + firstPart + "\\" + s.slice(p, last, j);
                 rootEnd = j;
               }
             }
@@ -396,12 +396,12 @@ namespace nodecpp {
         (code >= 97/*a*/ && code <= 122/*z*/)) {
         // Possible device root
 
-        code = path[1];
-        if (path[1] == 58/*:*/) {
-          device = s.slice(path, 0, 2);
+        code = p[1];
+        if (p[1] == 58/*:*/) {
+          device = s.slice(p, 0, 2);
           rootEnd = 2;
           if (len > 2) {
-            code = path[2];
+            code = p[2];
             if (code == 47/*/*/ || code == 92/*\*/) {
               // Treat separator following drive name as an absolute path
               // indicator
@@ -418,11 +418,11 @@ namespace nodecpp {
       return "\\";
     }
 
-    code = path[len - 1];
+    code = p[len - 1];
     auto trailingSeparator = (code == 47/*/*/ || code == 92/*\*/);
     string tail;
     if (rootEnd < len)
-      tail = normalizeStringWin32(s.slice(path, rootEnd), !isAbsolute);
+      tail = normalizeStringWin32(s.slice(p, rootEnd), !isAbsolute);
     else
       tail = "";
     if (tail.length() == 0 && !isAbsolute)
@@ -459,10 +459,10 @@ namespace nodecpp {
     }
   }
 
-  bool Path::isAbsolute(const string& path) {
-    auto len = path.length();
+  bool Path::isAbsolute(const string& p) {
+    auto len = p.length();
     if (len == 0) return false;
-    auto code = path[0];
+    auto code = p[0];
     if (code == 47/*/*/ || code == 92/*\*/) {
       return true;
     }
@@ -470,8 +470,8 @@ namespace nodecpp {
       (code >= 97/*a*/ && code <= 122/*z*/)) {
       // Possible device root
 
-      if (len > 2 && path[1] == 58/*:*/) {
-        code = path[2];
+      if (len > 2 && p[1] == 58/*:*/) {
+        code = p[2];
         if (code == 47/*/*/ || code == 92/*\*/)
           return true;
       }
@@ -479,14 +479,14 @@ namespace nodecpp {
     return false;
   }
 
-  string Path::normalizeStringWin32(const string& path, bool allowAboveRoot) {
+  string Path::normalizeStringWin32(const string& p, bool allowAboveRoot) {
     string res = "";
     auto lastSlash = -1;
     auto dots = 0;
     auto code = 0;
-    for (size_t i = 0; i <= path.length(); ++i) {
-      if (i < path.length())
-        code = path[i];
+    for (size_t i = 0; i <= p.length(); ++i) {
+      if (i < p.length())
+        code = p[i];
       else if (code == 47/*/*/ || code == 92/*\*/)
         break;
       else
@@ -532,9 +532,9 @@ namespace nodecpp {
         }
         else {
           if (res.length() > 0)
-            res += '\\' + s.slice(path, lastSlash + 1, i);
+            res += '\\' + s.slice(p, lastSlash + 1, i);
           else
-            res = s.slice(path, lastSlash + 1, i);
+            res = s.slice(p, lastSlash + 1, i);
         }
         lastSlash = i;
         dots = 0;
@@ -564,15 +564,15 @@ namespace nodecpp {
     if (!path2.empty()) argv++;
     if (!path3.empty()) argv++;
     for (int i = argv - 1; i >= -1; i--) {
-      string path;
+      string p;
       if (i >= 0) {
-        if (i == 0) path = innerPath0;
-        else if (i == 1) path = path1;
-        else if (i == 2) path = path2;
-        else if (i == 3) path = path3;
+        if (i == 0) p = innerPath0;
+        else if (i == 1) p = path1;
+        else if (i == 2) p = path2;
+        else if (i == 3) p = path3;
       }
       else if (resolvedDevice.empty()) {
-        path = process.cwd();
+        p = process.cwd();
       }
       else {
         // Windows has the concept of drive-specific current working
@@ -591,13 +591,13 @@ namespace nodecpp {
       }
 
       // Skip empty entries
-      if (path.empty()) {
+      if (p.empty()) {
         continue;
       }
 
-      int len = path.length();
+      int len = p.length();
       int rootEnd = 0;
-      char code = path[0];
+      char code = p[0];
       string device = "";
       bool isAbsolute = false;
 
@@ -610,24 +610,24 @@ namespace nodecpp {
           // absolute path of some kind (UNC or otherwise)
           isAbsolute = true;
 
-          code = path[1];
+          code = p[1];
           if (code == 47/*/*/ || code == 92/*\*/) {
             // Matched double path separator at beginning
             int j = 2;
             int last = j;
             // Match 1 or more non-path separators
             for (; j < len; ++j) {
-              code = path[j];
+              code = p[j];
               if (code == 47/*/*/ || code == 92/*\*/)
                 break;
             }
             if (j < len && j != last) {
-              string firstPart = s.slice(path, last, j);
+              string firstPart = s.slice(p, last, j);
               // Matched!
               last = j;
               // Match 1 or more path separators
               for (; j < len; ++j) {
-                code = path[j];
+                code = p[j];
                 if (code != 47/*/*/ && code != 92/*\*/)
                   break;
               }
@@ -636,20 +636,20 @@ namespace nodecpp {
                 last = j;
                 // Match 1 or more non-path separators
                 for (; j < len; ++j) {
-                  code = path[j];
+                  code = p[j];
                   if (code == 47/*/*/ || code == 92/*\*/)
                     break;
                 }
                 if (j == len) {
                   // We matched a UNC root only
 
-                  device = "\\\\" + firstPart + "\\" + s.slice(path, last);
+                  device = "\\\\" + firstPart + "\\" + s.slice(p, last);
                   rootEnd = j;
                 }
                 else if (j != last) {
                   // We matched a UNC root with leftovers
 
-                  device = "\\\\" + firstPart + "\\" + s.slice(path, last, j);
+                  device = "\\\\" + firstPart + "\\" + s.slice(p, last, j);
                   rootEnd = j;
                 }
               }
@@ -663,12 +663,12 @@ namespace nodecpp {
           (code >= 97/*a*/ && code <= 122/*z*/)) {
           // Possible device root
 
-          code = path[1];
-          if (path[1] == 58/*:*/) {
-            device = s.slice(path, 0, 2);
+          code = p[1];
+          if (p[1] == 58/*:*/) {
+            device = s.slice(p, 0, 2);
             rootEnd = 2;
             if (len > 2) {
-              code = path[2];
+              code = p[2];
               if (code == 47/*/*/ || code == 92/*\*/) {
                 // Treat separator following drive name as an absolute path
                 // indicator
@@ -696,7 +696,7 @@ namespace nodecpp {
         resolvedDevice = device;
       }
       if (!resolvedAbsolute) {
-        resolvedTail = s.slice(path, rootEnd) + "\\" + resolvedTail;
+        resolvedTail = s.slice(p, rootEnd) + "\\" + resolvedTail;
         resolvedAbsolute = isAbsolute;
       }
 

@@ -6,7 +6,8 @@
 namespace nodecpp {
   string Moment::millisecond_to_str(int64_t milliseconds, const string& fmtStr) {
     std::chrono::milliseconds ms(milliseconds);
-    std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::milliseconds> t1(ms);
+    std::chrono::system_clock::time_point t1(ms);
+    // std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::milliseconds> t1(ms);
     std::time_t t = std::chrono::system_clock::to_time_t(t1);
 
     string _fmtStr = fmtStr;
