@@ -90,6 +90,7 @@
     <ClInclude Include="net-server.h" />
     <ClInclude Include="net-socket.h" />
     <ClInclude Include="net.h" />
+    <ClInclude Include="nlohmann\json.hpp" />
     <ClInclude Include="node-zlib.h" />
     <ClInclude Include="nodecpp-def.h" />
     <ClInclude Include="nodecpp.h" />

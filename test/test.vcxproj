@@ -105,6 +105,7 @@
     <ClInclude Include="keyboard-code-trans-test.h" />
     <ClInclude Include="lodash-test.h" />
     <ClInclude Include="moment-test.h" />
+    <ClInclude Include="nlohmann-json-test.h" />
     <ClInclude Include="os-test.h" />
     <ClInclude Include="path-test.h" />
     <ClInclude Include="pe-cert-test.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="keyboard-code-trans-test.cpp" />
     <ClCompile Include="lodash-test.cpp" />
     <ClCompile Include="moment-test.cpp" />
+    <ClCompile Include="nlohmann-json-test.cpp" />
     <ClCompile Include="os-test.cpp" />
     <ClCompile Include="path-test.cpp" />
     <ClCompile Include="pe-cert-test.cpp" />

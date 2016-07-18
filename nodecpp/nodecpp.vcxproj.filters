@@ -52,6 +52,9 @@
     <Filter Include="core\inner-child-process">
       <UniqueIdentifier>{d8c03b05-2af1-4fa4-b4fa-88eb8de883a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\nlohmann">
+      <UniqueIdentifier>{1bdfda9a-5b30-475a-aeba-9357012dd3bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="process-wrap.h">
       <Filter>core\inner-child-process</Filter>
+    </ClInclude>
+    <ClInclude Include="nlohmann\json.hpp">
+      <Filter>deps\nlohmann</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
