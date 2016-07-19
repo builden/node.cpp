@@ -3840,5 +3840,6 @@ operator"" _a(const wchar_t *s, std::size_t) { return {s}; }
 # define FMT_FUNC
 #endif
 
-#endif  // FMT_FORMAT_H_
 #pragma warning( pop )
+
+#endif  // FMT_FORMAT_H_
