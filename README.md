@@ -74,13 +74,14 @@ fs.readFile(filePath, [](const Buffer& buf) {
 * [gtest](https://github.com/google/googletest)
 * [fmt](https://github.com/fmtlib/fmt)
   > 增加fmt::odebug接口，内部调用OutputDebugString，用于输出到dbgview
-* [json11](https://github.com/dropbox/json11)
-  > string改为wstring，默认采用宽字节
+* [json](https://github.com/nlohmann/json)
+  > c++11，只支持VS2015，不支持VS2013
 * [openssl](https://www.openssl.org/)
 * [http_parser](https://github.com/nodejs/http-parser)
 * [zlib](https://github.com/madler/zlib)
 * [detours](http://research.microsoft.com/en-us/projects/detours/)
 * [simpleini](https://github.com/brofield/simpleini)
+* [g3log](https://github.com/KjellKod/g3log)
 
 ## 参考
 * [node.native](https://github.com/d5/node.native)

@@ -31,11 +31,6 @@ long fib_(long t) {
 TEST_F(UvThreadTest, workQueue) {
   auto fib = [](uv_work_t *req) {
     int n = *(int *)req->data;
-    if (2 == n) {
-      for (int i = 0; i < FIB_UNTIL; i++) {
-        uv_cancel((uv_req_t*)&req[i]); // 中途取消，但依然会执行after_fib
-      }
-    }
     long fib = fib_(n);
     fprintf(stderr, "%dth fibonacci is %lu\n", n, fib);
   };
@@ -54,6 +49,12 @@ TEST_F(UvThreadTest, workQueue) {
     req[i].data = (void *)&data[i];
     uv_queue_work(uv_default_loop(), &req[i], fib, after_fib);
   }
+
+  setTimeout([]() {
+    for (int i = 0; i < FIB_UNTIL; i++) {
+      uv_cancel((uv_req_t*)&req[i]); // 中途取消，但依然会执行after_fib
+    }
+  }, 20);
 
   run();
 }
