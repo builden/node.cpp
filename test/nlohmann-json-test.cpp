@@ -47,6 +47,9 @@ TEST_F(NlohmannJsonTest, parse) {
 }
 )"_json;
   EXPECT_EQ(j3.dump(), R"({"a":"b","c":123})");
+
+  auto j4 = json::parse(R"({"a":"b","c":123})");
+  EXPECT_EQ(j3, j4);
 }
 
 TEST_F(NlohmannJsonTest, get) {
