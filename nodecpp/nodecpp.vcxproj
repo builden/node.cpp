@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="async-wrap.cpp" />
+    <ClCompile Include="base-object.cpp" />
     <ClCompile Include="base64\base64.cpp" />
     <ClCompile Include="base64\modp_b64.cc" />
     <ClCompile Include="buffer.cpp" />
@@ -28,6 +30,7 @@
     <ClCompile Include="fmt\format.cc" />
     <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
+    <ClCompile Include="handle-wrap.cpp" />
     <ClCompile Include="hooker.cpp" />
     <ClCompile Include="http-common.cpp" />
     <ClCompile Include="http-server.cpp" />
@@ -50,6 +53,8 @@
     <ClCompile Include="querystring.cpp" />
     <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
+    <ClCompile Include="stream-base.cpp" />
+    <ClCompile Include="stream-wrap.cpp" />
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
     <ClCompile Include="url.cpp" />
@@ -57,6 +62,8 @@
     <ClCompile Include="winreg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="async-wrap.h" />
+    <ClInclude Include="base-object.h" />
     <ClInclude Include="base64\base64.h" />
     <ClInclude Include="base64\modp_b64.h" />
     <ClInclude Include="base64\modp_b64_data.h" />
@@ -76,6 +83,7 @@
     <ClInclude Include="fmt\format.h" />
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
+    <ClInclude Include="handle-wrap.h" />
     <ClInclude Include="hooker.h" />
     <ClInclude Include="http-common.h" />
     <ClInclude Include="http-server.h" />
@@ -99,11 +107,15 @@
     <ClInclude Include="process-wrap.h" />
     <ClInclude Include="process.h" />
     <ClInclude Include="querystring.h" />
+    <ClInclude Include="req-wrap-inl.h" />
+    <ClInclude Include="req-wrap.h" />
     <ClInclude Include="server-response.h" />
     <ClInclude Include="shm.h" />
     <ClInclude Include="SimpleIni\SimpleIni.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="std-regex-ex.h" />
+    <ClInclude Include="stream-base.h" />
+    <ClInclude Include="stream-wrap.h" />
     <ClInclude Include="timers.h" />
     <ClInclude Include="underscore.string.h" />
     <ClInclude Include="url.h" />

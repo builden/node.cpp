@@ -186,6 +186,21 @@
     <ClCompile Include="util.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="handle-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-base.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="async-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="base-object.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -343,6 +358,27 @@
     </ClInclude>
     <ClInclude Include="util.h">
       <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="handle-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-base.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="async-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="base-object.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="req-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="req-wrap-inl.h">
+      <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
