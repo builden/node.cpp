@@ -183,6 +183,9 @@
     <ClCompile Include="process-wrap.cpp">
       <Filter>core\inner-child-process</Filter>
     </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -337,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="nlohmann\json.hpp">
       <Filter>deps\nlohmann</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

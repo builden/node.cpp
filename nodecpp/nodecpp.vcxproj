@@ -53,6 +53,7 @@
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
     <ClCompile Include="url.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="winreg.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
     <ClInclude Include="timers.h" />
     <ClInclude Include="underscore.string.h" />
     <ClInclude Include="url.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="winreg.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
