@@ -34,7 +34,6 @@
     <ClCompile Include="http.cpp" />
     <ClCompile Include="iconv.cpp" />
     <ClCompile Include="ini.cpp" />
-    <ClCompile Include="json11\json11.cpp" />
     <ClCompile Include="keyboard-code-trans.cpp" />
     <ClCompile Include="lodash.cpp" />
     <ClCompile Include="moment.cpp" />
@@ -82,7 +81,6 @@
     <ClInclude Include="http.h" />
     <ClInclude Include="iconv.h" />
     <ClInclude Include="ini.h" />
-    <ClInclude Include="json11\json11.hpp" />
     <ClInclude Include="keyboard-code-trans.h" />
     <ClInclude Include="keyboard-codes.h" />
     <ClInclude Include="lodash.h" />

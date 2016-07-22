@@ -2,15 +2,15 @@
 #include "querystring-test.h"
 
 TEST_F(QuerystringTest, parse) {
-  Json j = qs.parse("foo=bar&baz=qux&baz=quux&corge");
-  EXPECT_EQ(j["foo"].string_value(), "bar");
-  EXPECT_EQ(j["corge"].string_value(), "");
-  EXPECT_EQ(j["baz"].dump(), "[\"qux\", \"quux\"]");
+  json& j = qs.parse("foo=bar&baz=qux&baz=quux&corge");
+  EXPECT_EQ(j["foo"].get<string>(), "bar");
+  EXPECT_EQ(j["corge"].get<string>(), "");
+  EXPECT_EQ(j["baz"].dump(), "[\"qux\",\"quux\"]");
 }
 
 TEST_F(QuerystringTest, stringify) {
-  Json::array arr({ "qux", "quux" });
-  Json j = Json::object{
+  json arr({ "qux", "quux" });
+  json j = {
     { "foo", "bar" },
     { "baz", arr },
     { "corge", "" },

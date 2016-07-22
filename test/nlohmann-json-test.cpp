@@ -99,3 +99,12 @@ TEST_F(NlohmannJsonTest, erase) {
   j.erase("foo");
   EXPECT_EQ(j.dump(), "{}");
 }
+
+TEST_F(NlohmannJsonTest, arr) {
+  json j;
+  j.push_back("foo");
+  j.push_back(1);
+  j.push_back(true);
+
+  EXPECT_EQ(j.dump(), R"(["foo",1,true])");
+}

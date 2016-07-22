@@ -16,7 +16,7 @@ namespace nodecpp {
   public:
     HttpServerPtr_t createServer(RequestListener_t cb);
     ClientRequest& get(const string& url, requestCb_t cb);
-    ClientRequest& request(Json& options, requestCb_t cb);
+    ClientRequest& request(json& options, requestCb_t cb);
 
     const svec_t& METHODS = httpMethods;
     const ismap_t& STATUS_CODES = statusCodes;

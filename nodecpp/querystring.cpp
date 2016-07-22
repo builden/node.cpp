@@ -16,8 +16,8 @@ namespace nodecpp {
     }
   }
 
-  Json Querystring::parse(const string& querys, const string& sep /*= '&'*/, const string& eq /*= '='*/) {
-    Json::object obj = {};
+  json Querystring::parse(const string& querys, const string& sep /*= '&'*/, const string& eq /*= '='*/) {
+    json obj = json({});
 
     auto sepLen = sep.length();
     auto eqLen = eq.length();
@@ -66,11 +66,10 @@ namespace nodecpp {
             // is ~15-20% faster with v8 4.7 and is safe to use because we are
             // using it with values being created within this function
             if (curValue.is_array()) {
-              Json::array arr = curValue.array_items();
-              arr.push_back(value);
+              curValue.push_back(value);
             }
             else {
-              obj[key] = Json::array{curValue, value};
+              obj[key] = json::array({curValue, value});
             }
           }
           if (--pairs == 0)
@@ -181,11 +180,10 @@ namespace nodecpp {
         // is ~15-20% faster with v8 4.7 and is safe to use because we are
         // using it with values being created within this function
         if (curValue.is_array()) {
-          Json::array arr = curValue.array_items();
-          arr.push_back(value);
+          curValue.push_back(value);
         }
         else {
-          obj[key] = Json::array{curValue, value};
+          obj[key] = json::array({curValue, value});
         }
       }
     }
@@ -193,22 +191,21 @@ namespace nodecpp {
     return obj;
   }
 
-  string Querystring::stringify(Json obj, const string& sep /*= "&"*/, const string& eq/*= "="*/) {
+  string Querystring::stringify(json& obj, const string& sep /*= "&"*/, const string& eq/*= "="*/) {
     string fields = "";
-    size_t len = obj.object_items().size();
+    size_t len = obj.size();
     size_t flast = len - 1;
     size_t i = 0;
-    for (auto item : obj.object_items()) {
-      auto k = item.first;
-      auto v = item.second;
-      auto ks = encode(stringifyPrimitive(k)) + eq;
+    for (auto it = obj.begin(); it != obj.end(); ++it) {
+      auto k = it.key();
+      auto v = it.value();
+      auto ks = encode(k) + eq;
 
       if (v.is_array()) {
-        Json::array varr = v.array_items();
-        auto vlen = varr.size();
+        auto vlen = v.size();
         auto vlast = vlen - 1;
         for (size_t j = 0; j < vlen; ++j) {
-          fields += ks + encode(stringifyPrimitive(varr[j]));
+          fields += ks + encode(stringifyPrimitive(v[j]));
           if (j < vlast) fields += sep;
         }
         if (vlen && i < flast) fields += sep;
@@ -298,15 +295,21 @@ namespace nodecpp {
     return out;
   }
 
-  string Querystring::stringifyPrimitive(Json obj) {
+  string Querystring::stringifyPrimitive(json& obj) {
     if (obj.is_string()) {
-      return obj.string_value();
+      return obj.get<string>();
     }
-    if (obj.is_number()) {
-      return fmt::format("{}", obj.number_value());
+    if (obj.is_number_float()) {
+      return fmt::format("{}", obj.get<double>());
     }
-    if (obj.is_bool()) {
-      return fmt::format("{}", obj.bool_value());
+    if (obj.is_number_integer()) {
+      return fmt::format("{}", obj.get<int64_t>());
+    }
+    if (obj.is_number_unsigned()) {
+      return fmt::format("{}", obj.get <uint64_t>());
+    }
+    if (obj.is_boolean()) {
+      return fmt::format("{}", obj.get<bool>());
     }
     return "";
   }

@@ -9,7 +9,7 @@ namespace nodecpp {
   class Process::impl {
   public:
     void initArgv(svec_t& argv);
-    void initEnv(Json& env);
+    void initEnv(json& env);
 
     string cwd_;
   };
@@ -56,11 +56,10 @@ namespace nodecpp {
     LocalFree(szArglist);
   }
 
-  void Process::impl::initEnv(Json& env) {
+  void Process::impl::initEnv(json& env) {
     WCHAR* environment = GetEnvironmentStringsW();
     if (environment == nullptr)
       return;  // This should not happen.
-    Json::object j{};
     WCHAR* p = environment;
     while (*p) {
       WCHAR *s;
@@ -80,14 +79,12 @@ namespace nodecpp {
       
       std::wstring key(p, two_byte_buffer_len);
       std::wstring value = s + 1;
-      j[iconv.wstrToStr(key)] = iconv.wstrToStr(value);
+      env[iconv.wstrToStr(key)] = iconv.wstrToStr(value);
       
       p = s + wcslen(s) + 1;
     }
 
     FreeEnvironmentStringsW(environment);
-
-    env = j;
   }
 
   string Process::getEnv(const string& envVar) {

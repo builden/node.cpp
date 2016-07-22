@@ -19,7 +19,7 @@ namespace nodecpp {
     string execPath;
     unsigned int pid;
     svec_t argv;
-    Json env;
+    json env;
     string platform = "win32";
 
   private:

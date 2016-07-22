@@ -8,11 +8,11 @@ namespace nodecpp {
   }
 
   ClientRequest& Http::get(const string& /*url*/, requestCb_t cb) {
-    Json opts = Json::object{};
+    json opts = json({});
     return request(opts, cb);
   }
 
-  ClientRequest& Http::request(Json& /*options*/, requestCb_t /*cb*/) {
+  ClientRequest& Http::request(json& /*options*/, requestCb_t /*cb*/) {
     auto req = new ClientRequest();
     return *req;
   }

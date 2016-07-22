@@ -19,9 +19,6 @@
     <Filter Include="deps\fmt">
       <UniqueIdentifier>{eea8cc24-bbcd-49b8-831e-8eb07a39d579}</UniqueIdentifier>
     </Filter>
-    <Filter Include="deps\json11">
-      <UniqueIdentifier>{2c258f34-e313-47fe-9990-4ed15b6d80ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="deps\base64">
       <UniqueIdentifier>{06210a63-ccb5-445b-9d3b-5a6f7cd8ec48}</UniqueIdentifier>
     </Filter>
@@ -146,9 +143,6 @@
     </ClCompile>
     <ClCompile Include="url.cpp">
       <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="json11\json11.cpp">
-      <Filter>deps\json11</Filter>
     </ClCompile>
     <ClCompile Include="fs-wrap.cpp">
       <Filter>core\inner</Filter>
@@ -301,9 +295,6 @@
     </ClInclude>
     <ClInclude Include="underscore.string.h">
       <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="json11\json11.hpp">
-      <Filter>deps\json11</Filter>
     </ClInclude>
     <ClInclude Include="fs-wrap.h">
       <Filter>core\inner</Filter>

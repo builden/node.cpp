@@ -24,9 +24,6 @@
     <ClInclude Include="fmt-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="json11-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="buffer-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,9 +123,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fmt-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="json11-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="buffer-test.cpp">

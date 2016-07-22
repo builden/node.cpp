@@ -32,7 +32,7 @@ namespace g3 {
 
 
   JsonFileSink::~JsonFileSink() {
-    Json exit_msg = Json::object{
+    json exit_msg = {
       { "time", localtime_formatted(systemtime_now(), internal::time_formatted) },
       { "msg", "g3log g3FileSink shutdown" }
     };
@@ -44,7 +44,7 @@ namespace g3 {
   void JsonFileSink::fileWrite(LogMessageMover message) {
     std::ofstream &out(filestream());
     auto msg = message.get();
-    Json j = Json::object{
+    json j = {
       { "time", msg.timestamp() },
       { "tick", msg.microseconds() },
       { "tid", msg.threadID() },

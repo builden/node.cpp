@@ -7,8 +7,8 @@
 namespace nodecpp {
   class Querystring : public Singleton<Querystring> {
   public:
-    Json parse(const string& str, const string& sep = "&", const string& eq = "=");
-    string stringify(Json obj, const string& sep = "&", const string& eq = "=");
+    json parse(const string& str, const string& sep = "&", const string& eq = "=");
+    string stringify(json& obj, const string& sep = "&", const string& eq = "=");
     Querystring();
 
   private:
@@ -16,7 +16,7 @@ namespace nodecpp {
     string encode(const string& str);
     string unescape(const string& str);
     string decodeStr(const string& str);
-    string stringifyPrimitive(Json obj);
+    string stringifyPrimitive(json& obj);
 
   private:
     svec_t hexTable;

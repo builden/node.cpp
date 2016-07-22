@@ -14,8 +14,8 @@
 #include <iterator>
 #include <memory>
 
-#include "json11/json11.hpp"
-using namespace json11;
+#include "nlohmann/json.hpp"
+using nlohmann::json;
 
 typedef std::set<int> iset_t;
 typedef std::vector<int> ivec_t;

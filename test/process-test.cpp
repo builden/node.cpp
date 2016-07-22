@@ -35,12 +35,11 @@ TEST_F(ProcessTest, argv) {
 }
 
 TEST_F(ProcessTest, env) {
-  Json::object j = process.env.object_items();
-  for (auto obj : j) {
-    cout << obj.first  << ":" << obj.second.string_value() << endl;
+  json j = process.env;
+  for (auto it = j.begin(); it != j.end(); ++it) {
+    cout << it.key() << ":" << it.value() << endl;
   }
 
   EXPECT_EQ(process.env["NOTEXIST"].is_null(), true);
-  EXPECT_EQ(process.env["NOTEXIST"].string_value(), "");
-  EXPECT_EQ(s.toLower(process.env["windir"].string_value()), "c:\\windows");
+  EXPECT_EQ(s.toLower(process.env["windir"].get<string>()), "c:\\windows");
 }
