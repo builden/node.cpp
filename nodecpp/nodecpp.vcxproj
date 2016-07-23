@@ -42,6 +42,7 @@
     <ClCompile Include="net-socket.cpp" />
     <ClCompile Include="net.cpp" />
     <ClCompile Include="node-zlib.cpp" />
+    <ClCompile Include="nodecpp-internals.cpp" />
     <ClCompile Include="nodepp.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="path.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="stream-base.cpp" />
+    <ClCompile Include="stream-resource.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
     <ClCompile Include="timer-wrap.cpp" />
     <ClCompile Include="timers.cpp" />
@@ -59,6 +61,7 @@
     <ClCompile Include="url.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winreg.cpp" />
+    <ClCompile Include="write-wrap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h" />
@@ -83,6 +86,9 @@
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="handle-wrap.h" />
+    <ClInclude Include="nodecpp-internals.h" />
+    <ClInclude Include="shutdown-wrap.h" />
+    <ClInclude Include="stream-resource.h" />
     <ClInclude Include="timer-wrap.h" />
     <ClInclude Include="hooker.h" />
     <ClInclude Include="http-common.h" />
@@ -120,6 +126,7 @@
     <ClInclude Include="url.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="winreg.h" />
+    <ClInclude Include="write-wrap.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C4C58E7-4488-45CD-BFCD-098D95BC5D01}</ProjectGuid>

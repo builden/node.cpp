@@ -198,6 +198,15 @@
     <ClCompile Include="timer-wrap.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="write-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-resource.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="nodecpp-internals.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -376,6 +385,18 @@
     </ClInclude>
     <ClInclude Include="timer-wrap.h">
       <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="write-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="shutdown-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-resource.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="nodecpp-internals.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
