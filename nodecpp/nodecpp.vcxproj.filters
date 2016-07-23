@@ -195,6 +195,9 @@
     <ClCompile Include="stream-base.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="timer-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -369,6 +372,9 @@
       <Filter>core\inner</Filter>
     </ClInclude>
     <ClInclude Include="req-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="timer-wrap.h">
       <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>

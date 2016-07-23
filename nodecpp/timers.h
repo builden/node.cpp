@@ -5,10 +5,10 @@
 namespace nodecpp {
   using TimerCb_t = function<void()>;
 
-  int setTimeout(const TimerCb_t& cb, int after);
+  int setTimeout(TimerCb_t cb, int after);
   void clearTimeout(int timer);
 
-  int setInterval(const TimerCb_t& cb, int repeat);
+  int setInterval(TimerCb_t cb, int repeat);
   void clearInterval(int timer);
 }
 

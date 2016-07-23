@@ -8,7 +8,7 @@ namespace nodecpp {
   class Callback {
   public:
     Callback(callback_t cb, void *data = nullptr) : cb_(cb), data_(data) {}
-    
+
     template<typename ... Args>
     void invoke(Args& ... args) {
       cb_(std::forward<Args>(args)...);

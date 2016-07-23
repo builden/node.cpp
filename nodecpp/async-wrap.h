@@ -47,7 +47,7 @@ namespace nodecpp {
     inline ProviderType provider_type() const {
       return static_cast<ProviderType>(bits_ >> 1);
     }
-    virtual size_t self_size() const = 0;
+
   private:
     uint32_t bits_;
     AsyncWrap* parent_;

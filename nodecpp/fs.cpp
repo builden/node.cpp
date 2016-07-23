@@ -7,14 +7,14 @@
 #include <fcntl.h>
 
 namespace nodecpp {
-  using OpenCb = Callback<OpenCb_t>;
+  using OpenCbWrap = CallbackWrap<OpenCb_t>;
 
   void Fs::open(const string& path, const string& flags, OpenCb_t cb) {
     auto openReq = new uv_fs_t;
-    openReq->data = new OpenCb(cb);
+    openReq->data = new OpenCbWrap(cb);
 
     uv_fs_open(uv_default_loop(), openReq, iconv.strToUtf8(path).c_str(), stringToFlags(flags), 0, [](uv_fs_t* req) {
-      auto cb = (OpenCb *)req->data;
+      auto cb = (OpenCbWrap *)req->data;
       cb->invoke(Error(req->result), req->result);
 
       uv_fs_req_cleanup(req);

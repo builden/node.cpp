@@ -53,6 +53,7 @@
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="stream-base.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
+    <ClCompile Include="timer-wrap.cpp" />
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
     <ClCompile Include="url.cpp" />
@@ -82,6 +83,7 @@
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="handle-wrap.h" />
+    <ClInclude Include="timer-wrap.h" />
     <ClInclude Include="hooker.h" />
     <ClInclude Include="http-common.h" />
     <ClInclude Include="http-server.h" />

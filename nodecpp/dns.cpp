@@ -6,12 +6,11 @@
 namespace nodecpp {
   class GetAddrInfoReqWrap : public ReqWrap<uv_getaddrinfo_t> {
   public:
-    GetAddrInfoReqWrap(CallbackBase* cbWrap) : ReqWrap(cbWrap, AsyncWrap::PROVIDER_GETADDRINFOREQWRAP) {};
+    GetAddrInfoReqWrap(ResolveCb_t cb) : cb_(cb), ReqWrap(AsyncWrap::PROVIDER_GETADDRINFOREQWRAP) {};
 
-    size_t self_size() const override { return sizeof(*this); }
+    ResolveCb_t cb_ = nullptr;
   };
 
-  using ResolveCbWrap = CallbackWrap<ResolveCb_t>;
   class Dns::impl {
   public:
     void lookup(const string& hostname, LookupCb_t cb) {
@@ -24,7 +23,7 @@ namespace nodecpp {
 
     void resolve(const string& hostname, ResolveCb_t cb) {
       int family = PF_INET;
-      GetAddrInfoReqWrap* reqWrap = new GetAddrInfoReqWrap(new ResolveCbWrap(cb));
+      GetAddrInfoReqWrap* reqWrap = new GetAddrInfoReqWrap(cb);
 
       struct addrinfo hints;
       memset(&hints, 0, sizeof(struct addrinfo));
@@ -50,7 +49,7 @@ namespace nodecpp {
 
   private:
     static void onGetAddrInfo(uv_getaddrinfo_t* req, int status, struct addrinfo *res) {
-      GetAddrInfoReqWrap* req_wrap = static_cast<GetAddrInfoReqWrap*>(req->data);
+      GetAddrInfoReqWrap* reqWrap = static_cast<GetAddrInfoReqWrap*>(req->data);
       svec_t argv;
 
       if (status == 0) {
@@ -112,9 +111,8 @@ namespace nodecpp {
       }
 
       uv_freeaddrinfo(res);
-      auto cbWrap = (ResolveCbWrap *)(req_wrap->cbWrap_);
-      if (cbWrap) cbWrap->invoke(Error(status), argv);
-      delete req_wrap;
+      if (reqWrap->cb_) reqWrap->cb_(Error(status), argv);
+      delete reqWrap;
     }
   };
 

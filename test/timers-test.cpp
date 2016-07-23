@@ -4,7 +4,7 @@
 
 TEST_F(TimersTest, setTimeout) {
   int a = 10;
-  setTimeout([&] {
+  setTimeout([=] {
     std::cout << "on setTimeout callback" << std::endl;
     EXPECT_EQ(a, 10);
   }, 10);

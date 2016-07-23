@@ -1,11 +1,8 @@
 #include "net.h"
 #include "error.h"
-#include "callback.h"
 #include "process.h"
 
 namespace nodecpp {
-  using ConnectionCb = Callback<ConnectionCb_t>;
-
   ServerPtr_t Net::createServer(ConnectionCb_t cb) {
     return shared_ptr<Server>(new Server(cb));
   }
