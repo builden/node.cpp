@@ -47,6 +47,7 @@
     <ClCompile Include="os.cpp" />
     <ClCompile Include="path.cpp" />
     <ClCompile Include="pe-cert.cpp" />
+    <ClCompile Include="pipe-wrap.cpp" />
     <ClCompile Include="process-wrap.cpp" />
     <ClCompile Include="process.cpp" />
     <ClCompile Include="querystring.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="stream-base.cpp" />
     <ClCompile Include="stream-resource.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
+    <ClCompile Include="tcp-wrap.cpp" />
     <ClCompile Include="timer-wrap.cpp" />
     <ClCompile Include="timers.cpp" />
     <ClCompile Include="underscore.string.cpp" />
@@ -87,8 +89,10 @@
     <ClInclude Include="fs.h" />
     <ClInclude Include="handle-wrap.h" />
     <ClInclude Include="nodecpp-internals.h" />
+    <ClInclude Include="pipe-wrap.h" />
     <ClInclude Include="shutdown-wrap.h" />
     <ClInclude Include="stream-resource.h" />
+    <ClInclude Include="tcp-wrap.h" />
     <ClInclude Include="timer-wrap.h" />
     <ClInclude Include="hooker.h" />
     <ClInclude Include="http-common.h" />

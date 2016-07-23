@@ -207,6 +207,12 @@
     <ClCompile Include="nodecpp-internals.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="pipe-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="tcp-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -397,6 +403,12 @@
     </ClInclude>
     <ClInclude Include="nodecpp-internals.h">
       <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="pipe-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp-wrap.h">
+      <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
