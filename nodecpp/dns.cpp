@@ -1,20 +1,17 @@
 #include "dns.h"
 #include <uv.h>
-#include "callback.h"
 #include "process.h"
 #include "req-wrap.h"
-#include "req-wrap-inl.h"
 
 namespace nodecpp {
   class GetAddrInfoReqWrap : public ReqWrap<uv_getaddrinfo_t> {
   public:
-    GetAddrInfoReqWrap(CallbackBase* cb) : ReqWrap(cb, AsyncWrap::PROVIDER_GETADDRINFOREQWRAP) {};
+    GetAddrInfoReqWrap(CallbackBase* cbWrap) : ReqWrap(cbWrap, AsyncWrap::PROVIDER_GETADDRINFOREQWRAP) {};
 
     size_t self_size() const override { return sizeof(*this); }
   };
 
-  using ResolveCb = Callback<ResolveCb_t>;
-  using LookupCb = Callback<LookupCb_t>;
+  using ResolveCbWrap = CallbackWrap<ResolveCb_t>;
   class Dns::impl {
   public:
     void lookup(const string& hostname, LookupCb_t cb) {
@@ -27,7 +24,7 @@ namespace nodecpp {
 
     void resolve(const string& hostname, ResolveCb_t cb) {
       int family = PF_INET;
-      GetAddrInfoReqWrap* req_wrap = new GetAddrInfoReqWrap(new CallbackWrap<ResolveCb_t>(cb));
+      GetAddrInfoReqWrap* reqWrap = new GetAddrInfoReqWrap(new ResolveCbWrap(cb));
 
       struct addrinfo hints;
       memset(&hints, 0, sizeof(struct addrinfo));
@@ -36,41 +33,23 @@ namespace nodecpp {
       hints.ai_flags = 0;
 
       int err = uv_getaddrinfo(uv_default_loop(),
-        &req_wrap->req_,
-        AfterGetAddrInfo,
+        &reqWrap->req_,
+        onGetAddrInfo,
         hostname.c_str(),
         nullptr,
         &hints);
-      req_wrap->Dispatched();
+      reqWrap->Dispatched();
 
       if (err) {
-        delete req_wrap;
+        delete reqWrap;
         process.nextTick([err, cb]() {
           cb(Error(err), svec_t{});
         });
       }
-
-      /*
-      struct addrinfo hints;
-      hints.ai_family = PF_INET;
-      hints.ai_socktype = SOCK_STREAM;
-      hints.ai_protocol = IPPROTO_TCP;
-      hints.ai_flags = 0;
-
-      uv_getaddrinfo_t* resolver = new uv_getaddrinfo_t;
-      resolver->data = new ResolveCb(cb);
-      int r = uv_getaddrinfo(uv_default_loop(), resolver, AfterGetAddrInfo, hostname.c_str(), "6667", &hints);
-
-      if (r) {
-        process.nextTick([r, cb]() {
-          cb(Error(r), svec_t{});
-        });
-        delete resolver;
-      }*/
     }
 
   private:
-    static void AfterGetAddrInfo(uv_getaddrinfo_t* req, int status, struct addrinfo *res) {
+    static void onGetAddrInfo(uv_getaddrinfo_t* req, int status, struct addrinfo *res) {
       GetAddrInfoReqWrap* req_wrap = static_cast<GetAddrInfoReqWrap*>(req->data);
       svec_t argv;
 
@@ -133,25 +112,9 @@ namespace nodecpp {
       }
 
       uv_freeaddrinfo(res);
-      req_wrap->invoke(Error(status), argv);
+      auto cbWrap = (ResolveCbWrap *)(req_wrap->cbWrap_);
+      if (cbWrap) cbWrap->invoke(Error(status), argv);
       delete req_wrap;
-/*
-      auto cb = (ResolveCb *)resolver->data;
-      delete resolver;
-      if (status < 0) {
-        cb->invoke(Error(status), svec_t{});
-        return;
-      }
-
-      svec_t rst;
-      char addr[17] = { '\0' };
-      auto next = res;
-      do {
-        uv_ip4_name((struct sockaddr_in*) next->ai_addr, addr, 16);
-        rst.emplace_back(addr);
-        next = next->ai_next;
-      } while (next != nullptr);
-      cb->invoke(Error(status), rst);*/
     }
   };
 

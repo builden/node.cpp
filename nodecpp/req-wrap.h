@@ -1,38 +1,22 @@
 #pragma once
+#include "util.h"
+#include "callback.h"
 #include "async-wrap.h"
 
 namespace nodecpp {
-  class CallbackBase {
-  public:
-  };
-
-  template <typename callback_t>
-  class CallbackWrap: public CallbackBase {
-  public:
-    CallbackWrap(const callback_t& cb) : cb_(cb) {}
-    virtual ~CallbackWrap() {}
-  private:
-    callback_t cb_;
-  };
-
   template <typename T>
   class ReqWrap : public AsyncWrap {
   public:
-    inline ReqWrap(CallbackBase* cb, AsyncWrap::ProviderType provider);
-    inline ~ReqWrap() override;
-    inline void Dispatched();  // Call this after the req has been dispatched.
-
-    template<typename ... Args>
-      void invoke(Args& ... args) {
-      cb_(std::forward<Args>(args)...);
-      delete cb_;
+    inline ReqWrap(CallbackBase* cbWrap, AsyncWrap::ProviderType provider)
+      : cbWrap_(cbWrap), AsyncWrap(provider) {}
+    inline ~ReqWrap() override { 
+      CHECK_EQ(req_.data, this);
+      if (cbWrap_) delete cbWrap_;
     }
-
-  private:
-    // ListNode<ReqWrap> req_wrap_queue_;
+    inline void Dispatched() { req_.data = this; } // Call this after the req has been dispatched.
 
   public:
     T req_;  // Must be last.  TODO(bnoordhuis) Make private.
-    CallbackBase* cb_;
+    CallbackBase* cbWrap_;
   };
 }

@@ -11,8 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="async-wrap.cpp" />
-    <ClCompile Include="base-object.cpp" />
     <ClCompile Include="base64\base64.cpp" />
     <ClCompile Include="base64\modp_b64.cc" />
     <ClCompile Include="buffer.cpp" />
@@ -107,7 +105,6 @@
     <ClInclude Include="process-wrap.h" />
     <ClInclude Include="process.h" />
     <ClInclude Include="querystring.h" />
-    <ClInclude Include="req-wrap-inl.h" />
     <ClInclude Include="req-wrap.h" />
     <ClInclude Include="server-response.h" />
     <ClInclude Include="shm.h" />

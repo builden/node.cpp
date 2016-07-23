@@ -37,15 +37,19 @@ namespace nodecpp {
 #undef V
     };
 
-    inline AsyncWrap(
-      ProviderType provider,
-      AsyncWrap* parent = nullptr);
+    inline AsyncWrap(ProviderType provider, AsyncWrap* parent = nullptr)
+      : BaseObject(), bits_(static_cast<uint32_t>(provider) << 1), parent_(parent){
+      bits_ |= 1;
+    }
 
-    inline virtual ~AsyncWrap();
+    inline virtual ~AsyncWrap() {}
 
-    inline ProviderType provider_type() const;
+    inline ProviderType provider_type() const {
+      return static_cast<ProviderType>(bits_ >> 1);
+    }
     virtual size_t self_size() const = 0;
   private:
     uint32_t bits_;
+    AsyncWrap* parent_;
   };
 }
