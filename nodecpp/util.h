@@ -5,6 +5,8 @@
 // #include <stdlib.h>
 
 namespace nodecpp {
+  // BINARY is a deprecated alias of LATIN1.
+  enum encoding { ASCII, UTF8, BASE64, UCS2, BINARY, HEX, BUFFER, LATIN1 = BINARY };
 
   void Abort();
   void Assert(const char* const (*args)[4]);

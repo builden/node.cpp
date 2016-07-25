@@ -213,6 +213,9 @@
     <ClCompile Include="tcp-wrap.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="fs-req-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -408,6 +411,9 @@
       <Filter>core\inner</Filter>
     </ClInclude>
     <ClInclude Include="tcp-wrap.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="fs-req-wrap.h">
       <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>

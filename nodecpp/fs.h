@@ -58,6 +58,7 @@ namespace nodecpp {
     };
     using StatCb_t = function<void(const Error&, const Stats&)>;
     using ExistsCb_t = function<void(bool)>;
+    using AccessCb_t = function<void(const Error&)>;
     using RmdirCb_t = function<void(const Error&)>;
     using UnlinkCb_t = function<void(const Error&)>;
     using MkdirCb_t = function<void(const Error&)>;
@@ -95,6 +96,10 @@ namespace nodecpp {
     // ÖØÃüÃû
     void rename(const string& oldPath, const string& newPath, RenameCb_t cb);
     void renameSync(const string& oldPath, const string& newPath);
+
+    void access(const string& path, int mode, AccessCb_t cb);
+    void access(const string& path, AccessCb_t cb);
+    void accessSync(const string& path, int mode = 0);
 
   private:
     int stringToFlags(const string& path);

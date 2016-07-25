@@ -5,6 +5,7 @@
 
 #include <uv.h>
 #include <fcntl.h>
+#include "fs-req-wrap.h"
 
 namespace nodecpp {
   using OpenCbWrap = CallbackWrap<OpenCb_t>;
@@ -233,6 +234,20 @@ namespace nodecpp {
   }
 
   Fs &fs = Fs::instance();
+
+  void Fs::access(const string& path, AccessCb_t cb) {
+    access(path, F_OK, cb);
+  }
+
+  void Fs::access(const string& path, int mode, AccessCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete1 = cb;
+    Access(path, mode, reqWrap);
+  }
+
+  void Fs::accessSync(const string& path, int mode /*= 0*/) {
+    Access(path, mode);
+  }
 
   bool Fs::Stats::isFile() {
     return ((mode & S_IFMT) == S_IFREG);

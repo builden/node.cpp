@@ -26,6 +26,7 @@
     <ClCompile Include="events.cpp" />
     <ClCompile Include="file-url.cpp" />
     <ClCompile Include="fmt\format.cc" />
+    <ClCompile Include="fs-req-wrap.cpp" />
     <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="handle-wrap.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="events.h" />
     <ClInclude Include="file-url.h" />
     <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="fs-req-wrap.h" />
     <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="handle-wrap.h" />
@@ -174,7 +176,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4239</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4239;4291</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

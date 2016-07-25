@@ -149,3 +149,25 @@ TEST_F(FsTest, rename) {
   // resource busy or locked
   // fs.renameSync("D:/1", "D:/2");
 }
+
+TEST_F(FsTest, access) {
+  try {
+    fs.accessSync("D:/notexist.txt");
+    // will not execute at here
+    EXPECT_FALSE(true);
+  }
+  catch (const Error& err) {
+    EXPECT_TRUE(err);
+    EXPECT_EQ(err.str(), "no such file or directory");
+  }
+
+  fs.access("D:/notexits.txt", [](const Error& err) {
+    EXPECT_TRUE(err);
+  });
+
+  fs.access("C:\\windows\\notepad.exe", [](const Error& err) {
+    EXPECT_FALSE(err);
+  });
+
+  run();
+}
