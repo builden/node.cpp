@@ -21,8 +21,7 @@ Note that this doesn't turn fs.open() into a synchronous blocking call. If that'
 #include "singleton.h"
 #include "moment.h"
 #include "stats-def.h"
-
-#include <iostream>
+#include "read-file-context.h"
 
 namespace nodecpp {
   using OpenCb_t = function<void(const Error&, int)>;
@@ -61,7 +60,7 @@ namespace nodecpp {
     void lstat(const string& path, StatCb_t cb);
     Stats lstatSync(const string& path);
     void fstat(int fd, StatCb_t cb);
-    Stats fstat(int fd);
+    Stats fstatSync(int fd);
 
     void exists(const string& path, ExistsCb_t cb);
     bool existsSync(const string& path);
@@ -87,8 +86,10 @@ namespace nodecpp {
     void access(const string& path, AccessCb_t cb);
     void accessSync(const string& path, int mode = 0);
 
+    uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, uint64_t position = 0);
   private:
     int stringToFlags(const string& path);
+    uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);
   };
 
   extern Fs &fs;

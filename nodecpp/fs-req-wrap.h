@@ -149,6 +149,9 @@ namespace nodecpp {
   void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap);
   int Open(const string& path, int flags, int mode);
 
+  void Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos, FSReqWrap* reqWrap);
+  uint32_t Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos);
+
   /*
   void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
   void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, FSReqWrap* reqWrap);

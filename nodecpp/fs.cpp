@@ -1,6 +1,5 @@
 #include "fs.h"
 #include "iconv.h"
-#include "callback.h"
 #include "fmt/format.h"
 
 #include <uv.h>
@@ -8,8 +7,6 @@
 #include "fs-req-wrap.h"
 
 namespace nodecpp {
-  using OpenCbWrap = CallbackWrap<OpenCb_t>;
-
   void Fs::open(const string& path, const string& flags, OpenCb_t cb) {
     open(path, flags, 0, cb);
   }
@@ -51,7 +48,7 @@ namespace nodecpp {
       cb(err, buf.toString(encoding));
     });
   }
-  
+
   int Fs::stringToFlags(const string& flag) {
     if (flag == "r") return O_RDONLY;
     if (flag == "rs" || flag == "sr") return O_RDONLY; // | O_SYNC;
@@ -73,35 +70,56 @@ namespace nodecpp {
     return O_RDONLY;
   }
 
+
+  uint32_t Fs::tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len) {
+    uint32_t bytesRead = 0;
+    __try {
+      bytesRead = readSync(fd, buffer, pos, len);
+    }
+    __finally {
+
+    }
+    return bytesRead;
+  }
+
   Buffer Fs::readFileSync(const string& path) {
-    Buffer buf;
-    uv_fs_t openReq;
-    uv_loop_t *loop = uv_default_loop();
-    int fd = uv_fs_open(loop, &openReq, iconv.strToUtf8(path).c_str(), stringToFlags("r"), 0666, nullptr);
-    if (fd < 0) {
-      uv_fs_req_cleanup(&openReq);
-      throw Error(fd);
+    int fd = openSync(path, "r", 0666);
+    Stats st = fstatSync(fd);
+    uint32_t size = st.isFile() ? static_cast<uint32_t>(st.size) : 0;
+    Buffer buffer;
+    vector<Buffer> buffers;
+    uint32_t pos = 0;
+    if (size != 0) {
+      buffer = Buffer(size);
     }
-
-    uv_fs_t stateReq;
-    uv_fs_fstat(loop, &stateReq, fd, nullptr);
-    uv_stat_t& statbuf = stateReq.statbuf;
-    if (statbuf.st_size > 0) {
-      uint32_t size = static_cast<uint32_t>(statbuf.st_size);
-      uv_buf_t iov = uv_buf_init(new char[size], size);
-      
-      uv_fs_t readReq;
-      uv_fs_read(loop, &readReq, fd, &iov, 1, 0, nullptr);
-      buf.append(iov.base, iov.len);
-      uv_fs_req_cleanup(&readReq);
+    uint32_t bytesRead = 0;
+    if (size != 0) {
+      do {
+        bytesRead = tryReadSync(fd, buffer, pos, size - pos);
+        pos += bytesRead;
+      } while (bytesRead != 0 && pos < size);
     }
+    else {
+      do {
+        // the kernel lies about many files.
+        // Go ahead and try to read some bytes.
+        buffer = Buffer(8192);
+        bytesRead = tryReadSync(fd, buffer, 0, 8192);
+        if (bytesRead != 0) {
+          buffers.emplace_back(buffer.slice(0, bytesRead));
+        }
+        pos += bytesRead;
+      } while (bytesRead != 0);
+    }
+    closeSync(fd);
 
-    uv_fs_req_cleanup(&stateReq);
-    uv_fs_t closeReq;
-    uv_fs_close(loop, &closeReq, fd, nullptr);
-    uv_fs_req_cleanup(&closeReq);
-    uv_fs_req_cleanup(&openReq);
-    return buf;
+    if (size == 0) {
+      buffer = Buffer::concat(buffers, pos);
+    }
+    else if (pos < size) {
+      buffer = buffer.slice(0, pos);
+    }
+    return buffer;
   }
 
   string Fs::readFileSync(const string& path, const string& encoding) {
@@ -167,12 +185,14 @@ namespace nodecpp {
     FStat(fd);
   }
 
-  Stats Fs::fstat(int fd) {
+  Stats Fs::fstatSync(int fd) {
     return FStat(fd);
   }
 
-  void Fs::exists(const string& /*path*/, ExistsCb_t /*cb*/) {
-
+  void Fs::exists(const string& path, ExistsCb_t cb) {
+    stat(path, [cb](const Error& err, const Stats&) {
+      cb(!err);
+    });
   }
 
   bool Fs::existsSync(const string& path) {
@@ -241,6 +261,11 @@ namespace nodecpp {
 
   void Fs::accessSync(const string& path, int mode /*= 0*/) {
     Access(path, mode);
+  }
+
+
+  uint32_t Fs::readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, uint64_t position) {
+    return Read(fd, buffer, offset, length, position);
   }
 
   Fs &fs = Fs::instance();

@@ -27,6 +27,7 @@ namespace nodecpp {
 
     // length < 0, length <Number> Default: buf.length - byteOffset
     static Buffer from(const char* buf, uint32_t size, uint32_t byteOffset = 0);
+    static Buffer concat(vector<Buffer>& bufs, uint32_t len);
 
     bool equals(const Buffer& buffer);
 
@@ -75,6 +76,7 @@ namespace nodecpp {
     uint32_t writeUInt16LE(uint16_t value, uint32_t offset = 0);
     uint32_t writeUInt32BE(uint32_t value, uint32_t offset = 0);
     uint32_t writeUInt32LE(uint32_t value, uint32_t offset = 0);
+    uint32_t write(const Buffer& buf, uint32_t offset = 0);
 
     Buffer slice(int start = 0);
     Buffer slice(int start, int end);

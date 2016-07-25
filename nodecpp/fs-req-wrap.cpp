@@ -342,6 +342,21 @@ namespace nodecpp {
     return SYNC_RESULT;
   }
 
+  void Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos, FSReqWrap* reqWrap) {
+    if (off >= buffer.length()) throw Error("Offset is out of bounds");
+    const char* buf = buffer.data() + off;
+    uv_buf_t uvbuf = uv_buf_init(const_cast<char*>(buf), len);
+    ASYNC_CALL(read, reqWrap, UTF8, fd, &uvbuf, 1, pos);
+  }
+
+  uint32_t Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos) {
+    if (off >= buffer.length()) throw Error("Offset is out of bounds");
+    const char* buf = buffer.data() + off;
+    uv_buf_t uvbuf = uv_buf_init(const_cast<char*>(buf), len);
+    SYNC_CALL(read, 0, fd, &uvbuf, 1, pos);
+    return SYNC_RESULT;
+  }
+
   Stats BuildStatsObject(const uv_stat_t* s) {
     Stats stats;
     stats.dev = s->st_mode;

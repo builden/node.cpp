@@ -72,6 +72,18 @@ namespace nodecpp {
     return Buffer(buf, size, byteOffset);
   }
 
+
+  Buffer Buffer::concat(vector<Buffer>& bufs, uint32_t len) {
+    Buffer buffer(len);
+    uint32_t pos = 0;
+    for (size_t i = 0; i < bufs.size(); ++i) {
+      Buffer& buf = bufs[i];
+      buffer.write(buf, pos);
+      pos += buf.size();
+    }
+    return buffer;
+  }
+
   bool Buffer::equals(const Buffer& buffer) {
     return buf_ == buffer.buf_;
   }
@@ -332,6 +344,16 @@ namespace nodecpp {
     buf_[offset + 1] = char(value >> 8);
     buf_[offset] = char(value);
     return offset + 4;
+  }
+
+  uint32_t Buffer::write(const Buffer& buf, uint32_t offset /*= 0*/) {
+    uint32_t remaining = buf_.size() - offset;
+    uint32_t length = buf.length();
+    if (length > remaining) length = remaining;
+    for (uint32_t i = 0; i < remaining; ++i) {
+      buf_[offset + i] = buf[i];
+    }
+    return remaining;
   }
 
   nodecpp::Buffer Buffer::slice(int start /*= 0*/) {

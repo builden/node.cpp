@@ -219,6 +219,9 @@
     <ClCompile Include="stats-def.cpp">
       <Filter>core</Filter>
     </ClCompile>
+    <ClCompile Include="read-file-context.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="stats-def.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="read-file-context.h">
+      <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

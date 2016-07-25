@@ -52,6 +52,7 @@
     <ClCompile Include="process-wrap.cpp" />
     <ClCompile Include="process.cpp" />
     <ClCompile Include="querystring.cpp" />
+    <ClCompile Include="read-file-context.cpp" />
     <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="stats-def.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="handle-wrap.h" />
     <ClInclude Include="nodecpp-internals.h" />
     <ClInclude Include="pipe-wrap.h" />
+    <ClInclude Include="read-file-context.h" />
     <ClInclude Include="shutdown-wrap.h" />
     <ClInclude Include="stats-def.h" />
     <ClInclude Include="stream-resource.h" />
