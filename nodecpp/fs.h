@@ -20,52 +20,33 @@ Note that this doesn't turn fs.open() into a synchronous blocking call. If that'
 #include "fs-wrap.h"
 #include "singleton.h"
 #include "moment.h"
+#include "stats-def.h"
 
 #include <iostream>
 
 namespace nodecpp {
   using OpenCb_t = function<void(const Error&, int)>;
+  using CloseCb_t = function<void(const Error&)>;
   using ReadStrCb_t = function<void(const Error&, const string&)>;
+  using StatCb_t = function<void(const Error&, const Stats&)>;
+  using ExistsCb_t = function<void(bool)>;
+  using AccessCb_t = function<void(const Error&)>;
+  using RmdirCb_t = function<void(const Error&)>;
+  using UnlinkCb_t = function<void(const Error&)>;
+  using MkdirCb_t = function<void(const Error&)>;
+  using RenameCb_t = function<void(const Error&)>;
 
   class Fs : public Singleton<Fs> {
   public:
-    class Stats {
-    public:
-      uint64_t dev = 0;
-      uint64_t mode = 0;
-      uint64_t nlink = 0;
-      uint64_t uid = 0;
-      uint64_t gid = 0;
-      uint64_t rdev = 0;
-      uint64_t blksize = 0;
-      uint64_t ino = 0;
-      uint64_t size = 0;
-      uint64_t blocks = 0;
-
-      //  "Access Time" - Time when file data last accessed. Changed by the mknod(2), utimes(2), and read(2) system calls.
-      Moment atime;
-      // "Modified Time" - Time when file data last modified. Changed by the mknod(2), utimes(2), and write(2) system calls.
-      Moment mtime;
-      // "Change Time" - Time when file status was last changed (inode data modification). Changed by the chmod(2), chown(2), link(2), mknod(2), rename(2), unlink(2), utimes(2), read(2), and write(2) system calls.
-      Moment ctime;
-      // "Birth Time" - Time of file creation. Set once when the file is created. On filesystems where birthtime is not available, this field may instead hold either the ctime or 1970-01-01T00:00Z (ie, unix epoch timestamp 0). Note that this value may be greater than atime or mtime in this case. On Darwin and other FreeBSD variants, also set if the atime is explicitly set to an earlier value than the current birthtime using the utimes(2) system call.
-      Moment birthtime;
-
-      bool isFile();
-      bool isDirectory();
-      bool isCharacterDevice();
-      bool isSymbolicLink();
-    };
-    using StatCb_t = function<void(const Error&, const Stats&)>;
-    using ExistsCb_t = function<void(bool)>;
-    using AccessCb_t = function<void(const Error&)>;
-    using RmdirCb_t = function<void(const Error&)>;
-    using UnlinkCb_t = function<void(const Error&)>;
-    using MkdirCb_t = function<void(const Error&)>;
-    using RenameCb_t = function<void(const Error&)>;
 
   public:
     void open(const string& path, const string& flags, OpenCb_t cb);
+    void open(const string& path, const string& flags, int mode, OpenCb_t cb);
+    int openSync(const string& path, const string& flags, int mode = 0);
+
+    void close(int fd, CloseCb_t cb);
+    void closeSync(int fd);
+
     void readFile(const string& path, ReadCb_t cb);
     void readFile(const string& path, const string& encoding, ReadStrCb_t cb);
 
@@ -77,13 +58,18 @@ namespace nodecpp {
 
     void stat(const string& path, StatCb_t cb);
     Stats statSync(const string& path);
+    void lstat(const string& path, StatCb_t cb);
+    Stats lstatSync(const string& path);
+    void fstat(int fd, StatCb_t cb);
+    Stats fstat(int fd);
 
     void exists(const string& path, ExistsCb_t cb);
     bool existsSync(const string& path);
 
     // 创建目录
+    void mkdir(const string& path, int mode, MkdirCb_t cb);
     void mkdir(const string& path, MkdirCb_t cb);
-    void mkdirSync(const string& path);
+    void mkdirSync(const string& path, int mode = 0777);
 
     // 删除目录，只能删除空文件夹
     void rmdir(const string& path, RmdirCb_t cb);

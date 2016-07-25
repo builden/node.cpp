@@ -20,6 +20,7 @@ namespace nodecpp {
     CHECK_EQ(&req_wrap->req_, req);
     req_wrap->ReleaseEarly();  // Free memory that's no longer used now.
 
+    Stats stats;
     // there is always at least one argument. "error"
     int argc = 1;
 
@@ -75,9 +76,7 @@ namespace nodecpp {
       case UV_FS_STAT:
       case UV_FS_LSTAT:
       case UV_FS_FSTAT:
-/*
-        argv[1] = BuildStatsObject(env,
-          static_cast<const uv_stat_t*>(req->ptr));*/
+        stats = BuildStatsObject(static_cast<const uv_stat_t*>(req->ptr));
         break;
 
       case UV_FS_MKDTEMP:
@@ -199,7 +198,9 @@ namespace nodecpp {
     }
 
     // req_wrap->MakeCallback(env->oncomplete_string(), argc, argv);
-    if (req_wrap->onComplete1) req_wrap->onComplete1(Error(req->result));
+    if (argc == 1 && req_wrap->onComplete) req_wrap->onComplete(Error(req->result));
+    else if (argc == 2 && req_wrap->onCompleteStats) req_wrap->onCompleteStats(Error(req->result), stats);
+    else if (argc == 2 && req_wrap->onCompleteResult) req_wrap->onCompleteResult(Error(req->result), req->result);
 
     uv_fs_req_cleanup(&req_wrap->req_);
     req_wrap->Dispose();
@@ -212,6 +213,151 @@ namespace nodecpp {
     else {
       SYNC_CALL(access, path.c_str(), path.c_str(), mode);
     }
+  }
+
+  void Close(int fd, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap != nullptr) {
+      ASYNC_CALL(close, reqWrap, UTF8, fd);
+    }
+    else {
+      SYNC_CALL(close, 0, fd);
+    }
+  }
+
+  void Stat(const string& path, FSReqWrap* reqWrap) {
+    ASYNC_CALL(stat, reqWrap, UTF8, path.c_str());
+  }
+
+  Stats Stat(const string& path) {
+    SYNC_CALL(stat, path.c_str(), path.c_str());
+    return BuildStatsObject(static_cast<const uv_stat_t*>(SYNC_REQ.ptr));
+  }
+
+  void LStat(const string& path, FSReqWrap* reqWrap) {
+    ASYNC_CALL(lstat, reqWrap, UTF8, path.c_str());
+  }
+
+  Stats LStat(const string& path) {
+    SYNC_CALL(lstat, path.c_str(), path.c_str());
+    return BuildStatsObject(static_cast<const uv_stat_t*>(SYNC_REQ.ptr));
+  }
+
+  void FStat(int fd, FSReqWrap* reqWrap) {
+    ASYNC_CALL(fstat, reqWrap, UTF8, fd);
+  }
+
+  Stats FStat(int fd) {
+    SYNC_CALL(fstat, 0, fd);
+    return BuildStatsObject(static_cast<const uv_stat_t*>(SYNC_REQ.ptr));
+  }
+
+  void Symlink(const string& target, const string& path, const string& type /*= "file"*/, FSReqWrap* reqWrap /*= nullptr*/) {
+    int flags = 0;
+    if (type == "dir") {
+      flags |= UV_FS_SYMLINK_DIR;
+    } 
+    else if (type == "junction") {
+      flags |= UV_FS_SYMLINK_JUNCTION;
+    }
+    if (reqWrap) {
+      ASYNC_DEST_CALL(symlink, reqWrap, path.c_str(), UTF8, target.c_str(), path.c_str(), flags);
+    }
+    else {
+      SYNC_DEST_CALL(symlink, target.c_str(), path.c_str(), target.c_str(), path.c_str(), flags);
+    }
+  }
+
+  void Symlink(const string& target, const string& path, FSReqWrap* reqWrap /*= "file"*/) {
+    Symlink(target, path, "file", reqWrap);
+  }
+
+  void Link(const string& srcPath, const string& destPath, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap) {
+      ASYNC_DEST_CALL(link, reqWrap, destPath.c_str(), UTF8, srcPath.c_str(), destPath.c_str());
+    }
+    else {
+      SYNC_DEST_CALL(link, srcPath.c_str(), destPath.c_str(), srcPath.c_str(), destPath.c_str());
+    }
+  }
+
+  void ReadLink(const string& path, FSReqWrap* reqWrap) {
+    ASYNC_CALL(readlink, reqWrap, UTF8, path.c_str());
+  }
+
+  string ReadLink(const string& path) {
+    SYNC_CALL(readlink, path.c_str(), path.c_str());
+    const char* link_path = static_cast<const char*>(SYNC_REQ.ptr);
+    if (link_path == nullptr) {
+      throw Error("readlink Invalid character encoding for link");
+    }
+    return link_path;
+  }
+
+  void Rename(const string& oldPath, const string& newPath, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap) {
+      ASYNC_DEST_CALL(rename, reqWrap, newPath.c_str(), UTF8, oldPath.c_str(), newPath.c_str());
+    }
+    else {
+      SYNC_DEST_CALL(rename, oldPath.c_str(), newPath.c_str(), oldPath.c_str(), newPath.c_str());
+    }
+  }
+
+  void Unlink(const string& path, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap) {
+      ASYNC_CALL(unlink, reqWrap, UTF8, path.c_str());
+    }
+    else {
+      SYNC_CALL(unlink, path.c_str(), path.c_str());
+    }
+  }
+
+  void RMDir(const string& path, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap) {
+      ASYNC_CALL(rmdir, reqWrap, UTF8, path.c_str());
+    }
+    else {
+      SYNC_CALL(rmdir, path.c_str(), path.c_str());
+    }
+  }
+
+  void MKDir(const string& path, FSReqWrap* reqWrap /*= nullptr*/) {
+    MKDir(path, 0777, reqWrap);
+  }
+
+  void MKDir(const string& path, int mode, FSReqWrap* reqWrap /*= nullptr*/) {
+    if (reqWrap) {
+      ASYNC_CALL(mkdir, reqWrap, UTF8, path.c_str(), mode);
+    }
+    else {
+      SYNC_CALL(mkdir, path.c_str(), path.c_str(), mode);
+    }
+  }
+
+  void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap) {
+    ASYNC_CALL(open, reqWrap, UTF8, path.c_str(), flags, mode);
+  }
+
+  int Open(const string& path, int flags, int mode) {
+    SYNC_CALL(open, path.c_str(), path.c_str(), flags, mode);
+    return SYNC_RESULT;
+  }
+
+  Stats BuildStatsObject(const uv_stat_t* s) {
+    Stats stats;
+    stats.dev = s->st_mode;
+    stats.mode = s->st_mode;
+    stats.nlink = s->st_nlink;
+    stats.uid = s->st_uid;
+    stats.gid = s->st_gid;
+    stats.rdev = s->st_rdev;
+    stats.blksize = s->st_blksize;
+    stats.ino = s->st_ino;
+    stats.size = s->st_size;
+    stats.atime = Moment(s->st_atim.tv_sec, s->st_atim.tv_nsec);
+    stats.mtime = Moment(s->st_mtim.tv_sec, s->st_mtim.tv_nsec);
+    stats.ctime = Moment(s->st_ctim.tv_sec, s->st_ctim.tv_nsec);
+    stats.birthtime = Moment(s->st_birthtim.tv_sec, s->st_birthtim.tv_nsec);
+    return stats;
   }
 
 }

@@ -11,17 +11,27 @@ namespace nodecpp {
   using OpenCbWrap = CallbackWrap<OpenCb_t>;
 
   void Fs::open(const string& path, const string& flags, OpenCb_t cb) {
-    auto openReq = new uv_fs_t;
-    openReq->data = new OpenCbWrap(cb);
+    open(path, flags, 0, cb);
+  }
 
-    uv_fs_open(uv_default_loop(), openReq, iconv.strToUtf8(path).c_str(), stringToFlags(flags), 0, [](uv_fs_t* req) {
-      auto cb = (OpenCbWrap *)req->data;
-      cb->invoke(Error(req->result), req->result);
+  void Fs::open(const string& path, const string& flags, int mode, OpenCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteResult = cb;
+    Open(path, stringToFlags(flags), mode, reqWrap);
+  }
 
-      uv_fs_req_cleanup(req);
-      delete cb;
-      delete req;
-    });
+  int Fs::openSync(const string& path, const string& flags, int mode /*= 0*/) {
+    return Open(path, stringToFlags(flags), mode);
+  }
+
+  void Fs::close(int fd, CloseCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete = cb;
+    Close(fd, reqWrap);
+  }
+
+  void Fs::closeSync(int fd) {
+    Close(fd);
   }
 
   void Fs::readFile(const string& path, ReadCb_t cb) {
@@ -131,40 +141,34 @@ namespace nodecpp {
     return;
   }
 
-  void Fs::stat(const string& /*file*/, StatCb_t /*cb*/) {
-
+  void Fs::stat(const string& path, StatCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteStats = cb;
+    Stat(path);
   }
 
-  Fs::Stats Fs::statSync(const string& path) {
-    string filePath = iconv.strToUtf8(path);
-    uv_fs_t req;
-    int rc = uv_fs_stat(uv_default_loop(), &req, filePath.c_str(), nullptr);
+  Stats Fs::statSync(const string& path) {
+    return Stat(path);
+  }
 
-    Stats stats;
-    if (rc == 0) {
-      uv_stat_t* const s = static_cast<uv_stat_t*>(req.ptr);
-      rc = !!(s->st_mode & S_IFDIR);
-      
-      stats.dev = s->st_mode;
-      stats.mode = s->st_mode;
-      stats.nlink = s->st_nlink;
-      stats.uid = s->st_uid;
-      stats.gid = s->st_gid;
-      stats.rdev = s->st_rdev;
-      stats.blksize = s->st_blksize;
-      stats.ino = s->st_ino;
-      stats.size = s->st_size;
-      stats.atime = Moment(s->st_atim.tv_sec, s->st_atim.tv_nsec);
-      stats.mtime = Moment(s->st_mtim.tv_sec, s->st_mtim.tv_nsec);
-      stats.ctime = Moment(s->st_ctim.tv_sec, s->st_ctim.tv_nsec);
-      stats.birthtime = Moment(s->st_birthtim.tv_sec, s->st_birthtim.tv_nsec);
-    }
-    else {
-      uv_fs_req_cleanup(&req);
-      throw Error(rc);
-    }
-    uv_fs_req_cleanup(&req);
-    return stats;
+  void Fs::lstat(const string& path, StatCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteStats = cb;
+    LStat(path);
+  }
+
+  Stats Fs::lstatSync(const string& path) {
+    return LStat(path);
+  }
+
+  void Fs::fstat(int fd, StatCb_t cb) {
+    FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteStats = cb;
+    FStat(fd);
+  }
+
+  Stats Fs::fstat(int fd) {
+    return FStat(fd);
   }
 
   void Fs::exists(const string& /*path*/, ExistsCb_t /*cb*/) {
@@ -181,59 +185,49 @@ namespace nodecpp {
     }
   }
 
-  void Fs::mkdir(const string& /*path*/, MkdirCb_t /*cb*/) {
-
+  void Fs::mkdir(const string& path, MkdirCb_t cb) {
+    mkdir(path, 0777, cb);
   }
 
-  void Fs::mkdirSync(const string& path) {
-    uv_fs_t req;
-    int rc = uv_fs_mkdir(uv_default_loop(), &req, iconv.strToUtf8(path).c_str(), 0777, nullptr);
-    uv_fs_req_cleanup(&req);
-
-    if (rc != 0) throw Error(rc);
+  void Fs::mkdir(const string& path, int mode, MkdirCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete = cb;
+    MKDir(path, mode, reqWrap);
   }
 
-  void Fs::rmdir(const string& /*path*/, RmdirCb_t /*cb*/) {
+  void Fs::mkdirSync(const string& path, int mode /*= 0777*/) {
+    MKDir(path, mode);
+  }
 
+  void Fs::rmdir(const string& path, RmdirCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete = cb;
+    RMDir(path, reqWrap);
   }
 
   void Fs::rmdirSync(const string& path) {
-    uv_fs_t req;
-    int rc = uv_fs_rmdir(uv_default_loop(), &req, iconv.strToUtf8(path).c_str(), nullptr);
-    uv_fs_req_cleanup(&req);
-
-    if (rc != 0) throw Error(rc);
+    RMDir(path);
   }
 
-  void Fs::unlink(const string& /*path*/, UnlinkCb_t /*cb*/) {
-
+  void Fs::unlink(const string& path, UnlinkCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete = cb;
+    Unlink(path, reqWrap);
   }
 
   void Fs::unlinkSync(const string& path) {
-    uv_fs_t req;
-    int rc = uv_fs_unlink(uv_default_loop(), &req, iconv.strToUtf8(path).c_str(), nullptr);
-    uv_fs_req_cleanup(&req);
-
-    if (rc != 0) throw Error(rc);
+    Unlink(path);
   }
 
-  void Fs::rename(const string& /*oldPath*/, const string& /*newPath*/, RenameCb_t /*cb*/) {
-
+  void Fs::rename(const string& oldPath, const string& newPath, RenameCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onComplete = cb;
+    Rename(oldPath, newPath, reqWrap);
   }
 
   void Fs::renameSync(const string& oldPath, const string& newPath) {
-    uv_fs_t req;
-    int rc = uv_fs_rename(uv_default_loop()
-      , &req
-      , iconv.strToUtf8(oldPath).c_str()
-      , iconv.strToUtf8(newPath).c_str()
-      , nullptr);
-    uv_fs_req_cleanup(&req);
-
-    if (rc != 0) throw Error(rc);
+    Rename(oldPath, newPath);
   }
-
-  Fs &fs = Fs::instance();
 
   void Fs::access(const string& path, AccessCb_t cb) {
     access(path, F_OK, cb);
@@ -241,7 +235,7 @@ namespace nodecpp {
 
   void Fs::access(const string& path, int mode, AccessCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
-    reqWrap->onComplete1 = cb;
+    reqWrap->onComplete = cb;
     Access(path, mode, reqWrap);
   }
 
@@ -249,20 +243,5 @@ namespace nodecpp {
     Access(path, mode);
   }
 
-  bool Fs::Stats::isFile() {
-    return ((mode & S_IFMT) == S_IFREG);
-  }
-
-  bool Fs::Stats::isDirectory() {
-    return ((mode & S_IFMT) == S_IFDIR);
-  }
-
-  bool Fs::Stats::isCharacterDevice() {
-    return ((mode & S_IFMT) == S_IFCHR);
-  }
-
-  bool Fs::Stats::isSymbolicLink() {
-    return ((mode & S_IFMT) == S_IFLNK);
-  }
-
+  Fs &fs = Fs::instance();
 }

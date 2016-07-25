@@ -1,8 +1,10 @@
 #pragma once
 #include "nodecpp-def.h"
+#include "stats-def.h"
 #include "req-wrap.h"
 #include "util.h"
 #include "error.h"
+#include "buffer.h"
 
 namespace nodecpp {
 #ifndef F_OK
@@ -54,7 +56,9 @@ namespace nodecpp {
     const char* data() const { return data_; }
     const enum encoding encoding_;
 
-    function<void(const Error&)> onComplete1 = nullptr;
+    function<void(const Error&)> onComplete = nullptr;
+    function<void(const Error&, const Stats&)> onCompleteStats = nullptr;
+    function<void(const Error&, int)> onCompleteResult = nullptr;
 
   private:
     void* operator new(size_t /*size*/) = delete;
@@ -117,4 +121,39 @@ namespace nodecpp {
 #define SYNC_RESULT err
 
   void Access(const string& path, int mode, FSReqWrap* reqWrap = nullptr);
+
+  void Close(int fd, FSReqWrap* reqWrap = nullptr);
+
+  void Stat(const string& path, FSReqWrap* reqWrap);
+  Stats Stat(const string& path);
+  void LStat(const string& path, FSReqWrap* reqWrap);
+  Stats LStat(const string& path);
+  void FStat(int fd, FSReqWrap* reqWrap);
+  Stats FStat(int fd);
+
+  // The type argument can be set to 'dir', 'file', or 'junction' 
+  void Symlink(const string& target, const string& path, const string& type = "file", FSReqWrap* reqWrap = nullptr);
+  void Symlink(const string& target, const string& path, FSReqWrap* reqWrap = nullptr);
+
+  void Link(const string& srcPath, const string& destPath, FSReqWrap* reqWrap = nullptr);
+  void ReadLink(const string& path, FSReqWrap* reqWrap);
+  string ReadLink(const string& path);
+
+  void Rename(const string& oldPath, const string& newPath, FSReqWrap* reqWrap = nullptr);
+
+  void Unlink(const string& path, FSReqWrap* reqWrap = nullptr);
+  void RMDir(const string& path, FSReqWrap* reqWrap = nullptr);
+  void MKDir(const string& path, int mode, FSReqWrap* reqWrap = nullptr);
+  void MKDir(const string& path, FSReqWrap* reqWrap = nullptr);
+
+  void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap);
+  int Open(const string& path, int flags, int mode);
+
+  /*
+  void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
+  void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, FSReqWrap* reqWrap);
+  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos);
+  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len);
+  */
+  Stats BuildStatsObject(const uv_stat_t* s);
 }

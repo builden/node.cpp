@@ -54,6 +54,7 @@
     <ClCompile Include="querystring.cpp" />
     <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
+    <ClCompile Include="stats-def.cpp" />
     <ClCompile Include="stream-base.cpp" />
     <ClCompile Include="stream-resource.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="nodecpp-internals.h" />
     <ClInclude Include="pipe-wrap.h" />
     <ClInclude Include="shutdown-wrap.h" />
+    <ClInclude Include="stats-def.h" />
     <ClInclude Include="stream-resource.h" />
     <ClInclude Include="tcp-wrap.h" />
     <ClInclude Include="timer-wrap.h" />

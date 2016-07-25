@@ -10,6 +10,7 @@ namespace nodecpp {
     Error() : Error(0) {}
     Error(int err) : err_(err) {}
     Error(int err, const string& msg);
+    Error(const string& msg);
     ~Error() = default;
 
   public:

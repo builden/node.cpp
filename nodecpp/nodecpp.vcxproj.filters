@@ -216,6 +216,9 @@
     <ClCompile Include="fs-req-wrap.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="stats-def.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -415,6 +418,9 @@
     </ClInclude>
     <ClInclude Include="fs-req-wrap.h">
       <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="stats-def.h">
+      <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

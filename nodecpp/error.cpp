@@ -19,4 +19,10 @@ namespace nodecpp {
     customMsg = msg;
   }
 
+  Error::Error(const string& msg) {
+    err_ = -1;
+    isCustom = true;
+    customMsg = msg;
+  }
+
 }
