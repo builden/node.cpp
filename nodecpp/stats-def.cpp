@@ -3,19 +3,19 @@
 
 namespace nodecpp {
 
-  bool Stats::isFile() {
+  bool Stats::isFile() const {
     return ((mode & S_IFMT) == S_IFREG);
   }
 
-  bool Stats::isDirectory() {
+  bool Stats::isDirectory() const {
     return ((mode & S_IFMT) == S_IFDIR);
   }
 
-  bool Stats::isCharacterDevice() {
+  bool Stats::isCharacterDevice() const {
     return ((mode & S_IFMT) == S_IFCHR);
   }
 
-  bool Stats::isSymbolicLink() {
+  bool Stats::isSymbolicLink() const {
     return ((mode & S_IFMT) == S_IFLNK);
   }
 

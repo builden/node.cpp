@@ -30,10 +30,16 @@ TEST_F(FsTest, readFile) {
   // libuv 路径需要采用utf8编码
   // string file = "F:\\中文 中文\\我是中国人.txt";
   fs.readFile(file, [&](const Error& err, const Buffer& buf) {
-    EXPECT_EQ(buf, fs.readFileSync(file));
-    fmt::print("read file succ: {}\n", file);
+    try {
+      EXPECT_EQ(buf, fs.readFileSync(file));
+      fmt::print("read file succ: {}\n", file);
+    }
+    catch (const Error& err) {
+      EXPECT_EQ(err.str(), "illegal operation on a directory");
+    }
   });
 
+/*
   fs.readFile("C:\\Windows\\not.exe", [](const Error& err, const Buffer&buf) {
     EXPECT_TRUE(err);
     EXPECT_EQ("no such file or directory", err.str());
@@ -45,7 +51,7 @@ TEST_F(FsTest, readFile) {
   catch (const Error& err) {
     EXPECT_TRUE(err);
     EXPECT_EQ("no such file or directory", err.str());
-  }
+  }*/
 
   run();
 }

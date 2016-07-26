@@ -86,7 +86,7 @@ namespace nodecpp {
     void access(const string& path, AccessCb_t cb);
     void accessSync(const string& path, int mode = 0);
 
-    uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, uint64_t position = 0);
+    uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = 0);
   private:
     int stringToFlags(const string& path);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);

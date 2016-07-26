@@ -33,14 +33,14 @@ namespace nodecpp {
 
   void Fs::readFile(const string& path, ReadCb_t cb) {
     // flags default 'r'
-    uv_fs_t openReq;
-    int fd = uv_fs_open(uv_default_loop(), &openReq, iconv.strToUtf8(path).c_str(), stringToFlags("r"), 0666, nullptr);
-    if (fd < 0) {
-      return cb(Error(fd), Buffer());
-    }
-
-    auto fsWrap = new FsWrap(fd);
-    fsWrap->readFile(cb);
+    auto context = new ReadFileContext(cb);
+    context->isUserFd_ = false;
+    auto req = FSReqWrap::New(nullptr);
+    req->context = context;
+    req->onCompleteResult = [context](const Error& err, int fd) {
+      context->readFileAfterOpen(err, fd);
+    };
+    Open(path, stringToFlags("r"), 0666, req);
   }
 
   void Fs::readFile(const string& path, const string& encoding, ReadStrCb_t cb) {
@@ -264,7 +264,7 @@ namespace nodecpp {
   }
 
 
-  uint32_t Fs::readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, uint64_t position) {
+  uint32_t Fs::readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position) {
     return Read(fd, buffer, offset, length, position);
   }
 

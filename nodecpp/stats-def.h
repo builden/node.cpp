@@ -24,9 +24,9 @@ namespace nodecpp {
     // "Birth Time" - Time of file creation. Set once when the file is created. On filesystems where birthtime is not available, this field may instead hold either the ctime or 1970-01-01T00:00Z (ie, unix epoch timestamp 0). Note that this value may be greater than atime or mtime in this case. On Darwin and other FreeBSD variants, also set if the atime is explicitly set to an earlier value than the current birthtime using the utimes(2) system call.
     Moment birthtime;
 
-    bool isFile();
-    bool isDirectory();
-    bool isCharacterDevice();
-    bool isSymbolicLink();
+    bool isFile() const;
+    bool isDirectory() const;
+    bool isCharacterDevice() const;
+    bool isSymbolicLink() const;
   };
 }

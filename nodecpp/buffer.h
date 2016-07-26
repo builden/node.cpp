@@ -84,6 +84,8 @@ namespace nodecpp {
     Buffer swap16();
     Buffer swap32();
 
+    static const unsigned int kMaxLength =
+      sizeof(int32_t) == sizeof(intptr_t) ? 0x3fffffff : 0x7fffffff;
   private:
     cvec_t buf_;
   };

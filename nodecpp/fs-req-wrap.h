@@ -5,6 +5,7 @@
 #include "util.h"
 #include "error.h"
 #include "buffer.h"
+#include "read-file-context.h"
 
 namespace nodecpp {
 #ifndef F_OK
@@ -59,6 +60,7 @@ namespace nodecpp {
     function<void(const Error&)> onComplete = nullptr;
     function<void(const Error&, const Stats&)> onCompleteStats = nullptr;
     function<void(const Error&, int)> onCompleteResult = nullptr;
+    ReadFileContext* context = nullptr;
 
   private:
     void* operator new(size_t /*size*/) = delete;
@@ -149,8 +151,8 @@ namespace nodecpp {
   void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap);
   int Open(const string& path, int flags, int mode);
 
-  void Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos, FSReqWrap* reqWrap);
-  uint32_t Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, uint64_t pos);
+  void Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
+  uint32_t Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, int64_t pos);
 
   /*
   void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
