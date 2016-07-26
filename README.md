@@ -69,6 +69,12 @@ fs.readFile(filePath, [](const Buffer& buf) {
   * 扩展了std::regex_replace
   > 支持formart回调
 
+## 初始化编译
+1. 需提前编译Detours.lib放入
+  > nmake
+2. 需安装CMake，并为glog3生成工程
+  > cmake -G "Visual Studio 14"
+
 ## 依赖
 * [libuv](https://github.com/libuv/libuv)
 * [gtest](https://github.com/google/googletest)

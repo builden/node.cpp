@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\builden-proj\dx-cef-test\deps\node.cpp\deps\g3log\example\main_contract.cpp">
+    <ClCompile Include="Z:\Develop\builden-proj\dx-cef-test\deps\node.cpp\deps\g3log\example\main_contract.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\builden-proj\dx-cef-test\deps\node.cpp\deps\g3log\CMakeLists.txt" />
+    <CustomBuild Include="Z:\Develop\builden-proj\dx-cef-test\deps\node.cpp\deps\g3log\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{20736887-0312-3989-9F76-024F4A669EAC}</UniqueIdentifier>
+      <UniqueIdentifier>{6899D7A3-043D-3D06-AADB-9BA2EF91748E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

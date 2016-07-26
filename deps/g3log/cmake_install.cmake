@@ -1,4 +1,4 @@
-# Install script for directory: D:/builden-proj/dx-cef-test/deps/node.cpp/deps/g3log
+# Install script for directory: Z:/Develop/builden-proj/dx-cef-test/deps/node.cpp/deps/g3log
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/builden-proj/dx-cef-test/deps/node.cpp/deps/g3log/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "Z:/Develop/builden-proj/dx-cef-test/deps/node.cpp/deps/g3log/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

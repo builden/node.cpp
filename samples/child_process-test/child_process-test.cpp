@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <nodecpp/nodecpp.h>
 using namespace nodecpp;
+#pragma comment(lib, "legacy_stdio_definitions.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
