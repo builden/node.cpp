@@ -59,7 +59,7 @@ TEST_F(FsTest, readFile) {
 TEST_F(FsTest, writeFile) {
   string file = "D:/1.txt";
 
-  /*fs.writeFileSync(file, Buffer("ab"));*/
+  /*fs.writeFileSync(file, Buffer("ad"));*/
 
 /*
   fs.writeFile(file, Buffer("abcdÖÐÎÄa"), [](const Error& err) {

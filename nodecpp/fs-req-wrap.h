@@ -61,6 +61,7 @@ namespace nodecpp {
     function<void(const Error&, const Stats&)> onCompleteStats = nullptr;
     function<void(const Error&, int)> onCompleteResult = nullptr;
     ReadFileContext* context = nullptr;
+    Buffer writeBuffer;
 
   private:
     void* operator new(size_t /*size*/) = delete;
@@ -154,11 +155,8 @@ namespace nodecpp {
   void Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
   uint32_t Read(int fd, Buffer& buffer, uint32_t off, uint32_t len, int64_t pos);
 
-  /*
   void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap);
   void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, FSReqWrap* reqWrap);
-  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos);
-  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len);
-  */
+  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos = -1);
   Stats BuildStatsObject(const uv_stat_t* s);
 }

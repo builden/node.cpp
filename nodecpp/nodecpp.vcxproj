@@ -27,7 +27,6 @@
     <ClCompile Include="file-url.cpp" />
     <ClCompile Include="fmt\format.cc" />
     <ClCompile Include="fs-req-wrap.cpp" />
-    <ClCompile Include="fs-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="handle-wrap.cpp" />
     <ClCompile Include="hooker.cpp" />
@@ -75,7 +74,6 @@
     <ClInclude Include="base64\modp_b64.h" />
     <ClInclude Include="base64\modp_b64_data.h" />
     <ClInclude Include="buffer.h" />
-    <ClInclude Include="callback.h" />
     <ClInclude Include="child-process.h" />
     <ClInclude Include="child_process.h" />
     <ClInclude Include="client-request.h" />
@@ -89,7 +87,6 @@
     <ClInclude Include="file-url.h" />
     <ClInclude Include="fmt\format.h" />
     <ClInclude Include="fs-req-wrap.h" />
-    <ClInclude Include="fs-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="handle-wrap.h" />
     <ClInclude Include="nodecpp-internals.h" />

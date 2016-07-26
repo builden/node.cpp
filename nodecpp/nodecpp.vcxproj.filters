@@ -144,9 +144,6 @@
     <ClCompile Include="url.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="fs-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
     <ClCompile Include="net-server.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
@@ -311,9 +308,6 @@
     <ClInclude Include="lodash.h">
       <Filter>third</Filter>
     </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="dll-util.h">
       <Filter>self</Filter>
     </ClInclude>
@@ -334,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="underscore.string.h">
       <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="fs-wrap.h">
-      <Filter>core\inner</Filter>
     </ClInclude>
     <ClInclude Include="net-server.h">
       <Filter>core\inner</Filter>

@@ -344,6 +344,23 @@ namespace nodecpp {
     return SYNC_RESULT;
   }
 
+  int WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos /*= -1*/) {
+    const char* buf = buffer.data() + off;
+    uv_buf_t uvbuf = uv_buf_init(const_cast<char*>(buf), len);
+    SYNC_CALL(write, nullptr, fd, &uvbuf, 1, pos);
+    return SYNC_RESULT;
+  }
+
+  void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, int64_t pos, FSReqWrap* reqWrap) {
+    const char* buf = buffer.data() + off;
+    uv_buf_t uvbuf = uv_buf_init(const_cast<char*>(buf), len);
+    ASYNC_CALL(write, reqWrap, UTF8, fd, &uvbuf, 1, pos);
+  }
+
+  void WriteBuffer(int fd, const Buffer& buffer, uint32_t off, uint32_t len, FSReqWrap* reqWrap) {
+    WriteBuffer(fd, buffer, off, len, -1, reqWrap);
+  }
+
   Stats BuildStatsObject(const uv_stat_t* s) {
     Stats stats;
     stats.dev = s->st_mode;

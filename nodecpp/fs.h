@@ -17,7 +17,6 @@ Note that this doesn't turn fs.open() into a synchronous blocking call. If that'
 */
 #ifndef __FS_H__
 #define __FS_H__
-#include "fs-wrap.h"
 #include "singleton.h"
 #include "moment.h"
 #include "stats-def.h"
@@ -34,6 +33,9 @@ namespace nodecpp {
   using UnlinkCb_t = function<void(const Error&)>;
   using MkdirCb_t = function<void(const Error&)>;
   using RenameCb_t = function<void(const Error&)>;
+  using WriteAsyncCb_t = function<void(const Error&, uint32_t)>;
+  using ReadCb_t = function<void(const Error&, const Buffer&)>;
+  using WriteCb_t = function<void(const Error&)>;
 
   class Fs : public Singleton<Fs> {
   public:
@@ -86,10 +88,14 @@ namespace nodecpp {
     void access(const string& path, AccessCb_t cb);
     void accessSync(const string& path, int mode = 0);
 
-    uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = 0);
+    uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = -1);
+
+    void write(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteAsyncCb_t cb);
+    uint32_t writeSync(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = -1);
   private:
     int stringToFlags(const string& path);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);
+    void writeAll(int fd, bool isUserFd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteCb_t cb);
   };
 
   extern Fs &fs;

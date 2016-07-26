@@ -82,6 +82,40 @@ namespace nodecpp {
     return bytesRead;
   }
 
+  void Fs::writeAll(int fd, bool isUserFd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteCb_t cb) {
+    write(fd, buffer, offset, length, position, [=](const Error& err, uint32_t written) {
+      if (err) {
+        if (isUserFd) {
+          cb(err);
+        }
+        else {
+          this->close(fd, [=](const Error&) {
+            cb(err);
+          });
+        }
+      }
+      else {
+        if (written == length) {
+          if (isUserFd) {
+            cb(err);
+          }
+          else {
+            this->close(fd, cb);
+          }
+        }
+        else {
+          auto off = offset + written;
+          auto len = length - written;
+          auto pos = position;
+          if (position != -1) {
+            pos = position + written;
+          }
+          this->writeAll(fd, isUserFd, buffer, off, len, pos, cb);
+        }
+      }
+    });
+  }
+
   Buffer Fs::readFileSync(const string& path) {
     int fd = openSync(path, "r", 0666);
     Stats st = fstatSync(fd);
@@ -128,35 +162,30 @@ namespace nodecpp {
   }
 
   void Fs::writeFile(const string& path, const Buffer& data, WriteCb_t cb) {
-    uv_fs_t openReq;
-    int fd = uv_fs_open(uv_default_loop(), &openReq, iconv.strToUtf8(path).c_str(), stringToFlags("w"), 0666, nullptr);
-    if (fd < 0) {
-      return cb(Error(fd));
-    }
-
-    auto fsWrap = new FsWrap(fd);
-    fsWrap->writeFile(data, cb);
+    open(path, "w", 0666, [=](const Error& openErr, int fd) {
+      if (openErr) {
+        cb(openErr);
+      }
+      else {
+        writeAll(fd, false, data, 0, data.size(), 0, cb);
+      }
+    });
   }
 
   void Fs::writeFileSync(const string& path, const Buffer& data) {
-    uv_fs_t openReq;
-    uv_loop_t *loop = uv_default_loop();
-    int fd = uv_fs_open(loop, &openReq, iconv.strToUtf8(path).c_str(), stringToFlags("w"), 0666, nullptr);
-    if (fd < 0) {
-      uv_fs_req_cleanup(&openReq);
-      throw Error(fd);
+    int fd = openSync(path, "w", 0666);
+    uint32_t offset = 0;
+    uint32_t length = data.size();
+    uint32_t position = 0;
+    while (length > 0) {
+      uint32_t written = fs.writeSync(fd, data, offset, length, position);
+      offset += written;
+      length -= written;
+      if (position != -1) {
+        position += written;
+      }
     }
-
-    uv_fs_t writeReq;
-    uv_buf_t iov = uv_buf_init(const_cast<char*>(data.data()), data.size());
-    uv_fs_write(loop, &writeReq, fd, &iov, 1, 0, nullptr);
-
-    uv_fs_req_cleanup(&writeReq);
-    uv_fs_t closeReq;
-    uv_fs_close(loop, &closeReq, fd, nullptr);
-    uv_fs_req_cleanup(&closeReq);
-    uv_fs_req_cleanup(&openReq);
-    return;
+    closeSync(fd);
   }
 
   void Fs::stat(const string& path, StatCb_t cb) {
@@ -264,9 +293,21 @@ namespace nodecpp {
   }
 
 
-  uint32_t Fs::readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position) {
+  uint32_t Fs::readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position /*= -1*/) {
     return Read(fd, buffer, offset, length, position);
   }
 
   Fs &fs = Fs::instance();
+
+  void Fs::write(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteAsyncCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteResult = cb;
+    reqWrap->writeBuffer = buffer;
+    WriteBuffer(fd, reqWrap->writeBuffer, offset, length, position, reqWrap);
+  }
+
+  uint32_t Fs::writeSync(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position /*= -1*/) {
+    return WriteBuffer(fd, buffer, offset, length, position);
+  }
+
 }
