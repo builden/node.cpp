@@ -177,3 +177,13 @@ TEST_F(FsTest, access) {
 
   run();
 }
+
+TEST_F(FsTest, readJson) {
+  string file = "fs-test.json";
+  fs.writeFileSync(file, Buffer(R"({ "a": "b" })"));
+  EXPECT_TRUE(fs.existsSync(file));
+  json cfg = fs.readJsonSync(file);
+  EXPECT_EQ(cfg["a"].get<string>(), "b");
+  fs.unlinkSync(file);
+  EXPECT_FALSE(fs.existsSync(file));
+}

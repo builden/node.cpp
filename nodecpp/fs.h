@@ -92,6 +92,8 @@ namespace nodecpp {
 
     void write(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteAsyncCb_t cb);
     uint32_t writeSync(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = -1);
+
+    json readJsonSync(const string& file);
   private:
     int stringToFlags(const string& path);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);

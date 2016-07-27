@@ -1,11 +1,21 @@
 const net = require('net');
 const pipeName = '\\\\.\\pipe\\sample';
+const fs = require('fs-extra');
+const cfg = fs.readJsonSync('net-cfg.json');
 
-const client = net.connect(pipeName, () => {
-  // 'connect' listener
-  console.log('connected to server!');
-  client.write('world!\r\n');
-});
+let client;
+if (cfg.isPipe) {
+  client = net.connect(pipeName, () => {
+    // 'connect' listener
+    console.log('connected to pipe server!');
+    client.write('pipe world!\r\n');
+  });
+} else {
+  client = net.connect(3000, 'localhost', () => {
+    console.log('connected to tcp server!');
+    client.write('tcp world!\r\n');
+  });
+}
 
 client.on('data', (data) => {
   console.log('recv:', data.toString());

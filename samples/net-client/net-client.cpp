@@ -16,10 +16,21 @@ private:
 App& app = App::instance();
 
 void App::run() {
-  client_ = net.connect(pipeName, [this]() {
-    cout << "client connected to " << pipeName << endl;
-    client_->write(Buffer("hello server, i am client."));
-  });
+  string jsonFile = path.join(path.dirname(process.execPath), "../samples/node-test/net-cfg.json");
+  json cfg = fs.readJsonSync(jsonFile);
+
+  if (cfg["isPipe"].get<bool>()) {
+    client_ = net.connect(pipeName, [this]() {
+      cout << "pipe client connected to " << pipeName << endl;
+      client_->write(Buffer("hello server, i am pipe client."));
+    });
+  }
+  else {
+    client_ = net.connect(3000, "127.0.0.1", [this]() {
+      cout << "tcp client connected to " << pipeName << endl;
+      client_->write(Buffer("hello server, i am tcp client."));
+    });
+  }
 
   client_->on<const Error&>("error", [](const Error& err) {
     cout << "client error: " << err.str() << endl;

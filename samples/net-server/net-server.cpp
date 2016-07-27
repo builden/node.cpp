@@ -17,6 +17,9 @@ private:
 App& app = App::instance();
 
 void App::run() {
+  string jsonFile = path.join(path.dirname(process.execPath), "../samples/node-test/net-cfg.json");
+  json cfg = fs.readJsonSync(jsonFile);
+
   server_ = net.createServer([this](SocketPtr_t sock) {
     cout << "have one client connected" << endl;
     client_ = sock;
@@ -27,8 +30,15 @@ void App::run() {
     });
   });
 
-  server_->listen(pipeName);
-  cout << "server listen at " << pipeName << endl;
+  if (cfg["isPipe"].get<bool>()) {
+    server_->listen(pipeName);
+    cout << "pipe server listen at " << pipeName << endl;
+  }
+  else {
+    server_->listen(3000);
+    cout << "tcp server listen at port " << 3000 << endl;
+  }
+
 
   server_->on<const Error&>("error", [](const Error& err) {
     cout << "server err: " << err.str() << endl;

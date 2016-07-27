@@ -177,7 +177,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4239;4291</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4239;4291;4706</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

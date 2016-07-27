@@ -310,4 +310,8 @@ namespace nodecpp {
     return WriteBuffer(fd, buffer, offset, length, position);
   }
 
+  json Fs::readJsonSync(const string& file) {
+    return json::parse(readFileSync(file).toString());
+  }
+
 }
