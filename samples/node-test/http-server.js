@@ -1,7 +1,6 @@
 const http = require('http');
 const fs = require('fs-extra');
 const _ = require('lodash');
-
 const cfg = fs.readJsonSync('http-cfg.json');
 for (const key of _.keys(cfg)) {
   cfg[key] = fs.readFileSync(cfg[key], 'utf8');

@@ -1,6 +1,10 @@
 const io = require('socket.io-client');
 const client = io.connect('http://localhost:3000');
 
+process.on('uncaughtException', (err) => {
+  console.log(err);
+});
+
 client.on('news', (data) => {
   console.log('news:', data);
 });
