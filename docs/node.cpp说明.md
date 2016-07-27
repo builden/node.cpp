@@ -20,11 +20,11 @@
 
 ## 3. Node.cpp
 * 同样基于libuv
-* 导出和Node.js基本一致的API，包括命名和使用方法
+* 导出和Node.js基本一致的API，包括命名和使用方法，写代码可直接参考Node.js的API文档
 ### 3.1 为什么不直接使用Node.js
+* 最新的Node.js已经不支持xp系统
 * Node.js目前在前端容易遭到破解
 * Node.js本身的尺寸较大，安装包在11M左右
-* 最新的Node.js已经不支持xp系统
 
 ## 4. Node.js/cpp示例
 ### 4.1 IPC通信
