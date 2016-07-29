@@ -9,6 +9,7 @@ namespace nodecpp {
 
   KeyboardCode keyboardCodeFromStr(const string& str, bool* shifted);
   KeyboardCodes keyboardCodesFromStr(const string& str, bool* shifted);
+  string virtKeyToStr(int virkCode);
 }
 
 #endif // !__KEYBOAR_CODE_TRANS_H__
