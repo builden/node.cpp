@@ -347,9 +347,11 @@ namespace nodecpp {
   }
 
   uint32_t Buffer::write(const Buffer& buf, uint32_t offset /*= 0*/) {
+    if (offset >= buf_.size()) return 0;
+
     uint32_t remaining = buf_.size() - offset;
     uint32_t length = buf.length();
-    if (length > remaining) length = remaining;
+    remaining = Math.min(remaining, length);
     for (uint32_t i = 0; i < remaining; ++i) {
       buf_[offset + i] = buf[i];
     }

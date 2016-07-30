@@ -119,3 +119,13 @@ TEST_F(BufferTest, slice) {
   EXPECT_EQ(buf1.toString(), "abcdef");
   EXPECT_EQ(buf2.toString(), "bcd");
 }
+
+TEST_F(BufferTest, concat) {
+  Buffer buf1("abc");
+  Buffer buf2("cbd");
+  Buffer buf3("efg");
+  vector<Buffer> bufs = { buf1, buf2, buf3 };
+  EXPECT_EQ(Buffer("ab"), Buffer::concat(bufs, 2));
+  EXPECT_EQ(Buffer("abccbdefg"), Buffer::concat(bufs, 9));
+  EXPECT_EQ(Buffer::concat(bufs, 10).format(), "<Buffer 61 62 63 63 62 64 65 66 67 00>");
+}
