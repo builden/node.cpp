@@ -119,8 +119,6 @@ namespace nodecpp {
       vector<decltype(_pure_typeof(*begin(list)))> result;
       result.reserve(count(list));
       std::copy(begin(list), end(list), std::back_inserter(result));
-      // È·±£Ëæ»ú
-      srand((unsigned int)time(0));
       std::random_shuffle(result.begin(), result.end());
       return result;
     }
@@ -236,6 +234,8 @@ namespace nodecpp {
     static bool includes(const L& list, R value, uint32_t fromIndex = 0) {
       return indexOf(list, value, fromIndex) != -1;
     }
+
+    static int random(int lower = 0, int upper = 1);
   };
 
   extern Lodash &_;

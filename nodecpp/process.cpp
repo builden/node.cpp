@@ -25,6 +25,9 @@ namespace nodecpp {
 
     pid = ::GetCurrentProcessId();
 
+    // for Math.random and _.shuffle
+    std::srand((uint32_t)time(0));
+
     pimpl->initArgv(argv);
     pimpl->initEnv(env);
   }

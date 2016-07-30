@@ -22,3 +22,9 @@ TEST_F(MathTest, floor_ceil_round) {
   EXPECT_EQ(Math.ceil(0), 0);
   EXPECT_EQ(Math.floor(0), 0);
 }
+
+TEST_F(MathTest, random) {
+  for (int i = 0; i < 10; ++i) {
+    cout << "Math.random(): " << Math.random() << endl;
+  }
+}

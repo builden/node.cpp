@@ -115,3 +115,12 @@ TEST_F(LodashTest, indexOf) {
   EXPECT_EQ(_.indexOf(svec, "bcd"), 1);
   EXPECT_EQ(_.indexOf(svec, "bcde"), -1);
 }
+
+TEST_F(LodashTest, random) {
+  for (int i = 0; i < 10; i++) {
+    cout << "_.ramdon(0, 1): " << _.random() << "; _.random(1, 4): " << _.random(1, 4) << endl;
+    int rand1 = _.random(-2, 2);
+    EXPECT_LE(rand1, 2);
+    EXPECT_GE(rand1, -2);
+  } 
+}

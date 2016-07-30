@@ -13,9 +13,10 @@ namespace nodecpp {
   public:
     
     static int abs(int x);
-    static int ceil(double x);  // 上舍入
-    static int floor(double x); // 下舍入
+    static int ceil(double x);  // 上舍入 ceil(1.1) == 2
+    static int floor(double x); // 下舍入 floor(1.9) == 1
     static int round(double x); // 四舍五入
+    static double random();
 
     template<typename T>
     static auto min(T x, T y) -> decltype(x) {
