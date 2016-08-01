@@ -11,8 +11,7 @@ namespace nodecpp {
   };
 
   PipeWrap::PipeWrap(bool ipc, AsyncWrap* parent)
-    : StreamWrap(
-      reinterpret_cast<uv_stream_t*>(&handle_),
+    : ConnectionWrap(
       AsyncWrap::PROVIDER_PIPEWRAP,
       parent) {
     int r = uv_pipe_init(uv_default_loop(), &handle_, ipc);
@@ -41,25 +40,6 @@ namespace nodecpp {
 
   int PipeWrap::open(int fd) {
     return uv_pipe_open(&handle_, fd);
-  }
-
-  void PipeWrap::OnConnection(uv_stream_t* handle, int status) {
-    PipeWrap* pipe_wrap = static_cast<PipeWrap*>(handle->data);
-    CHECK_EQ(&pipe_wrap->handle_, reinterpret_cast<uv_pipe_t*>(handle));
-
-    if (status != 0) {
-      // connect failed
-      // pipe_wrap->MakeCallback(env->onconnection_string(), arraysize(argv), argv);
-      return;
-    }
-
-//     uv_stream_t* client_handle = reinterpret_cast<uv_stream_t*>(&wrap->handle_);
-//     if (uv_accept(handle, client_handle))
-//       return;
-
-    // Successful accept. Call the onconnection callback in JavaScript land.
-    // argv[1] = client_obj;
-    // pipe_wrap->MakeCallback(env->onconnection_string(), arraysize(argv), argv);
   }
 
   void PipeWrap::AfterConnect(uv_connect_t* req, int status) {

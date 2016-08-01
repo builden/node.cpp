@@ -1,9 +1,9 @@
 #pragma once
-#include "stream-wrap.h"
+#include "connection-wrap.h"
 #include "net.h"
 
 namespace nodecpp {
-  class TCPWrap : StreamWrap {
+  class TCPWrap : public ConnectionWrap<TCPWrap, uv_tcp_t> {
   public:
     TCPWrap(AsyncWrap* parent);
 
@@ -16,10 +16,6 @@ namespace nodecpp {
     int Connect6(const string& ip6Address, int port, ConnectCb_t cb = nullptr);
 
   private:
-    static void OnConnection(uv_stream_t* handle, int status);
     static void AfterConnect(uv_connect_t* req, int status);
-
-  private:
-    uv_tcp_t handle_;
   };
 }

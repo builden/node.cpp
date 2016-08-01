@@ -17,6 +17,7 @@
     <ClCompile Include="child-process.cpp" />
     <ClCompile Include="child_process.cpp" />
     <ClCompile Include="client-request.cpp" />
+    <ClCompile Include="connection-wrap.cpp" />
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="child-process.h" />
     <ClInclude Include="child_process.h" />
     <ClInclude Include="client-request.h" />
+    <ClInclude Include="connection-wrap.h" />
     <ClInclude Include="core-math.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="crypto.h" />

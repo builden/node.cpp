@@ -23,7 +23,7 @@ namespace nodecpp {
         wrap_(wrap),
         storage_size_(storage_size) {}
 
-    inline void Dispose();
+    void Dispose();
     inline StreamBase* wrap() const { return wrap_; }
 
     static const size_t kAlignSize = 16;

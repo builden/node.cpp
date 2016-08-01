@@ -75,7 +75,8 @@ namespace nodecpp {
   };*/
 
   ProcessWrap::ProcessWrap() 
-    : HandleWrap(reinterpret_cast<uv_handle_t*>(&process_),
+    : HandleWrap(
+      reinterpret_cast<uv_handle_t*>(&process_),
       AsyncWrap::PROVIDER_PROCESSWRAP) {}
   ProcessWrap::~ProcessWrap() {}
 
@@ -153,6 +154,27 @@ namespace nodecpp {
     CHECK_EQ(&wrap->process_, handle);
 
     if (wrap->exitCb) wrap->exitCb(exit_status, signo_string(term_signal));
+  }
+
+  void ProcessWrap::ParseStdioOptions(json jsOptions, uv_process_options_t* options) {
+    svec_t stdios = jsOptions["stdio"].get<svec_t>();
+    uint32_t len = stdios.size();
+    options->stdio = new uv_stdio_container_t[len];
+    options->stdio_count = len;
+
+    for (uint32_t i = 0; i < len; i++) {
+      string stdio = stdios[i];
+
+      if (stdio == "ignore") {
+        options->stdio[i].flags = UV_IGNORE;
+      }
+      else if (stdio == "pipe") {
+        options->stdio[i].flags = static_cast<uv_stdio_flags>(
+          UV_CREATE_PIPE | UV_READABLE_PIPE | UV_WRITABLE_PIPE);
+//         options->stdio[i].data.stream =
+//           reinterpret_cast<uv_stream_t*>(stdio_[i].handle_);
+      }
+    }
   }
 
 }

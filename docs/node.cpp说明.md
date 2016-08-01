@@ -49,6 +49,7 @@ mbp 曾经做过一个巧妙的比喻，把 Node.js 看成一家餐厅。我在�
 * libuv强制使用异步的，事件驱动的编程风格。它的核心工作是提供一个event-loop，还有基于I/O和其它事件通知的回调函数。libuv还提供了一些核心工具，例如定时器，非阻塞的网络支持，异步文件系统访问，子进程等。
 ### 2.1 框架
 ![框架图](imgs/libuv-framework.png)
+
 从架构图上看，libuv是对多个平台上的事件驱动异步I/O库进行了封装，如Linux下的epoll、FreeBSD下的kqueue、Solaris下的event ports、Windows下的IOCP。
 ### 2.2 核心：Event loops
 在libuv事件编程模型中, 应用程序只是去监视特定的事件, 并在事件发生后对其作出响应。而收集事件或监控其他事件源则是libuv的职责, 编程人员只需要对感兴趣的事件去注册回调函数, 在事件发生后 libuv 将会调用相应的回调函数. 只要程序不退出并且还有待处理的事件, 事件循环会一直运行, 下面是事件驱动编程模型的伪代码:
@@ -67,19 +68,3 @@ while there are still events to process:
 * 最新的Node.js已经不支持xp系统
 * Node.js目前在前端容易遭到破解
 * Node.js本身的尺寸较大，安装包在11M左右
-
-## 4. Node.js/cpp示例
-### 4.1 IPC通信
-### 4.2 socket.io
-### 4.3 快速搭建cgi测试框架
-
-## 5. 常用库介绍
-
-
-## 6. 更多兴趣点
-1. Node.js(架构or常用库)
-2. Node.cpp具体实现
-3. Electron
-4. React
-5. React-Native
-6. ES6 / ES7

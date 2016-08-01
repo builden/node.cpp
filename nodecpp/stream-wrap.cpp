@@ -14,6 +14,35 @@ namespace nodecpp {
 
   StreamWrap::~StreamWrap() {}
 
+  int StreamWrap::GetFD() {
+    int fd = -1;
+    return fd;
+  }
+
+  void* StreamWrap::Cast() {
+    return reinterpret_cast<void*>(this);
+  }
+
+  bool StreamWrap::IsAlive() {
+    return HandleWrap::IsAlive(this);
+  }
+
+  bool StreamWrap::IsClosing() {
+    return !!uv_is_closing(reinterpret_cast<uv_handle_t*>(stream()));
+  }
+
+  bool StreamWrap::IsIPCPipe() {
+    return is_named_pipe_ipc();
+  }
+
+  int StreamWrap::ReadStart() {
+    return uv_read_start(stream(), OnAlloc, OnRead);
+  }
+
+  int StreamWrap::ReadStop() {
+    return uv_read_stop(stream());
+  }
+
   int StreamWrap::DoShutdown(ShutdownWrap* req_wrap) {
     int err = uv_shutdown(&req_wrap->req_, stream(), AfterShutdown);
     req_wrap->Dispatched();

@@ -219,6 +219,9 @@
     <ClCompile Include="read-file-context.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="connection-wrap.cpp">
+      <Filter>core\inner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -417,6 +420,9 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="read-file-context.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="connection-wrap.h">
       <Filter>core\inner</Filter>
     </ClInclude>
   </ItemGroup>

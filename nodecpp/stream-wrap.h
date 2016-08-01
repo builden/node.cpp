@@ -14,6 +14,16 @@ namespace nodecpp {
       AsyncWrap* parent = nullptr);
     virtual ~StreamWrap();
 
+    int GetFD() override;
+    void* Cast() override;
+    bool IsAlive() override;
+    bool IsClosing() override;
+    bool IsIPCPipe() override;
+
+    // JavaScript functions
+    int ReadStart() override;
+    int ReadStop() override;
+
     // Resource implementation
     int DoShutdown(ShutdownWrap* req_wrap) override;
     int DoTryWrite(uv_buf_t** bufs, size_t* count) override;

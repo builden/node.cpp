@@ -11,7 +11,7 @@ namespace nodecpp {
   };
 
   TCPWrap::TCPWrap(AsyncWrap* parent) 
-    : StreamWrap(reinterpret_cast<uv_stream_t*>(&handle_),
+    : ConnectionWrap(
       AsyncWrap::PROVIDER_TCPWRAP,
       parent) {
     int r = uv_tcp_init(uv_default_loop(), &handle_);
@@ -87,35 +87,6 @@ namespace nodecpp {
         delete req_wrap;
     }
     return err;
-  }
-
-  void TCPWrap::OnConnection(uv_stream_t* handle, int /*status*/) {
-    TCPWrap* tcp_wrap = static_cast<TCPWrap*>(handle->data);
-    CHECK_EQ(&tcp_wrap->handle_, reinterpret_cast<uv_tcp_t*>(handle));
-
-/*
-    Local<Value> argv[2] = {
-      Integer::New(env->isolate(), status),
-      Undefined(env->isolate())
-    };
-
-    if (status == 0) {
-      // Instantiate the client javascript object and handle.
-      Local<Object> client_obj =
-        Instantiate(env, static_cast<AsyncWrap*>(tcp_wrap));
-
-      // Unwrap the client javascript object.
-      TCPWrap* wrap = Unwrap<TCPWrap>(client_obj);
-      CHECK_NE(wrap, nullptr);
-      uv_stream_t* client_handle = reinterpret_cast<uv_stream_t*>(&wrap->handle_);
-      if (uv_accept(handle, client_handle))
-        return;
-
-      // Successful accept. Call the onconnection callback in JavaScript land.
-      argv[1] = client_obj;
-    }
-
-    tcp_wrap->MakeCallback(env->onconnection_string(), arraysize(argv), argv);*/
   }
 
   void TCPWrap::AfterConnect(uv_connect_t* req, int /*status*/) {

@@ -31,6 +31,7 @@ namespace nodecpp {
       kFlagNoShutdown = 0x2
     };
 
+    virtual void* Cast() = 0;
     virtual bool IsAlive() = 0;
     virtual bool IsClosing() = 0;
     virtual bool IsIPCPipe();

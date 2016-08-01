@@ -7,7 +7,15 @@ namespace nodecpp {
   class HandleWrap : public AsyncWrap {
   public:
     void close(CloseCb_t = nullptr);
+    static inline bool IsAlive(const HandleWrap* wrap) {
+      return wrap != nullptr && wrap->state_ != kClosed;
+    }
 
+    static inline bool HasRef(const HandleWrap* wrap) {
+      return IsAlive(wrap) && uv_has_ref(wrap->GetHandle());
+    }
+
+    inline uv_handle_t* GetHandle() const { return handle__; }
   protected:
     HandleWrap(
       uv_handle_t* handle,
