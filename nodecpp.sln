@@ -37,6 +37,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sub-process", "samples\sub-process\sub-process.vcxproj", "{F59D5BD2-20F3-4063-9C4D-21055EB93A9A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "child_process-test", "samples\child_process-test\child_process-test.vcxproj", "{D7111C35-C118-4C66-AF27-6FF22558B210}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C4C58E7-4488-45CD-BFCD-098D95BC5D01} = {5C4C58E7-4488-45CD-BFCD-098D95BC5D01}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "g3log-test", "samples\g3log-test\g3log-test.vcxproj", "{3CB17997-BE05-4B1B-AE33-5B0DC119D0C9}"
 EndProject

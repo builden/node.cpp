@@ -10,7 +10,11 @@ namespace nodecpp {
     bool exec(const string& command);
     bool execWithDll(const string& command, const string& dllPath);
 
-    shared_ptr<ChildProcess> spawn();
+    shared_ptr<ChildProcess> spawn(const string& command, json options);
+    shared_ptr<ChildProcess> spawn(const string& command, const svec_t& args = {}, json options = json({}));
+
+  private:
+    json normalizeSpawnArguments(const string& file, const svec_t& args, json options);
   };
 
   extern OuterChildProcess &child_process;

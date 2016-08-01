@@ -8,7 +8,8 @@ using namespace nodecpp;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-  auto child = child_process.spawn();
+  // auto child = child_process.spawn("notepad.exe", svec_t{"abc"});
+  auto child = child_process.spawn("notepad.exe");
   run();
 	return 0;
 }

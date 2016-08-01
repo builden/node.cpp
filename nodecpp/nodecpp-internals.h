@@ -7,4 +7,5 @@ namespace nodecpp {
 #endif
 
   void FatalError(const char* location, const char* message);
+  const char *signo_string(int errorno);
 }
