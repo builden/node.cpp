@@ -66,6 +66,7 @@
     <ClCompile Include="url.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winreg.cpp" />
+    <ClCompile Include="wm-code-trans.cpp" />
     <ClCompile Include="write-wrap.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,7 @@
     <ClInclude Include="url.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="winreg.h" />
+    <ClInclude Include="wm-code-trans.h" />
     <ClInclude Include="write-wrap.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

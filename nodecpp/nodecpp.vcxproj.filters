@@ -222,6 +222,9 @@
     <ClCompile Include="connection-wrap.cpp">
       <Filter>core\inner</Filter>
     </ClCompile>
+    <ClCompile Include="wm-code-trans.cpp">
+      <Filter>self</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="connection-wrap.h">
       <Filter>core\inner</Filter>
+    </ClInclude>
+    <ClInclude Include="wm-code-trans.h">
+      <Filter>self</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
