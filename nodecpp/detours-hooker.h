@@ -4,7 +4,7 @@
 #include "singleton.h"
 
 namespace nodecpp {
-  class Hooker : public Singleton<Hooker> {
+  class Detours : public Singleton<Detours> {
   public:
     /**
      * @originFuncPtr {point-point} 原始函数指针的指针，hook后原始函数的地址会发生变化
@@ -14,6 +14,8 @@ namespace nodecpp {
 
     void hook();
     void unhook();
+
+    bool execWithDll(const string& command, const string& dllPath);
 
   private:
     struct FuncInfo {
@@ -26,7 +28,7 @@ namespace nodecpp {
     vector<FuncInfo> vecFuncInfo_;
   };
 
-  extern Hooker &hooker;
+  extern Detours &detours;
 }
 
 #endif // !__HOOKER_H__

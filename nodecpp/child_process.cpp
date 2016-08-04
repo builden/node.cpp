@@ -2,8 +2,6 @@
 #include "underscore.string.h"
 #include "process.h"
 #include <windows.h>
-#include <detours.h>
-#pragma comment(lib, "detours.lib")
 
 namespace nodecpp {
 
@@ -29,35 +27,6 @@ namespace nodecpp {
     if (!rst) {
       return false;
     }
-    ResumeThread(pi.hThread);
-    return true;
-  }
-
-  bool OuterChildProcess::execWithDll(const string& command, const string& dllPath) {
-    STARTUPINFOA si = { 0 };
-    si.cb = sizeof(si);
-    PROCESS_INFORMATION pi = { 0 };
-    // DWORD dwFlags = CREATE_SUSPENDED;
-    BOOL rst = DetourCreateProcessWithDllA(
-      NULL,  // Application Name
-      const_cast<LPSTR>(command.c_str()),  // CommandLine
-      NULL,  // process attribute
-      NULL,
-      FALSE,
-      0,
-      NULL,
-      NULL,
-      &si,
-      &pi,
-      dllPath.c_str(),
-      NULL
-      );
-
-    if (!rst) {
-      // std::cout << "Get Error: " << GetLastError();
-      return false;
-    }
-
     ResumeThread(pi.hThread);
     return true;
   }

@@ -96,9 +96,6 @@
     <ClCompile Include="file-url.cpp">
       <Filter>third</Filter>
     </ClCompile>
-    <ClCompile Include="hooker.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
     <ClCompile Include="iconv.cpp">
       <Filter>third</Filter>
     </ClCompile>
@@ -225,6 +222,9 @@
     <ClCompile Include="wm-code-trans.cpp">
       <Filter>self</Filter>
     </ClCompile>
+    <ClCompile Include="detours-hooker.cpp">
+      <Filter>self</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base64\base64.h">
@@ -315,9 +315,6 @@
       <Filter>third</Filter>
     </ClInclude>
     <ClInclude Include="dll-util.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="hooker.h">
       <Filter>self</Filter>
     </ClInclude>
     <ClInclude Include="ini.h">
@@ -429,6 +426,9 @@
       <Filter>core\inner</Filter>
     </ClInclude>
     <ClInclude Include="wm-code-trans.h">
+      <Filter>self</Filter>
+    </ClInclude>
+    <ClInclude Include="detours-hooker.h">
       <Filter>self</Filter>
     </ClInclude>
   </ItemGroup>

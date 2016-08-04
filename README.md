@@ -57,8 +57,8 @@ fs.readFile(filePath, [](const Buffer& buf) {
   * 共享内存
 - [x] dll-util
   * 包装了对dll的一些常用操作，如获取dll的绝对路径
-- [x] hooker
-  * 包装了detours，方便hooker api
+- [x] detours-hooker
+  * 包装了detours，方便hooker api，启动进程前注入dll
 - [x] ini
   * 包装了ini文件的解析
 

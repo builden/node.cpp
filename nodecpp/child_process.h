@@ -8,7 +8,6 @@ namespace nodecpp {
   class OuterChildProcess : public Singleton<OuterChildProcess> {
   public:
     bool exec(const string& command);
-    bool execWithDll(const string& command, const string& dllPath);
 
     shared_ptr<ChildProcess> spawn(const string& command, json options);
     shared_ptr<ChildProcess> spawn(const string& command, const svec_t& args = {}, json options = json({}));

@@ -1,4 +1,4 @@
-#include "hooker.h"
+#include "detours-hooker.h"
 #include "fmt/format.h"
 
 #include <windows.h>
@@ -7,7 +7,7 @@
 
 namespace nodecpp {
 
-  bool Hooker::addFuncInfo(const string& moduleName, const string& funcName, void **originFuncPtr, void *newFunc) {
+  bool Detours::addFuncInfo(const string& moduleName, const string& funcName, void **originFuncPtr, void *newFunc) {
     if (originFuncPtr == nullptr || newFunc == nullptr) return false;
     void * originFunc = nullptr;
     HMODULE hMoudle = GetModuleHandleA(moduleName.c_str());
@@ -35,7 +35,7 @@ namespace nodecpp {
     return false;
   }
 
-  void Hooker::hook() {
+  void Detours::hook() {
     DetourRestoreAfterWith();
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
@@ -52,7 +52,7 @@ namespace nodecpp {
     }
   }
 
-  void Hooker::unhook() {
+  void Detours::unhook() {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
@@ -62,5 +62,34 @@ namespace nodecpp {
     DetourTransactionCommit();
   }
 
-  Hooker &hooker = Hooker::instance();
+  bool Detours::execWithDll(const string& command, const string& dllPath) {
+    STARTUPINFOA si = { 0 };
+    si.cb = sizeof(si);
+    PROCESS_INFORMATION pi = { 0 };
+    // DWORD dwFlags = CREATE_SUSPENDED;
+    BOOL rst = DetourCreateProcessWithDllA(
+      NULL,  // Application Name
+      const_cast<LPSTR>(command.c_str()),  // CommandLine
+      NULL,  // process attribute
+      NULL,
+      FALSE,
+      0,
+      NULL,
+      NULL,
+      &si,
+      &pi,
+      dllPath.c_str(),
+      NULL
+    );
+
+    if (!rst) {
+      // std::cout << "Get Error: " << GetLastError();
+      return false;
+    }
+
+    ResumeThread(pi.hThread);
+    return true;
+  }
+
+  Detours &detours = Detours::instance();
 }

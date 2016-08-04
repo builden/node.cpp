@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "detours-test.h"
-#include <nodecpp/hooker.h>
+#include <nodecpp/detours-hooker.h>
 
-typedef BOOL(WINAPI* PFNBeep)(DWORD dwFreq, DWORD dwDuration);
-void * g_oldBeep = NULL;
+using Beep_t =  BOOL(WINAPI*)(DWORD dwFreq, DWORD dwDuration);
+Beep_t g_oldBeep = nullptr;
 BOOL WINAPI newBeep(DWORD dwFreq, DWORD dwDuration) {
-  return PFNBeep(g_oldBeep)(dwFreq + 500, dwDuration);
+  return g_oldBeep(dwFreq + 500, dwDuration);
 }
 
 TEST_F(DetoursTest, beep) {
-  hooker.addFuncInfo("kernel32", "Beep", &g_oldBeep, newBeep);
+  detours.addFuncInfo("kernel32", "Beep", (void **)&g_oldBeep, newBeep);
   Beep(500, 500);
-  hooker.hook();
+  detours.hook();
   Beep(500, 500);
-  hooker.unhook();
+  detours.unhook();
   Beep(500, 500);
 }

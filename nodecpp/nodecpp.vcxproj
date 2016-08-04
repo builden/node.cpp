@@ -30,7 +30,7 @@
     <ClCompile Include="fs-req-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="handle-wrap.cpp" />
-    <ClCompile Include="hooker.cpp" />
+    <ClCompile Include="detours-hooker.cpp" />
     <ClCompile Include="http-common.cpp" />
     <ClCompile Include="http-server.cpp" />
     <ClCompile Include="http.cpp" />
@@ -100,7 +100,7 @@
     <ClInclude Include="stream-resource.h" />
     <ClInclude Include="tcp-wrap.h" />
     <ClInclude Include="timer-wrap.h" />
-    <ClInclude Include="hooker.h" />
+    <ClInclude Include="detours-hooker.h" />
     <ClInclude Include="http-common.h" />
     <ClInclude Include="http-server.h" />
     <ClInclude Include="http.h" />
