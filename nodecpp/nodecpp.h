@@ -7,6 +7,7 @@
 #include "underscore.string.h"
 #include "lodash.h"
 #include "core.h"
+#include "stream-readable.h"
 
 #include "crypto.h"
 #include "timers.h"

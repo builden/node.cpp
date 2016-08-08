@@ -52,6 +52,9 @@
     <Filter Include="deps\nlohmann">
       <UniqueIdentifier>{1bdfda9a-5b30-475a-aeba-9357012dd3bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\inner-stream">
+      <UniqueIdentifier>{243941d7-31ba-4786-a450-e70db8337939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nodepp.cpp">
@@ -224,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="detours-hooker.cpp">
       <Filter>self</Filter>
+    </ClCompile>
+    <ClCompile Include="stream.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-readable.cpp">
+      <Filter>core\inner-stream</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +439,12 @@
     </ClInclude>
     <ClInclude Include="detours-hooker.h">
       <Filter>self</Filter>
+    </ClInclude>
+    <ClInclude Include="stream.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-readable.h">
+      <Filter>core\inner-stream</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -57,8 +57,10 @@
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="stats-def.cpp" />
     <ClCompile Include="stream-base.cpp" />
+    <ClCompile Include="stream-readable.cpp" />
     <ClCompile Include="stream-resource.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
+    <ClCompile Include="stream.cpp" />
     <ClCompile Include="tcp-wrap.cpp" />
     <ClCompile Include="timer-wrap.cpp" />
     <ClCompile Include="timers.cpp" />
@@ -97,7 +99,9 @@
     <ClInclude Include="read-file-context.h" />
     <ClInclude Include="shutdown-wrap.h" />
     <ClInclude Include="stats-def.h" />
+    <ClInclude Include="stream-readable.h" />
     <ClInclude Include="stream-resource.h" />
+    <ClInclude Include="stream.h" />
     <ClInclude Include="tcp-wrap.h" />
     <ClInclude Include="timer-wrap.h" />
     <ClInclude Include="detours-hooker.h" />
