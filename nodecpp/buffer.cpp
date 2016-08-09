@@ -358,12 +358,12 @@ namespace nodecpp {
     return remaining;
   }
 
-  nodecpp::Buffer Buffer::slice(int start /*= 0*/) {
+  nodecpp::Buffer Buffer::slice(int start /*= 0*/) const {
     int end = buf_.size();
     return slice(start, end);
   }
 
-  Buffer Buffer::slice(int start, int end) {
+  Buffer Buffer::slice(int start, int end) const {
     return Buffer(_.slice(buf_, start, end));
   }
 

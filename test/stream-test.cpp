@@ -4,6 +4,7 @@
 TEST_F(StreamTest, readable) {
   auto r = new Readable();
   r->push(Buffer("hello"));
+  r->push(Buffer("world!"));
   r->push();
 
   r->on<const Buffer&>("data", [](const Buffer& buf) {

@@ -78,8 +78,8 @@ namespace nodecpp {
     uint32_t writeUInt32LE(uint32_t value, uint32_t offset = 0);
     uint32_t write(const Buffer& buf, uint32_t offset = 0);
 
-    Buffer slice(int start = 0);
-    Buffer slice(int start, int end);
+    Buffer slice(int start = 0) const;
+    Buffer slice(int start, int end) const;
 
     Buffer swap16();
     Buffer swap32();
