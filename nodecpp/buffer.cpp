@@ -7,12 +7,17 @@
 
 namespace nodecpp {
 
+  Buffer Buffer::alloc(uint32_t size, uint8_t fill /*= 0x00*/) {
+    return Buffer(size, fill);
+  }
+
   Buffer::Buffer() {
 
   }
 
-  Buffer::Buffer(uint32_t size) {
+  Buffer::Buffer(uint32_t size, uint8_t fill /*= 0x00*/) {
     buf_.resize(size);
+    if (fill != 0x00) std::fill(buf_.begin(), buf_.end(), fill);
   }
 
   Buffer::Buffer(const char* buf, uint32_t size, uint32_t byteOffset /*= 0*/) {
@@ -78,6 +83,17 @@ namespace nodecpp {
     uint32_t pos = 0;
     for (size_t i = 0; i < bufs.size(); ++i) {
       Buffer& buf = bufs[i];
+      buffer.write(buf, pos);
+      pos += buf.size();
+    }
+    return buffer;
+  }
+
+  Buffer Buffer::concat(std::list<Buffer>& bufs, uint32_t len) {
+    Buffer buffer(len);
+    uint32_t pos = 0;
+    for (auto it = bufs.begin(); it != bufs.end(); it++) {
+      Buffer& buf = (*it);
       buffer.write(buf, pos);
       pos += buf.size();
     }

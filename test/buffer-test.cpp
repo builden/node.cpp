@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "buffer-test.h"
 
+TEST_F(BufferTest, alloc) {
+  Buffer buf1 = Buffer::alloc(5);
+  EXPECT_EQ(buf1.format(), "<Buffer 00 00 00 00 00>");
+  
+  Buffer buf2 = Buffer::alloc(5, 0x01);
+  EXPECT_EQ(buf2.format(), "<Buffer 01 01 01 01 01>");
+}
+
 TEST_F(BufferTest, format) {
   Buffer buf1(0);
   EXPECT_EQ(buf1.format(), "<Buffer >");

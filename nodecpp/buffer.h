@@ -14,8 +14,10 @@
 namespace nodecpp {
   class Buffer {
   public:
+    static Buffer alloc(uint32_t size, uint8_t fill = 0x00);
+
     Buffer();
-    Buffer(uint32_t size);
+    Buffer(uint32_t size, uint8_t file = 0x00);
     Buffer(const char* buf, uint32_t size, uint32_t byteOffset = 0);
     Buffer(const string& str, const string& encoding = "ansi");
     Buffer(const wstring& wstr);
@@ -28,6 +30,7 @@ namespace nodecpp {
     // length < 0, length <Number> Default: buf.length - byteOffset
     static Buffer from(const char* buf, uint32_t size, uint32_t byteOffset = 0);
     static Buffer concat(vector<Buffer>& bufs, uint32_t len);
+    static Buffer concat(std::list<Buffer>& bufs, uint32_t len);
 
     bool equals(const Buffer& buffer);
 

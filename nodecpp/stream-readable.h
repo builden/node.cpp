@@ -17,7 +17,7 @@ namespace nodecpp {
     }
 
     uint32_t highWaterMark = 0;
-    vector<Buffer> buffer;
+    std::list<Buffer> buffer;
     uint32_t length = 0;
     bool flowing = false;
     bool ended = false;
@@ -84,7 +84,7 @@ namespace nodecpp {
     void resume();
     void resume_(ReadableState& state);
     Buffer fromList(int n, ReadableState& state);
-    Buffer fromListPartial(int n, const vector<Buffer>& list);
+    Buffer fromListPartial(int n, std::list<Buffer>& list);
   private:
     bool readable = true;
   };

@@ -292,7 +292,7 @@ namespace nodecpp {
     Buffer ret;
     if (n >= static_cast<int>(state.length)) {
       if (state.buffer.size() == 1) {
-        ret = state.buffer[0];
+        ret = state.buffer.front();
       }
       else {
         ret = Buffer::concat(state.buffer, state.length);
@@ -300,16 +300,26 @@ namespace nodecpp {
       state.buffer.clear();
     }
     else {
-
+      // read part of list
+      ret = fromListPartial(n, state.buffer);
     }
     return ret;
   }
 
-  nodecpp::Buffer Readable::fromListPartial(int n, const vector<Buffer>& list) {
+  nodecpp::Buffer Readable::fromListPartial(int n, std::list<Buffer>& list) {
     Buffer ret;
-    if (n < static_cast<int>(list[0].size())) {
-      ret = list[0].slice(0, n);
+    if (list.size() > 0) {
+      size_t headLen = list.front().size();
+      if (n < static_cast<int>(headLen)) {
+        ret = list.front().slice(0, n);
+        list.front() = list.front().slice(n);
+      }
+      else if (n == static_cast<int>(headLen)) {
+        ret = list.front();
+        list.pop_front();
+      }
     }
+
     return ret;
   }
 
