@@ -71,9 +71,16 @@ fs.readFile(filePath, [](const Buffer& buf) {
 
 ## 初始化编译
 1. 需提前编译Detours.lib放入
-  > nmake
+   > nmake
+   > cmake -G "Visual Studio 14"
 2. 需安装CMake，并为glog3生成工程
-  > cmake -G "Visual Studio 14"
+```bash
+git clone -b 1.2 https://github.com/KjellKod/g3log.git
+```
+3. 安装http-parser
+```bash
+git clone -b v2.7.0 https://github.com/nodejs/http-parser.git
+```
 
 ## 依赖
 * [libuv](https://github.com/libuv/libuv)
