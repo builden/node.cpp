@@ -78,8 +78,16 @@ fs.readFile(filePath, [](const Buffer& buf) {
 ```bash
 git clone -b 1.2 https://github.com/KjellKod/g3log.git
 git clone -b v2.7.0 https://github.com/nodejs/http-parser.git
-git clone -b 1.2.8 https://github.com/madler/zlib.git
+git clone -b v1.2.8 https://github.com/madler/zlib.git
+git clone -b release-1.7.0 https://github.com/google/googletest.git gtest
 ```
+4. 生成VS工程
+* g3log       -> cmake
+* http-parser -> gyp
+* zlib        -> cmake
+* openssl     -> 
+* libuv       -> 
+* gtest       -> 
 
 ## 工程设置
 * Output Directory: $(SolutionDir)bin\$(Configuration)\
