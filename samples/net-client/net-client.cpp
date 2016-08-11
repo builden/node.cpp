@@ -16,7 +16,7 @@ private:
 App& app = App::instance();
 
 void App::run() {
-  string jsonFile = path.join(path.dirname(process.execPath), "../samples/node-test/net-cfg.json");
+  string jsonFile = path.join(path.dirname(process.execPath), "../../samples/node-test/net-cfg.json");
   json cfg = fs.readJsonSync(jsonFile);
 
   if (cfg["isPipe"].get<bool>()) {

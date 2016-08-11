@@ -84,7 +84,7 @@ namespace nodecpp {
   void Socket::impl::connectCb(uv_connect_t* req, int status) {
     auto sock = (Socket *)req->handle->data;
     if (status < 0) {
-      sock->emit("error", Error(status));
+      sock->emit<const Error&>("error", Error(status));
       return;
     }
     sock->emit("connect");
