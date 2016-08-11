@@ -16,6 +16,7 @@
     <RootNamespace>openssl</RootNamespace>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
@@ -26,9 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="openssl.props" />
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
   </ImportGroup>
@@ -55,8 +54,8 @@
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>PURIFY;_REENTRANT;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_REENTRANT;PURIFY;OPENSSL_NO_COMP;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StringPooling>true</StringPooling>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -77,9 +76,12 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>true</UseSafeExceptionHandlers>
+    </MASM>
     <ResourceCompile>
       <AdditionalIncludeDirectories>.;openssl;openssl\crypto;openssl\crypto\asn1;openssl\crypto\evp;openssl\crypto\md2;openssl\crypto\modes;openssl\crypto\store;openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>PURIFY;_REENTRANT;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;DEBUG;_DEBUG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REENTRANT;PURIFY;OPENSSL_NO_COMP;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;DEBUG;_DEBUG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,8 +100,8 @@
       <OmitFramePointers>true</OmitFramePointers>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>PURIFY;_REENTRANT;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_REENTRANT;PURIFY;OPENSSL_NO_COMP;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -126,13 +128,39 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>true</UseSafeExceptionHandlers>
+    </MASM>
     <ResourceCompile>
       <AdditionalIncludeDirectories>.;openssl;openssl\crypto;openssl\crypto\asn1;openssl\crypto\evp;openssl\crypto\md2;openssl\crypto\modes;openssl\crypto\store;openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>PURIFY;_REENTRANT;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REENTRANT;PURIFY;OPENSSL_NO_COMP;OPENSSL_NO_SSL3;OPENSSL_NO_HEARTBEATS;MK1MF_BUILD;WIN32_LEAN_AND_MEAN;OPENSSL_SYSNAME_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;BUILDING_V8_SHARED=1;BUILDING_UV_SHARED=1;L_ENDIAN;AES_ASM;CPUID_ASM;OPENSSL_BN_ASM_MONT;OPENSSL_CPUID_OBJ;SHA1_ASM;SHA256_ASM;SHA512_ASM;GHASH_ASM;VPAES_ASM;BN_ASM;BF_ASM;BNCO_ASM;DES_ASM;LIB_BN_ASM;MD5_ASM;OPENSSL_BN_ASM;RIP_ASM;RMD160_ASM;WHIRLPOOL_ASM;WP_ASM;OPENSSL_BN_ASM_PART_WORDS;DSO_WIN32;OPENSSL_NO_DYNAMIC_ENGINE;OPENSSL_NO_CAPIENG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="openssl.gyp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="asm\x86-win32-masm\aes\aes-586.asm" />
+    <MASM Include="asm\x86-win32-masm\aes\aesni-x86.asm" />
+    <MASM Include="asm\x86-win32-masm\aes\vpaes-x86.asm" />
+    <MASM Include="asm\x86-win32-masm\bf\bf-586.asm" />
+    <MASM Include="asm\x86-win32-masm\bn\bn-586.asm" />
+    <MASM Include="asm\x86-win32-masm\bn\co-586.asm" />
+    <MASM Include="asm\x86-win32-masm\bn\x86-mont.asm" />
+    <MASM Include="asm\x86-win32-masm\bn\x86-gf2m.asm" />
+    <MASM Include="asm\x86-win32-masm\camellia\cmll-x86.asm" />
+    <MASM Include="asm\x86-win32-masm\cast\cast-586.asm" />
+    <MASM Include="asm\x86-win32-masm\des\crypt586.asm" />
+    <MASM Include="asm\x86-win32-masm\des\des-586.asm" />
+    <MASM Include="asm\x86-win32-masm\md5\md5-586.asm" />
+    <MASM Include="asm\x86-win32-masm\rc4\rc4-586.asm" />
+    <MASM Include="asm\x86-win32-masm\ripemd\rmd-586.asm" />
+    <MASM Include="asm\x86-win32-masm\sha\sha1-586.asm" />
+    <MASM Include="asm\x86-win32-masm\sha\sha256-586.asm" />
+    <MASM Include="asm\x86-win32-masm\sha\sha512-586.asm" />
+    <MASM Include="asm\x86-win32-masm\whrlpool\wp-mmx.asm" />
+    <MASM Include="asm\x86-win32-masm\modes\ghash-x86.asm" />
+    <MASM Include="asm\x86-win32-masm\x86cpuid.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openssl\ssl\bio_ssl.c" />
@@ -348,10 +376,6 @@
     <ClCompile Include="openssl\crypto\cms\cms_pwri.c" />
     <ClCompile Include="openssl\crypto\cms\cms_sd.c" />
     <ClCompile Include="openssl\crypto\cms\cms_smime.c" />
-    <ClCompile Include="openssl\crypto\comp\c_rle.c" />
-    <ClCompile Include="openssl\crypto\comp\c_zlib.c" />
-    <ClCompile Include="openssl\crypto\comp\comp_err.c" />
-    <ClCompile Include="openssl\crypto\comp\comp_lib.c" />
     <ClCompile Include="openssl\crypto\conf\conf_api.c" />
     <ClCompile Include="openssl\crypto\conf\conf_def.c" />
     <ClCompile Include="openssl\crypto\conf\conf_err.c" />
@@ -770,32 +794,7 @@
     <ClCompile Include="openssl\engines\e_ubsec.c" />
     <ClCompile Include="openssl\crypto\whrlpool\wp_block.c" />
   </ItemGroup>
-  <ItemGroup>
-    <Assemble Include="asm\x86-win32-masm\aes\aes-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\aes\aesni-x86.asm" />
-    <Assemble Include="asm\x86-win32-masm\aes\vpaes-x86.asm" />
-    <Assemble Include="asm\x86-win32-masm\bf\bf-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\bn\bn-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\bn\co-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\bn\x86-mont.asm" />
-    <Assemble Include="asm\x86-win32-masm\bn\x86-gf2m.asm" />
-    <Assemble Include="asm\x86-win32-masm\camellia\cmll-x86.asm" />
-    <Assemble Include="asm\x86-win32-masm\cast\cast-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\des\crypt586.asm" />
-    <Assemble Include="asm\x86-win32-masm\des\des-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\md5\md5-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\rc4\rc4-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\ripemd\rmd-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\sha\sha1-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\sha\sha256-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\sha\sha512-586.asm" />
-    <Assemble Include="asm\x86-win32-masm\whrlpool\wp-mmx.asm" />
-    <Assemble Include="asm\x86-win32-masm\modes\ghash-x86.asm" />
-    <Assemble Include="asm\x86-win32-masm\x86cpuid.asm" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="openssl.targets" />
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -1774,42 +1774,6 @@
     <Filter Include="openssl\crypto">
       <UniqueIdentifier>{DFFB1441-5E91-CEAB-DBC4-604225CE8161}</UniqueIdentifier>
     </Filter>
-    <Filter Include="openssl\crypto\comp">
-      <UniqueIdentifier>{C7C2DA88-A38F-006E-6680-42371CEF08F7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl">
-      <UniqueIdentifier>{A2039617-BE22-2E2D-B4F3-3B64B7BAFB84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto">
-      <UniqueIdentifier>{DFFB1441-5E91-CEAB-DBC4-604225CE8161}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto\comp">
-      <UniqueIdentifier>{C7C2DA88-A38F-006E-6680-42371CEF08F7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl">
-      <UniqueIdentifier>{A2039617-BE22-2E2D-B4F3-3B64B7BAFB84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto">
-      <UniqueIdentifier>{DFFB1441-5E91-CEAB-DBC4-604225CE8161}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto\comp">
-      <UniqueIdentifier>{C7C2DA88-A38F-006E-6680-42371CEF08F7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl">
-      <UniqueIdentifier>{A2039617-BE22-2E2D-B4F3-3B64B7BAFB84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto">
-      <UniqueIdentifier>{DFFB1441-5E91-CEAB-DBC4-604225CE8161}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto\comp">
-      <UniqueIdentifier>{C7C2DA88-A38F-006E-6680-42371CEF08F7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl">
-      <UniqueIdentifier>{A2039617-BE22-2E2D-B4F3-3B64B7BAFB84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="openssl\crypto">
-      <UniqueIdentifier>{DFFB1441-5E91-CEAB-DBC4-604225CE8161}</UniqueIdentifier>
-    </Filter>
     <Filter Include="openssl\crypto\conf">
       <UniqueIdentifier>{0C566AC7-099A-3D0D-B313-023117E5C74C}</UniqueIdentifier>
     </Filter>
@@ -6312,18 +6276,6 @@
     <ClCompile Include="openssl\crypto\cms\cms_smime.c">
       <Filter>openssl\crypto\cms</Filter>
     </ClCompile>
-    <ClCompile Include="openssl\crypto\comp\c_rle.c">
-      <Filter>openssl\crypto\comp</Filter>
-    </ClCompile>
-    <ClCompile Include="openssl\crypto\comp\c_zlib.c">
-      <Filter>openssl\crypto\comp</Filter>
-    </ClCompile>
-    <ClCompile Include="openssl\crypto\comp\comp_err.c">
-      <Filter>openssl\crypto\comp</Filter>
-    </ClCompile>
-    <ClCompile Include="openssl\crypto\comp\comp_lib.c">
-      <Filter>openssl\crypto\comp</Filter>
-    </ClCompile>
     <ClCompile Include="openssl\crypto\conf\conf_api.c">
       <Filter>openssl\crypto\conf</Filter>
     </ClCompile>
@@ -7572,69 +7524,69 @@
     <ClCompile Include="openssl\engines\e_ubsec.c">
       <Filter>openssl\engines</Filter>
     </ClCompile>
-    <Assemble Include="asm\x86-win32-masm\aes\aes-586.asm">
+    <MASM Include="asm\x86-win32-masm\aes\aes-586.asm">
       <Filter>asm\x86-win32-masm\aes</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\aes\aesni-x86.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\aes\aesni-x86.asm">
       <Filter>asm\x86-win32-masm\aes</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\aes\vpaes-x86.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\aes\vpaes-x86.asm">
       <Filter>asm\x86-win32-masm\aes</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\bf\bf-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\bf\bf-586.asm">
       <Filter>asm\x86-win32-masm\bf</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\bn\bn-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\bn\bn-586.asm">
       <Filter>asm\x86-win32-masm\bn</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\bn\co-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\bn\co-586.asm">
       <Filter>asm\x86-win32-masm\bn</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\bn\x86-mont.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\bn\x86-mont.asm">
       <Filter>asm\x86-win32-masm\bn</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\bn\x86-gf2m.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\bn\x86-gf2m.asm">
       <Filter>asm\x86-win32-masm\bn</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\camellia\cmll-x86.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\camellia\cmll-x86.asm">
       <Filter>asm\x86-win32-masm\camellia</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\cast\cast-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\cast\cast-586.asm">
       <Filter>asm\x86-win32-masm\cast</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\des\crypt586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\des\crypt586.asm">
       <Filter>asm\x86-win32-masm\des</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\des\des-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\des\des-586.asm">
       <Filter>asm\x86-win32-masm\des</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\md5\md5-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\md5\md5-586.asm">
       <Filter>asm\x86-win32-masm\md5</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\rc4\rc4-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\rc4\rc4-586.asm">
       <Filter>asm\x86-win32-masm\rc4</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\ripemd\rmd-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\ripemd\rmd-586.asm">
       <Filter>asm\x86-win32-masm\ripemd</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\sha\sha1-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\sha\sha1-586.asm">
       <Filter>asm\x86-win32-masm\sha</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\sha\sha256-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\sha\sha256-586.asm">
       <Filter>asm\x86-win32-masm\sha</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\sha\sha512-586.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\sha\sha512-586.asm">
       <Filter>asm\x86-win32-masm\sha</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\whrlpool\wp-mmx.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\whrlpool\wp-mmx.asm">
       <Filter>asm\x86-win32-masm\whrlpool</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\modes\ghash-x86.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\modes\ghash-x86.asm">
       <Filter>asm\x86-win32-masm\modes</Filter>
-    </Assemble>
-    <Assemble Include="asm\x86-win32-masm\x86cpuid.asm">
+    </MASM>
+    <MASM Include="asm\x86-win32-masm\x86cpuid.asm">
       <Filter>asm\x86-win32-masm</Filter>
-    </Assemble>
+    </MASM>
     <ClCompile Include="openssl\crypto\whrlpool\wp_block.c">
       <Filter>openssl\crypto\whrlpool</Filter>
     </ClCompile>

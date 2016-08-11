@@ -9,6 +9,85 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="async-wrap.h" />
+    <ClInclude Include="base-object.h" />
+    <ClInclude Include="base64\base64.h" />
+    <ClInclude Include="base64\modp_b64.h" />
+    <ClInclude Include="base64\modp_b64_data.h" />
+    <ClInclude Include="buffer.h" />
+    <ClInclude Include="child-process.h" />
+    <ClInclude Include="child_process.h" />
+    <ClInclude Include="client-request.h" />
+    <ClInclude Include="connection-wrap.h" />
+    <ClInclude Include="core-math.h" />
+    <ClInclude Include="core.h" />
+    <ClInclude Include="crypto.h" />
+    <ClInclude Include="detours-hooker.h" />
+    <ClInclude Include="dll-util.h" />
+    <ClInclude Include="dns.h" />
+    <ClInclude Include="error.h" />
+    <ClInclude Include="events.h" />
+    <ClInclude Include="file-url.h" />
+    <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="fs-req-wrap.h" />
+    <ClInclude Include="fs.h" />
+    <ClInclude Include="handle-wrap.h" />
+    <ClInclude Include="http-common.h" />
+    <ClInclude Include="http-server.h" />
+    <ClInclude Include="http.h" />
+    <ClInclude Include="iconv.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="keyboard-code-trans.h" />
+    <ClInclude Include="keyboard-codes.h" />
+    <ClInclude Include="lodash.h" />
+    <ClInclude Include="moment.h" />
+    <ClInclude Include="net-server.h" />
+    <ClInclude Include="net-socket.h" />
+    <ClInclude Include="net.h" />
+    <ClInclude Include="nlohmann\json.hpp" />
+    <ClInclude Include="node-zlib.h" />
+    <ClInclude Include="nodecpp-def.h" />
+    <ClInclude Include="nodecpp-internals.h" />
+    <ClInclude Include="nodecpp.h" />
+    <ClInclude Include="os.h" />
+    <ClInclude Include="path.h" />
+    <ClInclude Include="pe-cert.h" />
+    <ClInclude Include="pipe-wrap.h" />
+    <ClInclude Include="process-wrap.h" />
+    <ClInclude Include="process.h" />
+    <ClInclude Include="querystring.h" />
+    <ClInclude Include="read-file-context.h" />
+    <ClInclude Include="req-wrap.h" />
+    <ClInclude Include="server-response.h" />
+    <ClInclude Include="shm.h" />
+    <ClInclude Include="shutdown-wrap.h" />
+    <ClInclude Include="singleton.h" />
+    <ClInclude Include="stats-def.h" />
+    <ClInclude Include="std-regex-ex.h" />
+    <ClInclude Include="stream-base.h" />
+    <ClInclude Include="stream-readable.h" />
+    <ClInclude Include="stream-resource.h" />
+    <ClInclude Include="stream-wrap.h" />
+    <ClInclude Include="stream.h" />
+    <ClInclude Include="tcp-wrap.h" />
+    <ClInclude Include="timer-wrap.h" />
+    <ClInclude Include="timers.h" />
+    <ClInclude Include="underscore.string.h" />
+    <ClInclude Include="url.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="winreg.h" />
+    <ClInclude Include="wm-code-trans.h" />
+    <ClInclude Include="write-wrap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base64\base64.cpp" />
@@ -21,6 +100,7 @@
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
+    <ClCompile Include="detours-hooker.cpp" />
     <ClCompile Include="dll-util.cpp" />
     <ClCompile Include="dns.cpp" />
     <ClCompile Include="error.cpp" />
@@ -30,7 +110,6 @@
     <ClCompile Include="fs-req-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="handle-wrap.cpp" />
-    <ClCompile Include="detours-hooker.cpp" />
     <ClCompile Include="http-common.cpp" />
     <ClCompile Include="http-server.cpp" />
     <ClCompile Include="http.cpp" />
@@ -71,82 +150,11 @@
     <ClCompile Include="wm-code-trans.cpp" />
     <ClCompile Include="write-wrap.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="async-wrap.h" />
-    <ClInclude Include="base-object.h" />
-    <ClInclude Include="base64\base64.h" />
-    <ClInclude Include="base64\modp_b64.h" />
-    <ClInclude Include="base64\modp_b64_data.h" />
-    <ClInclude Include="buffer.h" />
-    <ClInclude Include="child-process.h" />
-    <ClInclude Include="child_process.h" />
-    <ClInclude Include="client-request.h" />
-    <ClInclude Include="connection-wrap.h" />
-    <ClInclude Include="core-math.h" />
-    <ClInclude Include="core.h" />
-    <ClInclude Include="crypto.h" />
-    <ClInclude Include="dll-util.h" />
-    <ClInclude Include="dns.h" />
-    <ClInclude Include="error.h" />
-    <ClInclude Include="events.h" />
-    <ClInclude Include="file-url.h" />
-    <ClInclude Include="fmt\format.h" />
-    <ClInclude Include="fs-req-wrap.h" />
-    <ClInclude Include="fs.h" />
-    <ClInclude Include="handle-wrap.h" />
-    <ClInclude Include="nodecpp-internals.h" />
-    <ClInclude Include="pipe-wrap.h" />
-    <ClInclude Include="read-file-context.h" />
-    <ClInclude Include="shutdown-wrap.h" />
-    <ClInclude Include="stats-def.h" />
-    <ClInclude Include="stream-readable.h" />
-    <ClInclude Include="stream-resource.h" />
-    <ClInclude Include="stream.h" />
-    <ClInclude Include="tcp-wrap.h" />
-    <ClInclude Include="timer-wrap.h" />
-    <ClInclude Include="detours-hooker.h" />
-    <ClInclude Include="http-common.h" />
-    <ClInclude Include="http-server.h" />
-    <ClInclude Include="http.h" />
-    <ClInclude Include="iconv.h" />
-    <ClInclude Include="ini.h" />
-    <ClInclude Include="keyboard-code-trans.h" />
-    <ClInclude Include="keyboard-codes.h" />
-    <ClInclude Include="lodash.h" />
-    <ClInclude Include="moment.h" />
-    <ClInclude Include="net-server.h" />
-    <ClInclude Include="net-socket.h" />
-    <ClInclude Include="net.h" />
-    <ClInclude Include="nlohmann\json.hpp" />
-    <ClInclude Include="node-zlib.h" />
-    <ClInclude Include="nodecpp-def.h" />
-    <ClInclude Include="nodecpp.h" />
-    <ClInclude Include="os.h" />
-    <ClInclude Include="path.h" />
-    <ClInclude Include="pe-cert.h" />
-    <ClInclude Include="process-wrap.h" />
-    <ClInclude Include="process.h" />
-    <ClInclude Include="querystring.h" />
-    <ClInclude Include="req-wrap.h" />
-    <ClInclude Include="server-response.h" />
-    <ClInclude Include="shm.h" />
-    <ClInclude Include="SimpleIni\SimpleIni.h" />
-    <ClInclude Include="singleton.h" />
-    <ClInclude Include="std-regex-ex.h" />
-    <ClInclude Include="stream-base.h" />
-    <ClInclude Include="stream-wrap.h" />
-    <ClInclude Include="timers.h" />
-    <ClInclude Include="underscore.string.h" />
-    <ClInclude Include="url.h" />
-    <ClInclude Include="util.h" />
-    <ClInclude Include="winreg.h" />
-    <ClInclude Include="wm-code-trans.h" />
-    <ClInclude Include="write-wrap.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5C4C58E7-4488-45CD-BFCD-098D95BC5D01}</ProjectGuid>
+    <ProjectGuid>{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>nodecpp</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -162,8 +170,23 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -171,33 +194,56 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\obj\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\obj\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4239;4291;4706</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)lib\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
@@ -205,19 +251,33 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/detours/include;../deps/zlib</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4239</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/detours/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)lib\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

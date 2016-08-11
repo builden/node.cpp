@@ -74,6 +74,8 @@ fs.readFile(filePath, [](const Buffer& buf) {
    > nmake
 2. 需安装CMake，并为glog3生成工程
    > cmake -G "Visual Studio 14"
+3. 需安装gyp
+   > gyp --depth=. xxx.gyp
 3. 在deps目录，下载各个模块
 ```bash
 git clone -b 1.2 https://github.com/KjellKod/g3log.git
@@ -86,12 +88,17 @@ git clone -b release-1.7.0 https://github.com/google/googletest.git gtest
 * http-parser -> gyp
 * zlib        -> cmake
 * openssl     -> 
-* libuv       -> 
-* gtest       -> 
+* libuv       -> vcbuild.bat
+* gtest       -> cmake
 
 ## 工程设置
 * Output Directory: $(SolutionDir)bin\$(Configuration)\
 * Intermediate Directory: $(SolutionDir)bin\obj\$(Configuration)\$(ProjectName)\
+* C/C++ => General => Additional Include Directory
+  > ../deps/uv
+* VC++ Directories => Library Directories
+  > $(SolutionDir)bin/$(Configuration)/lib
+* 
 
 ## 依赖
 * [libuv](https://github.com/libuv/libuv)

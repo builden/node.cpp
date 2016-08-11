@@ -14,228 +14,214 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="deps">
-      <UniqueIdentifier>{6790cfbc-08f0-447d-8d73-c014dc55a99a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="deps\fmt">
-      <UniqueIdentifier>{eea8cc24-bbcd-49b8-831e-8eb07a39d579}</UniqueIdentifier>
+      <UniqueIdentifier>{705d7545-fb12-4c4a-8ffb-3d2e3e2679c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="deps\base64">
-      <UniqueIdentifier>{06210a63-ccb5-445b-9d3b-5a6f7cd8ec48}</UniqueIdentifier>
+      <UniqueIdentifier>{dbde5536-62d8-448c-bb4b-3350d97f5241}</UniqueIdentifier>
     </Filter>
-    <Filter Include="deps\simpleini">
-      <UniqueIdentifier>{bf94779c-fd26-425f-8031-7bc55347daeb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core">
-      <UniqueIdentifier>{7fb9c7e1-5772-4a3b-85d1-37a2e91e38b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="third">
-      <UniqueIdentifier>{986f7ae6-d859-465c-8060-e3dcac7d7510}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="self">
-      <UniqueIdentifier>{2dd30313-cfd7-4c1d-a8ba-d7c874cbd43f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="utils">
-      <UniqueIdentifier>{e8699736-104d-4041-94a7-4eb2c44dffd3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\inner">
-      <UniqueIdentifier>{95b6b00c-d909-4917-b870-4e68c857c277}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\inner-zlib">
-      <UniqueIdentifier>{b8804b1c-dfcb-4ab1-aa1b-c5eccc0f25f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\inner-http">
-      <UniqueIdentifier>{3c567979-588c-40bf-8558-e6b540858561}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\inner-child-process">
-      <UniqueIdentifier>{d8c03b05-2af1-4fa4-b4fa-88eb8de883a5}</UniqueIdentifier>
+    <Filter Include="deps\fmt">
+      <UniqueIdentifier>{638cc808-0ae1-4e70-826c-f5ae69c96f45}</UniqueIdentifier>
     </Filter>
     <Filter Include="deps\nlohmann">
-      <UniqueIdentifier>{1bdfda9a-5b30-475a-aeba-9357012dd3bb}</UniqueIdentifier>
+      <UniqueIdentifier>{f0a65fb4-e76e-42c4-a6f4-be971d1cced6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core\inner-stream">
-      <UniqueIdentifier>{243941d7-31ba-4786-a450-e70db8337939}</UniqueIdentifier>
+    <Filter Include="deps\SimpleIni">
+      <UniqueIdentifier>{27048edd-811e-410d-a5dc-3d5cf4e391b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="nodepp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmt\format.cc">
-      <Filter>deps\fmt</Filter>
-    </ClCompile>
-    <ClCompile Include="base64\base64.cpp">
-      <Filter>deps\base64</Filter>
-    </ClCompile>
-    <ClCompile Include="base64\modp_b64.cc">
-      <Filter>deps\base64</Filter>
-    </ClCompile>
-    <ClCompile Include="buffer.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="child_process.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="core.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="core-math.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="error.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="dll-util.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="events.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="http.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="fs.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="file-url.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="iconv.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="ini.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="keyboard-code-trans.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="lodash.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="net.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="moment.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="os.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="path.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="pe-cert.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="process.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="querystring.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="shm.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="timers.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="underscore.string.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="url.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="net-server.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="net-socket.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="node-zlib.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="dns.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="client-request.cpp">
-      <Filter>core\inner-http</Filter>
-    </ClCompile>
-    <ClCompile Include="http-server.cpp">
-      <Filter>core\inner-http</Filter>
-    </ClCompile>
-    <ClCompile Include="server-response.cpp">
-      <Filter>core\inner-http</Filter>
-    </ClCompile>
-    <ClCompile Include="http-common.cpp">
-      <Filter>core\inner-http</Filter>
-    </ClCompile>
-    <ClCompile Include="winreg.cpp">
-      <Filter>third</Filter>
-    </ClCompile>
-    <ClCompile Include="child-process.cpp">
-      <Filter>core\inner-child-process</Filter>
-    </ClCompile>
-    <ClCompile Include="process-wrap.cpp">
-      <Filter>core\inner-child-process</Filter>
-    </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="handle-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="stream-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="stream-base.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="timer-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="write-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="stream-resource.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="nodecpp-internals.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="pipe-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="tcp-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="fs-req-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="stats-def.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="read-file-context.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="connection-wrap.cpp">
-      <Filter>core\inner</Filter>
-    </ClCompile>
-    <ClCompile Include="wm-code-trans.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="detours-hooker.cpp">
-      <Filter>self</Filter>
-    </ClCompile>
-    <ClCompile Include="stream.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="stream-readable.cpp">
-      <Filter>core\inner-stream</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="async-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base-object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="child_process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="child-process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client-request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="connection-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core-math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detours-hooker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dll-util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dns.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file-url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fs-req-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="handle-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http-common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http-server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iconv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ini.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard-codes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard-code-trans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lodash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net-server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net-socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodecpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodecpp-def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodecpp-internals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="node-zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pe-cert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pipe-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="querystring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="read-file-context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="req-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="server-response.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shutdown-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stats-def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="std-regex-ex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-readable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timer-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="underscore.string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winreg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wm-code-trans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="write-wrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="base64\base64.h">
       <Filter>deps\base64</Filter>
     </ClInclude>
@@ -248,203 +234,187 @@
     <ClInclude Include="fmt\format.h">
       <Filter>deps\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleIni\SimpleIni.h">
-      <Filter>deps\simpleini</Filter>
-    </ClInclude>
-    <ClInclude Include="nodecpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nodecpp-def.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="url.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="timers.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="std-regex-ex.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="shm.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="path.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="os.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="process.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="querystring.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="net.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="fs.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="http.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="child_process.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core-math.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="error.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="events.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="iconv.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="file-url.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="buffer.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="moment.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="lodash.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="dll-util.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="ini.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard-codes.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard-code-trans.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="pe-cert.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="underscore.string.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="net-server.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="net-socket.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="node-zlib.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="dns.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="client-request.h">
-      <Filter>core\inner-http</Filter>
-    </ClInclude>
-    <ClInclude Include="http-server.h">
-      <Filter>core\inner-http</Filter>
-    </ClInclude>
-    <ClInclude Include="server-response.h">
-      <Filter>core\inner-http</Filter>
-    </ClInclude>
-    <ClInclude Include="http-common.h">
-      <Filter>core\inner-http</Filter>
-    </ClInclude>
-    <ClInclude Include="winreg.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="child-process.h">
-      <Filter>core\inner-child-process</Filter>
-    </ClInclude>
-    <ClInclude Include="process-wrap.h">
-      <Filter>core\inner-child-process</Filter>
-    </ClInclude>
     <ClInclude Include="nlohmann\json.hpp">
       <Filter>deps\nlohmann</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="handle-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="stream-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="stream-base.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="async-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="base-object.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="req-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="timer-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="write-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="shutdown-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="stream-resource.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="nodecpp-internals.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="pipe-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="tcp-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="fs-req-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="stats-def.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="read-file-context.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="connection-wrap.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
-    <ClInclude Include="wm-code-trans.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="detours-hooker.h">
-      <Filter>self</Filter>
-    </ClInclude>
-    <ClInclude Include="stream.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="stream-readable.h">
-      <Filter>core\inner-stream</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="child_process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="child-process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="client-request.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="connection-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core-math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detours-hooker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dll-util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dns.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file-url.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fs-req-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="handle-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http-common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http-server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iconv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ini.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard-code-trans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lodash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net-server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net-socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodecpp-internals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodepp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="node-zlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="os.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pe-cert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pipe-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="querystring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="read-file-context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="server-response.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stats-def.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-readable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tcp-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timer-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="underscore.string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="url.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winreg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wm-code-trans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="write-wrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base64\base64.cpp">
+      <Filter>deps\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="base64\modp_b64.cc">
+      <Filter>deps\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="fmt\format.cc">
+      <Filter>deps\fmt</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

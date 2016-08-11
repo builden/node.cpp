@@ -15,119 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fmt-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="buffer-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core-math-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="events-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="file-url-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fs-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="http-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iconv-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ini-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard-code-trans-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lodash-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="moment-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="os-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="path-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pe-cert-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="process-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="querystring-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="regex-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="timers-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="underscore.string-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="url-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="detours-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dns-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="winreg-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="http-parse-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="promise-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="uv-thread-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nlohmann-json-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stream-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fmt-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="buffer-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -137,13 +24,28 @@
     <ClCompile Include="core-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="crypto-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detours-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dns-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="events-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="file-url-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fmt-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="fs-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http-parse-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="http-test.cpp">
@@ -164,6 +66,9 @@
     <ClCompile Include="moment-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nlohmann-json-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="os-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -176,10 +81,22 @@
     <ClCompile Include="process-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="promise-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="querystring-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="regex-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="timers-test.cpp">
@@ -191,35 +108,118 @@
     <ClCompile Include="url-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="detours-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dns-test.cpp">
+    <ClCompile Include="uv-thread-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="winreg-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="http-parse-test.cpp">
+    <ClCompile Include="zlib-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="promise-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="uv-thread-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="nlohmann-json-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stream-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="buffer-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core-math-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detours-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dns-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="events-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file-url-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fs-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http-parse-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iconv-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ini-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard-code-trans-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lodash-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moment-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nlohmann-json-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="os-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="path-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pe-cert-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="promise-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="querystring-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="regex-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timers-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="underscore.string-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="url-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uv-thread-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winreg-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
