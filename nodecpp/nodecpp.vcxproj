@@ -151,7 +151,7 @@
     <ClCompile Include="write-wrap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}</ProjectGuid>
+    <ProjectGuid>{5C4C58E7-4488-45CD-BFCD-098D95BC5D01}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>nodecpp</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
