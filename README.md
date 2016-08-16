@@ -50,7 +50,10 @@ fs.readFile(filePath, [](const Buffer& buf) {
 
 ## 自用库
 - [x] keyboard-code-trans
+  * 字符串转键盘虚拟键值
   > 灵感来自于Electron
+- [x] wm-code-trans
+  * WindowsMessage转字符串
 - [x] pe-cert
   * 用于检测程序的数字签名
 - [x] shm
