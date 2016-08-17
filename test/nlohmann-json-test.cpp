@@ -111,3 +111,13 @@ TEST_F(NlohmannJsonTest, arr) {
 
   EXPECT_EQ(j.dump(), R"(["foo",1,true])");
 }
+
+TEST_F(NlohmannJsonTest, exception) {
+  json j;
+  try {
+    j = json::parse("a");
+  }
+  catch (const std::exception & e) {
+    cout << e.what() << endl;
+  }
+}
