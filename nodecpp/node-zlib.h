@@ -2,6 +2,7 @@
 #include "nodecpp-def.h"
 #include "singleton.h"
 #include "buffer.h"
+#include "events.h"
 
 namespace nodecpp {
   const int Z_NO_FLUSH = 0;
@@ -39,7 +40,9 @@ namespace nodecpp {
     Buffer dictionary;
   };
 
-  class Zlib : public Singleton<Zlib> {
+  class Zlib : 
+    public Singleton<Zlib>,
+    public EventEmitter {
   public:
     Zlib();
     ~Zlib();

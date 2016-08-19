@@ -28,6 +28,15 @@
     <Filter Include="deps\SimpleIni">
       <UniqueIdentifier>{27048edd-811e-410d-a5dc-3d5cf4e391b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{db1de3f5-9499-4927-abf6-e81bf4a0edf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third">
+      <UniqueIdentifier>{6e6132fc-fa84-4ea6-bf3a-ba5c1cb878d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\inner">
+      <UniqueIdentifier>{7914d6d6-5abf-4470-8e3e-776a2700fe6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h">
@@ -237,6 +246,9 @@
     <ClInclude Include="nlohmann\json.hpp">
       <Filter>deps\nlohmann</Filter>
     </ClInclude>
+    <ClInclude Include="zctx.h">
+      <Filter>core\inner</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -415,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="fmt\format.cc">
       <Filter>deps\fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="zctx.cpp">
+      <Filter>core\inner</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
