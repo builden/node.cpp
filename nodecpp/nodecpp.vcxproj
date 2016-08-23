@@ -79,6 +79,7 @@
     <ClInclude Include="stream-resource.h" />
     <ClInclude Include="stream-wrap.h" />
     <ClInclude Include="stream.h" />
+    <ClInclude Include="super-agent.h" />
     <ClInclude Include="tcp-wrap.h" />
     <ClInclude Include="timer-wrap.h" />
     <ClInclude Include="timers.h" />
@@ -141,6 +142,7 @@
     <ClCompile Include="stream-resource.cpp" />
     <ClCompile Include="stream-wrap.cpp" />
     <ClCompile Include="stream.cpp" />
+    <ClCompile Include="super-agent.cpp" />
     <ClCompile Include="tcp-wrap.cpp" />
     <ClCompile Include="timer-wrap.cpp" />
     <ClCompile Include="timers.cpp" />

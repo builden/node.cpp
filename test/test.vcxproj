@@ -187,6 +187,7 @@
     <ClCompile Include="regex-test.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="stream-test.cpp" />
+    <ClCompile Include="super-agent-test.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="timers-test.cpp" />
     <ClCompile Include="underscore.string-test.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="regex-test.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="stream-test.h" />
+    <ClInclude Include="super-agent-test.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="timers-test.h" />
     <ClInclude Include="underscore.string-test.h" />

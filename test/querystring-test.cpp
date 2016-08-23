@@ -16,8 +16,13 @@ TEST_F(QuerystringTest, stringify) {
     { "corge", "" },
     { "bool", false },
     { "num", 1.2 },
-    { "chs", "中文" }
+    { "chs", "中文" },
+    { "special", " \"'" }
   };
 
-  EXPECT_EQ(qs.stringify(j), "baz=qux&baz=quux&bool=false&chs=%E4%B8%AD%E6%96%87&corge=&foo=bar&num=1.2");
+  EXPECT_EQ(qs.stringify(j), "baz=qux&baz=quux&bool=false&chs=%E4%B8%AD%E6%96%87&corge=&foo=bar&num=1.2&special=%20%22'");
+
+  auto j2 = qs.parse("baz=qux&baz=quux&bool=false&chs=%E4%B8%AD%E6%96%87&corge=&foo=bar&num=1.2&special=%20%22'");
+  auto expected = R"({"baz":["qux","quux"],"bool":"false","chs":"中文","corge":"","foo":"bar","num":"1.2","special":" \"'"})";
+  EXPECT_EQ(j2.dump(), expected);
 }

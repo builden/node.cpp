@@ -3,18 +3,21 @@
 
 TEST_F(UrlTest, parse) {
   UrlObj obj = url.parse("http://user:pass@host.com:8080/p/a/t/h?query=string#hash");
-  fmt::print("protocol: {}\n", obj.protocol);
-  fmt::print("slashes: {}\n", obj.slashes);
-  fmt::print("auth: {}\n", obj.auth);
-  fmt::print("host: {}\n", obj.host);
-  fmt::print("port: {}\n", obj.port);
-  fmt::print("hostname: {}\n", obj.hostname);
-  fmt::print("hash: {}\n", obj.hash);
-  fmt::print("search: {}\n", obj.search);
-  fmt::print("query: {}\n", obj.query);
-  fmt::print("pathname: {}\n", obj.pathname);
-  fmt::print("path: {}\n", obj.path);
-  fmt::print("href: {}\n", obj.href);
+  EXPECT_EQ(obj.protocol, "http:");
+  EXPECT_EQ(obj.slashes, true);
+  EXPECT_EQ(obj.auth, "user:pass");
+  EXPECT_EQ(obj.host, "host.com:8080");
+  EXPECT_EQ(obj.port, "8080");
+  EXPECT_EQ(obj.hostname, "host.com");
+  EXPECT_EQ(obj.hash, "#hash");
+  EXPECT_EQ(obj.search, "?query=string");
+  EXPECT_EQ(obj.query, "query=string");
+  EXPECT_EQ(obj.pathname, "/p/a/t/h");
+  EXPECT_EQ(obj.path, "/p/a/t/h?query=string");
+  EXPECT_EQ(obj.href, "http://user:pass@host.com:8080/p/a/t/h?query=string#hash");
+
+  UrlObj obj2 = url.parse("http://ip.qq.com");
+  EXPECT_EQ(obj2.port, "");
 }
 
 TEST_F(UrlTest, format) {

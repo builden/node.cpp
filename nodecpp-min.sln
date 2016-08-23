@@ -10,6 +10,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nodecpp", "nodecpp\nodecpp.vcxproj", "{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{2999DAB4-3DB1-4C0B-B89B-E48E157C082D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277} = {AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

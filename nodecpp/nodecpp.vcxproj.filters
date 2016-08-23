@@ -249,6 +249,9 @@
     <ClInclude Include="zctx.h">
       <Filter>core\inner</Filter>
     </ClInclude>
+    <ClInclude Include="super-agent.h">
+      <Filter>third</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -430,6 +433,9 @@
     </ClCompile>
     <ClCompile Include="zctx.cpp">
       <Filter>core\inner</Filter>
+    </ClCompile>
+    <ClCompile Include="super-agent.cpp">
+      <Filter>third</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

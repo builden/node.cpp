@@ -117,6 +117,9 @@
     <ClCompile Include="zlib-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="super-agent-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer-test.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zlib-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="super-agent-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
