@@ -11,6 +11,9 @@ namespace nodecpp {
 
   public:
     Buffer data;
+    uint32_t statusCode;
+    string statusMessage;
+    ssmap_t headers;
 
   private:
     class impl;

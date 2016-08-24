@@ -21,6 +21,20 @@ namespace nodecpp {
     return str.substr(start, end - start);
   }
 
+  wstring UnderscoreString::slice(const wstring& wstr, int start) {
+    int end = wstr.length();
+    return slice(wstr, start, end);
+  }
+
+  wstring UnderscoreString::slice(const wstring& wstr, int start, int end) {
+    if (start < 0) start += wstr.length();
+    if (end < 0) end += wstr.length();
+    int len = end - start;
+    if (start < 0) start = 0;
+    if (len <= 0) return L"";
+    return wstr.substr(start, end - start);
+  }
+
   svec_t UnderscoreString::split(const string& str, const string& separator /*= " "*/, int limit /*= -1*/) {
     svec_t v;
     string::size_type pos1, pos2;

@@ -25,4 +25,6 @@ TEST_F(QuerystringTest, stringify) {
   auto j2 = qs.parse("baz=qux&baz=quux&bool=false&chs=%E4%B8%AD%E6%96%87&corge=&foo=bar&num=1.2&special=%20%22'");
   auto expected = R"({"baz":["qux","quux"],"bool":"false","chs":"中文","corge":"","foo":"bar","num":"1.2","special":" \"'"})";
   EXPECT_EQ(j2.dump(), expected);
+
+  EXPECT_EQ(qs.stringify(R"({"a": "中文a"})"_json), "a=%E4%B8%AD%E6%96%87a");
 }

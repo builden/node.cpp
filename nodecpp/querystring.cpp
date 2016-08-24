@@ -291,7 +291,7 @@ namespace nodecpp {
     if (lastPos == 0)
       return str;
     if (lastPos < wstr.length())
-      return out + s.slice(str, lastPos);
+      return out + iconv.wstrToStr(s.slice(wstr, lastPos));
     return out;
   }
 

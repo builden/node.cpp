@@ -8,6 +8,8 @@ namespace nodecpp {
   public:
     string slice(const string& str, int start);
     string slice(const string& str, int start, int end);
+    wstring slice(const wstring& wstr, int start);
+    wstring slice(const wstring& wstr, int start, int end);
     svec_t split(const string& str, const string& separator = " ", int limit = -1);
     string join(const svec_t& svec, const string& separator = "");
 

@@ -2,6 +2,7 @@
 #include "url-test.h"
 
 TEST_F(UrlTest, parse) {
+  // note: hash字段不会发送到服务器，这个一般只用于请求最新资源，防止同名文件缓存
   UrlObj obj = url.parse("http://user:pass@host.com:8080/p/a/t/h?query=string#hash");
   EXPECT_EQ(obj.protocol, "http:");
   EXPECT_EQ(obj.slashes, true);
