@@ -7,6 +7,9 @@ TEST_F(SuperAgentTest, get) {
   sa.get("http://ip.qq.com")
     .set("User-Agent", "haha")
     .set("www", "xx")
+    .onProgress([](uint32_t currByte, uint32_t totalByte) {
+      cout << "progress: " << currByte << "/" << totalByte << endl;
+    })
     .end([](const Error& err, const ServerResponse& res) {
     EXPECT_FALSE(err);
     EXPECT_GT(res.data.size(), 1u);

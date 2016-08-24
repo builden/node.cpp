@@ -252,6 +252,9 @@
     <ClInclude Include="super-agent.h">
       <Filter>third</Filter>
     </ClInclude>
+    <ClInclude Include="request-wrap.h">
+      <Filter>third</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -435,6 +438,9 @@
       <Filter>core\inner</Filter>
     </ClCompile>
     <ClCompile Include="super-agent.cpp">
+      <Filter>third</Filter>
+    </ClCompile>
+    <ClCompile Include="request-wrap.cpp">
       <Filter>third</Filter>
     </ClCompile>
   </ItemGroup>

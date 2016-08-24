@@ -13,7 +13,7 @@ namespace nodecpp {
     Buffer data;
     uint32_t statusCode;
     string statusMessage;
-    ssmap_t headers;
+    ssmap_t headers;  // keyÊÇĞ¡Ğ´
 
   private:
     class impl;

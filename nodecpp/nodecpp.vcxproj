@@ -68,6 +68,7 @@
     <ClInclude Include="querystring.h" />
     <ClInclude Include="read-file-context.h" />
     <ClInclude Include="req-wrap.h" />
+    <ClInclude Include="request-wrap.h" />
     <ClInclude Include="server-response.h" />
     <ClInclude Include="shm.h" />
     <ClInclude Include="shutdown-wrap.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="process.cpp" />
     <ClCompile Include="querystring.cpp" />
     <ClCompile Include="read-file-context.cpp" />
+    <ClCompile Include="request-wrap.cpp" />
     <ClCompile Include="server-response.cpp" />
     <ClCompile Include="shm.cpp" />
     <ClCompile Include="stats-def.cpp" />
