@@ -41,52 +41,54 @@ namespace nodecpp {
   public:
 
   public:
-    void open(const string& path, const string& flags, OpenCb_t cb);
-    void open(const string& path, const string& flags, int mode, OpenCb_t cb);
-    int openSync(const string& path, const string& flags, int mode = 0);
+    void open(const string& p, const string& flags, OpenCb_t cb);
+    void open(const string& p, const string& flags, int mode, OpenCb_t cb);
+    int openSync(const string& p, const string& flags, int mode = 0);
 
     void close(int fd, CloseCb_t cb);
     void closeSync(int fd);
 
-    void readFile(const string& path, ReadCb_t cb);
-    void readFile(const string& path, const string& encoding, ReadStrCb_t cb);
+    void readFile(const string& p, ReadCb_t cb);
+    void readFile(const string& p, const string& encoding, ReadStrCb_t cb);
 
-    Buffer readFileSync(const string& path);
-    string readFileSync(const string& path, const string& encoding);
+    Buffer readFileSync(const string& p);
+    string readFileSync(const string& p, const string& encoding);
 
-    void writeFile(const string& path, const Buffer& data, WriteCb_t cb);
-    void writeFileSync(const string& path, const Buffer& data);
+    void writeFile(const string& p, const Buffer& data, WriteCb_t cb);
+    void writeFileSync(const string& p, const Buffer& data);
 
-    void stat(const string& path, StatCb_t cb);
-    Stats statSync(const string& path);
-    void lstat(const string& path, StatCb_t cb);
-    Stats lstatSync(const string& path);
+    void stat(const string& p, StatCb_t cb);
+    Stats statSync(const string& p);
+    void lstat(const string& p, StatCb_t cb);
+    Stats lstatSync(const string& p);
     void fstat(int fd, StatCb_t cb);
     Stats fstatSync(int fd);
 
-    void exists(const string& path, ExistsCb_t cb);
-    bool existsSync(const string& path);
+    void exists(const string& p, ExistsCb_t cb);
+    bool existsSync(const string& p);
 
     // 创建目录
-    void mkdir(const string& path, int mode, MkdirCb_t cb);
-    void mkdir(const string& path, MkdirCb_t cb);
-    void mkdirSync(const string& path, int mode = 0777);
+    void mkdir(const string& p, int mode, MkdirCb_t cb);
+    void mkdir(const string& p, MkdirCb_t cb);
+    void mkdirSync(const string& p, int mode = 0777);
+    void mkdirs(const string& p, MkdirCb_t cb);
+    void mkdirsSync(const string& p);
 
     // 删除目录，只能删除空文件夹
-    void rmdir(const string& path, RmdirCb_t cb);
-    void rmdirSync(const string& path);
+    void rmdir(const string& p, RmdirCb_t cb);
+    void rmdirSync(const string& p);
 
     // 删除文件
-    void unlink(const string& path, UnlinkCb_t cb);
-    void unlinkSync(const string& path);
+    void unlink(const string& p, UnlinkCb_t cb);
+    void unlinkSync(const string& p);
 
     // 重命名
     void rename(const string& oldPath, const string& newPath, RenameCb_t cb);
     void renameSync(const string& oldPath, const string& newPath);
 
-    void access(const string& path, int mode, AccessCb_t cb);
-    void access(const string& path, AccessCb_t cb);
-    void accessSync(const string& path, int mode = 0);
+    void access(const string& p, int mode, AccessCb_t cb);
+    void access(const string& p, AccessCb_t cb);
+    void accessSync(const string& p, int mode = 0);
 
     uint32_t readSync(int fd, Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = -1);
 
@@ -95,7 +97,7 @@ namespace nodecpp {
 
     json readJsonSync(const string& file);
   private:
-    int stringToFlags(const string& path);
+    int stringToFlags(const string& p);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);
     void writeAll(int fd, bool isUserFd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteCb_t cb);
   };

@@ -91,6 +91,8 @@
     <ClInclude Include="wm-code-trans.h" />
     <ClInclude Include="write-wrap.h" />
     <ClInclude Include="zctx.h" />
+    <ClInclude Include="zlib\ioapi.h" />
+    <ClInclude Include="zlib\unzip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base64\base64.cpp" />
@@ -155,6 +157,8 @@
     <ClCompile Include="wm-code-trans.cpp" />
     <ClCompile Include="write-wrap.cpp" />
     <ClCompile Include="zctx.cpp" />
+    <ClCompile Include="zlib\ioapi.c" />
+    <ClCompile Include="zlib\unzip.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}</ProjectGuid>

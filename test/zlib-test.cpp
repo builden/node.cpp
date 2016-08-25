@@ -30,3 +30,19 @@ TEST_F(ZlibTest, unzip) {
   EXPECT_EQ(zlib.unzipSync(Buffer("789c4b040000620062", "hex")).toString(), "a");
   EXPECT_EQ(zlib.unzipSync(Buffer("1f8b080000000000000b4b040043beb7e801000000", "hex")).toString(), "a");
 }
+
+TEST_F(ZlibTest, unzipFile) {
+  zlib.unzipFile("D:/notexit.zip", "D:/zip", [](const Error& err) {
+    EXPECT_TRUE(err);
+    EXPECT_EQ(err.str(), string("unzOpen64 D:/notexit.zip failed"));
+  });
+
+/*
+  zlib.unzipFile("D:/dd.zip", "D:/zip", [](const Error& err) {
+    EXPECT_FALSE(err);
+    cout << err.str() << endl;
+  });*/
+  // zlib.unzipFileSync("D:/dd.zip", "D:/zip");
+
+  run();
+}

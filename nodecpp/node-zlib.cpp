@@ -1,5 +1,9 @@
 #include "node-zlib.h"
+#include "path.h"
+#include "fs.h"
+#include "fmt/format.h"
 
+#include "zlib/unzip.h"
 #include <zlib.h>
 #include <uv.h>
 #pragma comment(lib, "zlib")
@@ -139,6 +143,108 @@ namespace nodecpp {
 
   Buffer Zlib::unzipSync(const Buffer& buf) {
     return pimpl->zlibInflate(UNZIP, buf);
+  }
+
+  class UnzipFileWrap {
+  public:
+    UnzipFileWrap() {
+      req_.data = this;
+    }
+
+    void unzipFile(const string& zipFile, const string& destPath, UnzipFileCb_t cb) {
+      zipFile_ = zipFile;
+      destPath_ = destPath;
+      cb_ = cb;
+      uv_queue_work(uv_default_loop(), &req_, runUnzipFile, afterUnzipFile);
+    }
+
+    static void runUnzipFile(uv_work_t* req) {
+      auto wrap = (UnzipFileWrap*)req->data;
+      try {
+        zlib.unzipFileSync(wrap->zipFile_, wrap->destPath_);
+      }
+      catch (const Error& err) {
+        wrap->errMsg_ = err.str();
+      }
+    }
+
+    static void afterUnzipFile(uv_work_t* req, int status) {
+      auto wrap = (UnzipFileWrap*)req->data;
+      if (wrap->errMsg_.empty()) {
+        wrap->cb_(Error());
+      }
+      else {
+        wrap->cb_(Error(wrap->errMsg_));
+      }
+      delete wrap;
+    }
+
+  private:
+    uv_work_t req_;
+    string zipFile_;
+    string destPath_;
+    UnzipFileCb_t cb_;
+    string errMsg_;
+  };
+
+  void Zlib::unzipFile(const string& zipFile, const string& destPath, UnzipFileCb_t cb) {
+    auto wrap = new UnzipFileWrap();
+    wrap->unzipFile(zipFile, destPath, cb);
+  }
+
+  void Zlib::unzipFileSync(const string& zipFile, const string& destPath) {
+    unz_file_info64 FileInfo;
+    unzFile zFile = unzOpen64(zipFile.c_str());
+    if (nullptr == zFile) {
+      throw Error(fmt::format("unzOpen64 {} failed", zipFile));
+      return;
+    }
+    fs.mkdirsSync(destPath);
+
+    unz_global_info64 gi;
+    if (unzGetGlobalInfo64(zFile, &gi) != UNZ_OK) {
+      throw Error(fmt::format("unzGetGlobalInfo64 {} failed", zipFile));
+      return;
+    }
+
+    int result;
+    for (int i = 0; i < gi.number_entry; ++i) {
+      char file[256] = { 0 };
+      if (unzGetCurrentFileInfo64(zFile, &FileInfo, file, sizeof(file), nullptr, 0, nullptr, 0) != UNZ_OK) {
+        throw Error(fmt::format("unzGetCurrentFileInfo64 {} failed", zipFile));
+      }
+
+      // 文件，否则为目录
+      if (!(FileInfo.external_fa & FILE_ATTRIBUTE_DIRECTORY)) {
+        // 打开文件
+        result = unzOpenCurrentFile(zFile);
+        // result = unzOpenCurrentFilePassword(zFile, "szPassword");
+
+        string destFilePath = path.join(destPath, file);
+        int fd = fs.openSync(destFilePath, "w", 0666);
+        Buffer data(1024);
+        int size;
+        //读取内容
+        while (true) {
+          size = unzReadCurrentFile(zFile, const_cast<char*>(data.data()), 1024);
+          if (size <= 0) break;
+          fs.writeSync(fd, data, 0, size);
+        }
+      }
+      else {
+        string destDirPath = path.join(destPath, file);
+        fs.mkdirsSync(destDirPath);
+      }
+
+      //关闭当前文件
+      unzCloseCurrentFile(zFile);
+
+      //出错
+      if (i < gi.number_entry - 1 && unzGoToNextFile(zFile) != UNZ_OK) {
+        throw Error(fmt::format("unzGoToNextFile {} failed", zipFile));
+      }
+    }
+    unzClose(zFile);
   }
 
 }

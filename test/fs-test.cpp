@@ -187,3 +187,19 @@ TEST_F(FsTest, readJson) {
   fs.unlinkSync(file);
   EXPECT_FALSE(fs.existsSync(file));
 }
+
+TEST_F(FsTest, mkdirs) {
+/*
+  try {
+    fs.mkdirsSync("D:/1/2/3/4");
+  }
+  catch (const Error&) {
+    // 不会到这里来
+    EXPECT_FALSE(true);
+  }
+
+  fs.mkdirs("D:/4/3/2/1", [](const Error& err) {
+    EXPECT_FALSE(err);
+  });
+  run();*/
+}

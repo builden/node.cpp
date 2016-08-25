@@ -1,24 +1,25 @@
 #include "fs.h"
 #include "iconv.h"
 #include "fmt/format.h"
+#include "path.h"
 
 #include <uv.h>
 #include <fcntl.h>
 #include "fs-req-wrap.h"
 
 namespace nodecpp {
-  void Fs::open(const string& path, const string& flags, OpenCb_t cb) {
-    open(path, flags, 0, cb);
+  void Fs::open(const string& p, const string& flags, OpenCb_t cb) {
+    open(p, flags, 0, cb);
   }
 
-  void Fs::open(const string& path, const string& flags, int mode, OpenCb_t cb) {
+  void Fs::open(const string& p, const string& flags, int mode, OpenCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteResult = cb;
-    Open(path, stringToFlags(flags), mode, reqWrap);
+    Open(iconv.strToUtf8(p), stringToFlags(flags), mode, reqWrap);
   }
 
-  int Fs::openSync(const string& path, const string& flags, int mode /*= 0*/) {
-    return Open(path, stringToFlags(flags), mode);
+  int Fs::openSync(const string& p, const string& flags, int mode /*= 0*/) {
+    return Open(iconv.strToUtf8(p), stringToFlags(flags), mode);
   }
 
   void Fs::close(int fd, CloseCb_t cb) {
@@ -31,7 +32,7 @@ namespace nodecpp {
     Close(fd);
   }
 
-  void Fs::readFile(const string& path, ReadCb_t cb) {
+  void Fs::readFile(const string& p, ReadCb_t cb) {
     // flags default 'r'
     auto context = new ReadFileContext(cb);
     context->isUserFd_ = false;
@@ -40,11 +41,11 @@ namespace nodecpp {
     req->onCompleteResult = [context](const Error& err, int fd) {
       context->readFileAfterOpen(err, fd);
     };
-    Open(path, stringToFlags("r"), 0666, req);
+    Open(iconv.strToUtf8(p), stringToFlags("r"), 0666, req);
   }
 
-  void Fs::readFile(const string& path, const string& encoding, ReadStrCb_t cb) {
-    readFile(path, [&](const Error& err, const Buffer& buf) {
+  void Fs::readFile(const string& p, const string& encoding, ReadStrCb_t cb) {
+    readFile(p, [&](const Error& err, const Buffer& buf) {
       cb(err, buf.toString(encoding));
     });
   }
@@ -116,8 +117,8 @@ namespace nodecpp {
     });
   }
 
-  Buffer Fs::readFileSync(const string& path) {
-    int fd = openSync(path, "r", 0666);
+  Buffer Fs::readFileSync(const string& p) {
+    int fd = openSync(iconv.strToUtf8(p), "r", 0666);
     Stats st = fstatSync(fd);
     uint32_t size = st.isFile() ? static_cast<uint32_t>(st.size) : 0;
     Buffer buffer;
@@ -156,13 +157,13 @@ namespace nodecpp {
     return buffer;
   }
 
-  string Fs::readFileSync(const string& path, const string& encoding) {
-    Buffer buf = readFileSync(path);
+  string Fs::readFileSync(const string& p, const string& encoding) {
+    Buffer buf = readFileSync(p);
     return buf.toString(encoding);
   }
 
-  void Fs::writeFile(const string& path, const Buffer& data, WriteCb_t cb) {
-    open(path, "w", 0666, [=](const Error& openErr, int fd) {
+  void Fs::writeFile(const string& p, const Buffer& data, WriteCb_t cb) {
+    open(p, "w", 0666, [=](const Error& openErr, int fd) {
       if (openErr) {
         cb(openErr);
       }
@@ -172,8 +173,8 @@ namespace nodecpp {
     });
   }
 
-  void Fs::writeFileSync(const string& path, const Buffer& data) {
-    int fd = openSync(path, "w", 0666);
+  void Fs::writeFileSync(const string& p, const Buffer& data) {
+    int fd = openSync(p, "w", 0666);
     uint32_t offset = 0;
     uint32_t length = data.size();
     uint32_t position = 0;
@@ -188,45 +189,45 @@ namespace nodecpp {
     closeSync(fd);
   }
 
-  void Fs::stat(const string& path, StatCb_t cb) {
+  void Fs::stat(const string& p, StatCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteStats = cb;
-    Stat(path);
+    Stat(iconv.strToUtf8(p), reqWrap);
   }
 
-  Stats Fs::statSync(const string& path) {
-    return Stat(path);
+  Stats Fs::statSync(const string& p) {
+    return Stat(iconv.strToUtf8(p));
   }
 
-  void Fs::lstat(const string& path, StatCb_t cb) {
+  void Fs::lstat(const string& p, StatCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteStats = cb;
-    LStat(path);
+    LStat(iconv.strToUtf8(p), reqWrap);
   }
 
-  Stats Fs::lstatSync(const string& path) {
-    return LStat(path);
+  Stats Fs::lstatSync(const string& p) {
+    return LStat(iconv.strToUtf8(p));
   }
 
   void Fs::fstat(int fd, StatCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteStats = cb;
-    FStat(fd);
+    FStat(fd, reqWrap);
   }
 
   Stats Fs::fstatSync(int fd) {
     return FStat(fd);
   }
 
-  void Fs::exists(const string& path, ExistsCb_t cb) {
-    stat(path, [cb](const Error& err, const Stats&) {
+  void Fs::exists(const string& p, ExistsCb_t cb) {
+    stat(p, [cb](const Error& err, const Stats&) {
       cb(!err);
     });
   }
 
-  bool Fs::existsSync(const string& path) {
+  bool Fs::existsSync(const string& p) {
     try {
-      statSync(path);
+      statSync(p);
       return true;
     }
     catch (const Error&) {
@@ -234,62 +235,118 @@ namespace nodecpp {
     }
   }
 
-  void Fs::mkdir(const string& path, MkdirCb_t cb) {
-    mkdir(path, 0777, cb);
+  void Fs::mkdir(const string& p, MkdirCb_t cb) {
+    mkdir(p, 0777, cb);
   }
 
-  void Fs::mkdir(const string& path, int mode, MkdirCb_t cb) {
+  void Fs::mkdir(const string& p, int mode, MkdirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    MKDir(path, mode, reqWrap);
+    MKDir(iconv.strToUtf8(p), mode, reqWrap);
   }
 
-  void Fs::mkdirSync(const string& path, int mode /*= 0777*/) {
-    MKDir(path, mode);
+  void Fs::mkdirSync(const string& p, int mode /*= 0777*/) {
+    MKDir(iconv.strToUtf8(p), mode);
   }
 
-  void Fs::rmdir(const string& path, RmdirCb_t cb) {
+  void Fs::mkdirs(const string& p, MkdirCb_t cb) {
+    auto _p = path.resolve(p);
+    mkdir(_p, [_p, cb](const Error& err) {
+      if (!err) {
+        cb(err);
+        return;
+      }
+      switch (err.code()) {
+      case -4058:
+      {
+        if (path.dirname(_p) == _p) throw err;
+        fs.mkdirs(path.dirname(_p), [_p, cb](const Error& er) {
+          if (er) cb(er);
+          else fs.mkdirs(_p, cb);
+        });
+        break;
+      }
+      default:
+        int errCode = err.code();
+        fs.stat(_p, [cb, errCode](const Error& er2, const Stats& stats) {
+          if (er2 || !stats.isDirectory()) cb(Error(errCode));
+          else cb(Error());
+        });
+        break;
+      }
+    });
+  }
+
+  void Fs::mkdirsSync(const string& p) {
+    auto _p = path.resolve(p);
+    try {
+      mkdirSync(_p);
+    }
+    catch (const Error& err) {
+      switch (err.code()) {
+      case -4058: // no such file or directory
+      {
+        if (path.dirname(_p) == _p) throw err;
+        mkdirsSync(path.dirname(_p));
+        mkdirsSync(_p);
+        break;
+      }
+      default:
+        Stats stats;
+        try {
+          stats = statSync(_p);
+        }
+        catch (const Error& err) {
+          throw err;
+        }
+        if (!stats.isDirectory()) throw err;
+        break;
+      }
+    }
+  }
+
+  void Fs::rmdir(const string& p, RmdirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    RMDir(path, reqWrap);
+    RMDir(iconv.strToUtf8(p), reqWrap);
   }
 
-  void Fs::rmdirSync(const string& path) {
-    RMDir(path);
+  void Fs::rmdirSync(const string& p) {
+    RMDir(iconv.strToUtf8(p));
   }
 
-  void Fs::unlink(const string& path, UnlinkCb_t cb) {
+  void Fs::unlink(const string& p, UnlinkCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Unlink(path, reqWrap);
+    Unlink(iconv.strToUtf8(p), reqWrap);
   }
 
-  void Fs::unlinkSync(const string& path) {
-    Unlink(path);
+  void Fs::unlinkSync(const string& p) {
+    Unlink(iconv.strToUtf8(p));
   }
 
   void Fs::rename(const string& oldPath, const string& newPath, RenameCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Rename(oldPath, newPath, reqWrap);
+    Rename(iconv.strToUtf8(oldPath), iconv.strToUtf8(newPath), reqWrap);
   }
 
   void Fs::renameSync(const string& oldPath, const string& newPath) {
-    Rename(oldPath, newPath);
+    Rename(iconv.strToUtf8(oldPath), iconv.strToUtf8(newPath));
   }
 
-  void Fs::access(const string& path, AccessCb_t cb) {
-    access(path, F_OK, cb);
+  void Fs::access(const string& p, AccessCb_t cb) {
+    access(p, F_OK, cb);
   }
 
-  void Fs::access(const string& path, int mode, AccessCb_t cb) {
+  void Fs::access(const string& p, int mode, AccessCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Access(path, mode, reqWrap);
+    Access(iconv.strToUtf8(p), mode, reqWrap);
   }
 
-  void Fs::accessSync(const string& path, int mode /*= 0*/) {
-    Access(path, mode);
+  void Fs::accessSync(const string& p, int mode /*= 0*/) {
+    Access(iconv.strToUtf8(p), mode);
   }
 
 

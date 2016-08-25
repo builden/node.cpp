@@ -37,6 +37,9 @@
     <Filter Include="core\inner">
       <UniqueIdentifier>{7914d6d6-5abf-4470-8e3e-776a2700fe6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\zlib">
+      <UniqueIdentifier>{dc776985-0d23-47c7-8fe3-3b3e84ae4a3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h">
@@ -255,6 +258,12 @@
     <ClInclude Include="request-wrap.h">
       <Filter>third</Filter>
     </ClInclude>
+    <ClInclude Include="zlib\ioapi.h">
+      <Filter>deps\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\unzip.h">
+      <Filter>deps\zlib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -442,6 +451,12 @@
     </ClCompile>
     <ClCompile Include="request-wrap.cpp">
       <Filter>third</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\ioapi.c">
+      <Filter>deps\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\unzip.c">
+      <Filter>deps\zlib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "singleton.h"
 #include "buffer.h"
 #include "events.h"
+#include "error.h"
 
 namespace nodecpp {
   const int Z_NO_FLUSH = 0;
@@ -40,6 +41,7 @@ namespace nodecpp {
     Buffer dictionary;
   };
 
+  using UnzipFileCb_t = function<void(const Error&)>;
   class Zlib : 
     public Singleton<Zlib>,
     public EventEmitter {
@@ -59,6 +61,9 @@ namespace nodecpp {
 
     // 通过自动检测头解压缩一个 Gzip- 或 Deflate- 压缩的数据，不包含DeflateRaw
     Buffer unzipSync(const Buffer& buf);
+
+    void unzipFile(const string& zipFile, const string& destPath, UnzipFileCb_t cb);
+    void unzipFileSync(const string& zipFile, const string& destPath);
 
   private:
     class impl;
