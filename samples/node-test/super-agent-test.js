@@ -1,9 +1,9 @@
 const sa = require('superagent');
 
-// sa.get('http://localhost:3000/xxx')
-//   .end((err, res) => {
-//     console.log(res);
-//   });
+sa.get('http://127.0.0.1:8080/2.txt')
+  .end((err, res) => {
+    console.log(res);
+  });
 
 // sa.post('http://localhost:3000/xxx')
 //   .type('application/x-www-form-urlencoded')
@@ -11,6 +11,3 @@ const sa = require('superagent');
 //   .end((err, res) => {
 //     console.log(res);
 //   });
-
-const qs = require('querystring');
-qs.stringify({a: '中文a'});

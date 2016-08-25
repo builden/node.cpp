@@ -8,7 +8,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-  ::testing::GTEST_FLAG(filter) = "Super*";
+  ::testing::GTEST_FLAG(filter) = "*";
   ::testing::InitGoogleTest(&argc, argv);
 
   return RUN_ALL_TESTS();

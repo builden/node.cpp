@@ -41,6 +41,7 @@ namespace nodecpp {
     string ctx_;
     uint32_t currByte_ = 0;
     uint32_t totalByte_ = 0;
+    svec_t cookieDatas_;
   };
 
  RequestWrap::impl::impl() {
@@ -62,6 +63,11 @@ namespace nodecpp {
 
   RequestWrap& RequestWrap::set(const string& headerKey, const string& headerValue) {
     pimpl->headers_[headerKey] = headerValue;
+    return *this;
+  }
+
+  RequestWrap& RequestWrap::setCookie(const string& data) {
+    pimpl->cookieDatas_.emplace_back(data);
     return *this;
   }
 
@@ -95,6 +101,7 @@ namespace nodecpp {
   void RequestWrap::impl::runRequest(uv_work_t *req) {
     auto wrap = (RequestWrap::impl*)req->data;
     auto urlInfo = url.parse(wrap->fullUrl_);
+    string hostUrl = urlInfo.protocol + "//" + urlInfo.hostname;
     auto headers = wrap->formatHeaders(wrap->headers_);
     svec_t rawHeaders;
     string contentEncoding;
@@ -120,6 +127,10 @@ namespace nodecpp {
     if (!hRequest) {
       wrap->errorMsg_ = fmt::format("RequestWrap HttpOpenRequestA Error {}", GetLastError());
       goto end;
+    }
+
+    for (auto& data : wrap->cookieDatas_) {
+      InternetSetCookieA(hostUrl.c_str(), nullptr, data.c_str());
     }
 
     // 第二个参数设置消息头
@@ -161,8 +172,13 @@ namespace nodecpp {
     }
     wrap->res_.statusMessage = statusText;
 
+    if (statusCode < 200 || statusCode >= 300) {
+      wrap->errorMsg_ = statusText;
+      goto end;
+    }
+
     if (wrap->res_.headers.find("content-length") != wrap->res_.headers.end())
-      wrap->totalByte_ = std::stoi(wrap->res_.headers["content-encoding"]);
+      wrap->totalByte_ = std::stoi(wrap->res_.headers["content-length"]);
 
     char cReadBuffer[4096] = { 0 };
     while (true) {

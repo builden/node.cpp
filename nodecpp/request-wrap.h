@@ -13,6 +13,7 @@ namespace nodecpp {
     RequestWrap();
     void request(const string& method, const string& fullUrl);
     RequestWrap& set(const string& headerKey, const string& headerValue);
+    RequestWrap& setCookie(const string& data);
     // 发送到后台的格式，默认是application/json
     // 可设置成application/x-www-form-urlencoded
     RequestWrap& accept(const string& type);

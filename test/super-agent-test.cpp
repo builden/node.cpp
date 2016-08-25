@@ -7,6 +7,7 @@ TEST_F(SuperAgentTest, get) {
   sa.get("http://ip.qq.com")
     .set("User-Agent", "haha")
     .set("www", "xx")
+    .setCookie("uin=123")
     .onProgress([](uint32_t currByte, uint32_t totalByte) {
       cout << "progress: " << currByte << "/" << totalByte << endl;
     })
@@ -19,6 +20,30 @@ TEST_F(SuperAgentTest, get) {
       cout << header.first << ": " << header.second << endl;
     }
     // fs.writeFileSync("D:/ip.html", res.data);
+  });
+
+/* // 需要先开启http服务
+  sa.get("http://localhost:8080/notexist.txt")
+    .end([](const Error& err, const ServerResponse& res) {
+    EXPECT_TRUE(err);
+    EXPECT_EQ(s.trim(err.str()), "Not Found");
+    EXPECT_EQ(res.statusCode, 404);
+    });*/
+
+  // 服务器没有启动，无法建立连接
+  sa.get("http://localhost:9999/notexist.txt")
+      .end([](const Error& err, const ServerResponse& res) {
+      EXPECT_TRUE(err);
+      EXPECT_EQ(s.trim(err.str()), "RequestWrap HttpSendRequestA Error 12029");
+      EXPECT_EQ(res.statusCode, 0);
+    });
+
+  // 无效域名
+  sa.get("http://www.notexistss.com/notexist.txt")
+    .end([](const Error& err, const ServerResponse& res) {
+    EXPECT_TRUE(err);
+    EXPECT_EQ(s.trim(err.str()), "Gateway Time-out");
+    EXPECT_EQ(res.statusCode, 504);
   });
 
 /*
