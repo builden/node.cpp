@@ -1,4 +1,6 @@
 #include "fs-req-wrap.h"
+#include "fmt/format.h"
+#include "iconv.h"
 
 namespace nodecpp {
 
@@ -27,6 +29,7 @@ namespace nodecpp {
     // error value is empty or null for non-error.
     // argv[0] = Null(env->isolate());
 
+    svec_t names;
     switch (req->fs_type) {
       // These all have no data to pass.
     case UV_FS_ACCESS:
@@ -128,12 +131,8 @@ namespace nodecpp {
 
     case UV_FS_SCANDIR:
     {
-/*
-      int r;
-      Local<Array> names = Array::New(env->isolate(), 0);
-      Local<Function> fn = env->push_values_to_array_function();
-      Local<Value> name_argv[NODE_PUSH_VAL_TO_ARRAY_MAX];
-      size_t name_idx = 0;
+      if (req->result < 0) break;
+      int r = 0;
 
       for (int i = 0; ; i++) {
         uv_dirent_t ent;
@@ -142,40 +141,17 @@ namespace nodecpp {
         if (r == UV_EOF)
           break;
         if (r != 0) {
-          argv[0] = UVException(r,
-            nullptr,
-            req_wrap->syscall(),
-            static_cast<const char*>(req->path));
+          throw Error(r);
           break;
         }
 
-        Local<Value> filename = StringBytes::Encode(env->isolate(),
-          ent.name,
-          req_wrap->encoding_);
-        if (filename.IsEmpty()) {
-          argv[0] = UVException(env->isolate(),
-            UV_EINVAL,
-            req_wrap->syscall(),
-            "Invalid character encoding for filename",
-            req->path,
-            req_wrap->data());
+        string filename = ent.name;
+        if (filename.empty()) {
+          throw Error(UV_EINVAL);
           break;
         }
-        name_argv[name_idx++] = filename;
-
-        if (name_idx >= arraysize(name_argv)) {
-          fn->Call(env->context(), names, name_idx, name_argv)
-            .ToLocalChecked();
-          name_idx = 0;
-        }
+        names.emplace_back(iconv.utf8ToStr(filename));
       }
-
-      if (name_idx > 0) {
-        fn->Call(env->context(), names, name_idx, name_argv)
-          .ToLocalChecked();
-      }
-
-      argv[1] = names;*/
     }
     break;
 
@@ -188,6 +164,7 @@ namespace nodecpp {
     if (argc == 1 && req_wrap->onComplete) req_wrap->onComplete(Error(req->result));
     else if (argc == 2 && req_wrap->onCompleteStats) req_wrap->onCompleteStats(Error(req->result), stats);
     else if (argc == 2 && req_wrap->onCompleteResult) req_wrap->onCompleteResult(Error(req->result), req->result);
+    else if (argc == 2 && req_wrap->onCompleteReadDir) req_wrap->onCompleteReadDir(Error(req->result), names);
 
     uv_fs_req_cleanup(&req_wrap->req_);
     req_wrap->Dispose();
@@ -318,6 +295,36 @@ namespace nodecpp {
     else {
       SYNC_CALL(mkdir, path.c_str(), path.c_str(), mode);
     }
+  }
+
+  void ReadDir(const string& path, FSReqWrap* reqWrap) {
+    ASYNC_CALL(scandir, reqWrap, UTF8, path.c_str(), 0 /*flags*/);
+  }
+
+  svec_t ReadDir(const string& path) {
+    SYNC_CALL(scandir, path.c_str(), path.c_str(), 0 /*flags*/);
+    CHECK_GE(SYNC_REQ.result, 0);
+    int r = 0;
+    svec_t names;
+
+    for (int i = 0; ; i++) {
+      uv_dirent_t ent;
+
+      r = uv_fs_scandir_next(&SYNC_REQ, &ent);
+      if (r == UV_EOF)
+        break;
+      if (r != 0)
+        throw Error(r);
+
+      string filename = ent.name;
+      if (filename.empty()) {
+        throw Error(UV_EINVAL);
+      }
+
+      names.emplace_back(iconv.utf8ToStr(filename));
+    }
+
+    return names;
   }
 
   void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap) {

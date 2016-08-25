@@ -305,6 +305,16 @@ namespace nodecpp {
     }
   }
 
+  void Fs::readdir(const string& p, ReadDirCb_t cb) {
+    auto reqWrap = FSReqWrap::New(nullptr);
+    reqWrap->onCompleteReadDir = cb;
+    ReadDir(iconv.strToUtf8(p), reqWrap);
+  }
+
+  svec_t Fs::readdirSync(const string& p) {
+    return ReadDir(iconv.strToUtf8(p));
+  }
+
   void Fs::rmdir(const string& p, RmdirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;

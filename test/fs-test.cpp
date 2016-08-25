@@ -203,3 +203,29 @@ TEST_F(FsTest, mkdirs) {
   });
   run();*/
 }
+
+TEST_F(FsTest, readdir) {
+/*
+  try {
+    svec_t dirs = fs.readdirSync("D:/中 文 a");
+    for (auto& dir : dirs) {
+      cout << "readdirSync: " << dir << endl;
+    }
+  }
+  catch (const Error&) {
+    EXPECT_TRUE(false);
+  }
+
+  fs.readdir("D:/中 文 a", [](const Error& err, const svec_t& dirs) {
+    EXPECT_FALSE(err);
+    for (auto& dir : dirs) {
+      cout << "readdir: " << dir << endl;
+    }
+  });*/
+
+  fs.readdir("D:/notexit", [](const Error& err, const svec_t& dirs) {
+    EXPECT_TRUE(err);
+  });
+
+  run();
+}

@@ -60,6 +60,7 @@ namespace nodecpp {
     function<void(const Error&)> onComplete = nullptr;
     function<void(const Error&, const Stats&)> onCompleteStats = nullptr;
     function<void(const Error&, int)> onCompleteResult = nullptr;
+    function<void(const Error&, const svec_t&)> onCompleteReadDir = nullptr;
     ReadFileContext* context = nullptr;
     Buffer writeBuffer;
 
@@ -148,6 +149,9 @@ namespace nodecpp {
   void RMDir(const string& path, FSReqWrap* reqWrap = nullptr);
   void MKDir(const string& path, int mode, FSReqWrap* reqWrap = nullptr);
   void MKDir(const string& path, FSReqWrap* reqWrap = nullptr);
+
+  void ReadDir(const string& path, FSReqWrap* reqWrap);
+  svec_t ReadDir(const string& path);
 
   void Open(const string& path, int flags, int mode, FSReqWrap* reqWrap);
   int Open(const string& path, int flags, int mode);

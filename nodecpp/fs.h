@@ -36,6 +36,7 @@ namespace nodecpp {
   using WriteAsyncCb_t = function<void(const Error&, uint32_t)>;
   using ReadCb_t = function<void(const Error&, const Buffer&)>;
   using WriteCb_t = function<void(const Error&)>;
+  using ReadDirCb_t = function<void(const Error&, const svec_t&)>;
 
   class Fs : public Singleton<Fs> {
   public:
@@ -73,6 +74,9 @@ namespace nodecpp {
     void mkdirSync(const string& p, int mode = 0777);
     void mkdirs(const string& p, MkdirCb_t cb);
     void mkdirsSync(const string& p);
+
+    void readdir(const string& p, ReadDirCb_t cb);
+    svec_t readdirSync(const string& p);
 
     // 删除目录，只能删除空文件夹
     void rmdir(const string& p, RmdirCb_t cb);
