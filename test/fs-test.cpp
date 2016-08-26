@@ -110,6 +110,11 @@ TEST_F(FsTest, stat) {
 TEST_F(FsTest, exist) {
   EXPECT_TRUE(fs.existsSync("C://"));
   EXPECT_FALSE(fs.existsSync("C://noteexist"));
+
+  fs.exists("C://noteexist", [](bool isExist) {
+    EXPECT_FALSE(isExist);
+  });
+  run();
 }
 
 TEST_F(FsTest, rmdir) {
@@ -227,5 +232,26 @@ TEST_F(FsTest, readdir) {
     EXPECT_TRUE(err);
   });
 
+  run();
+}
+
+TEST_F(FsTest, remove) {
+/*
+  try {
+    fs.removeSync("D:/1");
+  }
+  catch (const Error& err) {
+    EXPECT_TRUE(err);
+    if (err) cout << err.str() << endl;
+  }*/
+
+/*
+  fs.remove("D:/1", [](const Error& err) {
+    EXPECT_FALSE(err);
+  });*/
+  
+  fs.remove("D:/notexist", [](const Error& err) {
+    EXPECT_FALSE(err);
+  });
   run();
 }

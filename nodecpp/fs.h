@@ -31,6 +31,7 @@ namespace nodecpp {
   using AccessCb_t = function<void(const Error&)>;
   using RmdirCb_t = function<void(const Error&)>;
   using UnlinkCb_t = function<void(const Error&)>;
+  using RemoveCb_t = function<void(const Error&)>;
   using MkdirCb_t = function<void(const Error&)>;
   using RenameCb_t = function<void(const Error&)>;
   using WriteAsyncCb_t = function<void(const Error&, uint32_t)>;
@@ -60,6 +61,7 @@ namespace nodecpp {
 
     void stat(const string& p, StatCb_t cb);
     Stats statSync(const string& p);
+    // 当路径是文件链接时，返回这个链接文件的信息
     void lstat(const string& p, StatCb_t cb);
     Stats lstatSync(const string& p);
     void fstat(int fd, StatCb_t cb);
@@ -86,6 +88,10 @@ namespace nodecpp {
     void unlink(const string& p, UnlinkCb_t cb);
     void unlinkSync(const string& p);
 
+    // 删除文件或文件夹
+    void remove(const string& p, RemoveCb_t cb);
+    void removeSync(const string& p);
+
     // 重命名
     void rename(const string& oldPath, const string& newPath, RenameCb_t cb);
     void renameSync(const string& oldPath, const string& newPath);
@@ -100,6 +106,10 @@ namespace nodecpp {
     uint32_t writeSync(int fd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position = -1);
 
     json readJsonSync(const string& file);
+
+    // link    创建hard link, 创建备份
+    // symlink 创建符号链接（软链接）快捷方式
+    // 创建文件夹的快捷方式 fs.symlink(srcPath, destPath, "dir")
   private:
     int stringToFlags(const string& p);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);

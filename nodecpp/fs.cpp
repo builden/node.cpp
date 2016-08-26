@@ -335,6 +335,101 @@ namespace nodecpp {
     Unlink(iconv.strToUtf8(p));
   }
 
+  class RemoveWrap {
+  public:
+    void rmdirs(const string& p, RemoveCb_t cb) {
+      cb_ = cb;
+      p_ = p;
+      fs.readdir(p, [this](const Error& err, const svec_t& files) {
+        readdirCb(err, files);
+      });
+    }
+
+    static void rmfile(const string& file, RemoveCb_t cb) {
+      fs.lstat(file, [file, cb](const Error& err, const Stats& st) {
+        if (err.code() == -4058) return cb(Error());
+        if (err) return cb(err);
+
+        if (st.isDirectory()) {
+          auto wrap = new RemoveWrap();
+          wrap->rmdirs(file, cb);
+        }
+        else {
+          fs.unlink(file, cb);
+        }
+      });
+    }
+
+  private:
+    void readdirCb(const Error& err, const svec_t& files) {
+      if (err) {
+        return cb_(err);
+      }
+
+      n_ = files.size();
+      if (n_ == 0) {
+        return fs.rmdir(p_, [this](const Error& err) {
+          rmdirSelfCb(err);
+        });
+      }
+
+      for (auto& file : files) {
+        rmfile(path.join(p_, file), [this](const Error& err) {
+          rmfileCb(err);
+        });
+      }
+    }
+
+    void rmfileCb(const Error& err) {
+      if (err) err_ = err;
+      if (--n_ == 0) {
+        if (err_) return rmdirSelfCb(err_);
+        return fs.rmdir(p_, [this](const Error& err) {
+          rmdirSelfCb(err);
+        });
+      }
+    }
+
+    void rmdirSelfCb(const Error& err) {
+      cb_(err);
+      delete this;
+    }
+
+  private:
+    uint32_t n_ = 0;
+    RemoveCb_t cb_ = nullptr;
+    string p_;
+    Error err_;
+  };
+
+  void Fs::remove(const string& p, RemoveCb_t cb) {
+    RemoveWrap::rmfile(p, cb);
+  }
+
+  void Fs::removeSync(const string& p) {
+    Stats st;
+    try {
+      st = fs.lstatSync(p);
+    }
+    catch (const Error& err) {
+      if (err.code() == -4058) return;
+      throw err;
+    }
+    
+    if (st.isDirectory()) {
+      auto files = fs.readdirSync(p);
+      for (auto& file : files) {
+        string sub = path.join(p, file);
+        Stats stats = fs.lstatSync(sub);
+        stats.isDirectory() ? removeSync(sub) : unlinkSync(sub);
+      }
+      rmdirSync(p);
+    }
+    else {
+      unlinkSync(p);
+    }
+  }
+
   void Fs::rename(const string& oldPath, const string& newPath, RenameCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;

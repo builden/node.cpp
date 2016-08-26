@@ -67,7 +67,7 @@ namespace nodecpp {
     case UV_FS_STAT:
     case UV_FS_LSTAT:
     case UV_FS_FSTAT:
-      stats = BuildStatsObject(static_cast<const uv_stat_t*>(req->ptr));
+      if (req->ptr) stats = BuildStatsObject(static_cast<const uv_stat_t*>(req->ptr));
       break;
 
     case UV_FS_MKDTEMP:
