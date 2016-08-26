@@ -222,6 +222,19 @@ namespace nodecpp {
     return subject;
   }
 
+  string UnderscoreString::replaceTmpl(const string& str, json j) {
+    string rst = trim(str);
+    std::regex replacePattern("\\$([^\\$]+?)\\$");
+    rst = std::regex_replace(rst, replacePattern, [this, j](const std::smatch &m) {
+      if (m.size() == 2) {
+        string m1 = m[1].str();
+        if (j.find(m1) != j.end()) return j[m1].dump();
+      }
+      return m[0].str();
+    });
+    return rst;
+  }
+
   string UnderscoreString::reverse(const string& str) {
     wstring wstr = iconv.strToWstr(str);
     std::reverse(wstr.begin(), wstr.end());

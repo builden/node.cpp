@@ -168,3 +168,7 @@ TEST_F(UnderscoreStringTest, capitalize_decapitalize_camelize) {
   EXPECT_EQ(s.camelize("Moz-transform"), "MozTransform");
   EXPECT_EQ(s.camelize("-_moz-transform", true), "mozTransform");
 }
+
+TEST_F(UnderscoreStringTest, replaceTmpl) {
+  EXPECT_EQ(s.replaceTmpl("abc$bool$$$UIN$$Unknow$def$ID$$UINxx", R"({"bool": true, "UIN": 123, "ID": 1.3, "str": "ss"})"_json), "abctrue$123$Unknow$def1.3$UINxx");
+}

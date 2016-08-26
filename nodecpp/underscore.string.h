@@ -47,6 +47,11 @@ namespace nodecpp {
 
     string replace(const string& str, const string& find, const string& replace, bool ignorecase = false);
     string replaceAll(const string& str, const string& find, const string& replace, bool ignorecase = false);
+    // 根据模版替换，模板字段$xxx$
+    // @example
+    //   s.replaceTmpl("abc$UIN$def$ID$", R"({"UIN": "123", "ID": "4567"})"_json);
+    //     => abc123def456
+    string replaceTmpl(const string& str, json j);
     
     string reverse(const string& str);
 

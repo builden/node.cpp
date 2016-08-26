@@ -13,6 +13,7 @@
 #include <functional>
 #include <iterator>
 #include <memory>
+#include <iostream>
 
 #include "nlohmann/json.hpp"
 using nlohmann::json;
@@ -30,5 +31,8 @@ using std::vector;
 using std::unique_ptr;
 using std::shared_ptr;
 using std::function;
+using std::cout;
+using std::wcout;
+using std::endl;
 
 #endif // !__NODEPP_DEF_H__

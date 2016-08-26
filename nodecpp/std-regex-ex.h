@@ -10,16 +10,14 @@ namespace std
 
   template<class BidirIt, class Traits, class CharT>
   std::basic_string<CharT> regex_replace(BidirIt first, BidirIt last,
-    const std::basic_regex<CharT, Traits>& re, ReplaceFunc_t f)
-  {
+    const std::basic_regex<CharT, Traits>& re, ReplaceFunc_t f) {
     std::basic_string<CharT> s;
 
     typename std::match_results<BidirIt>::difference_type
       positionOfLastMatch = 0;
     auto endOfLastMatch = first;
 
-    auto callback = [&](const std::match_results<BidirIt>& match)
-    {
+    auto callback = [&](const std::match_results<BidirIt>& match) {
       auto positionOfThisMatch = match.position(0);
       auto diff = positionOfThisMatch - positionOfLastMatch;
 
