@@ -121,3 +121,62 @@ TEST_F(NlohmannJsonTest, exception) {
     cout << e.what() << endl;
   }
 }
+
+TEST_F(NlohmannJsonTest, exceptionTest) {
+  json j;
+  EXPECT_TRUE(j.is_null());
+  EXPECT_FALSE(j.is_object());
+  json sub = j["sub"];
+  EXPECT_TRUE(sub.is_null());
+  EXPECT_FALSE(sub.is_number());
+  EXPECT_FALSE(sub.is_string());
+  
+  j = R"({ "sub": 123 })"_json;
+  EXPECT_TRUE(sub.is_null());
+
+  json sub2 = j["sub"];
+  EXPECT_TRUE(sub2.is_number());
+  EXPECT_FALSE(sub2.is_null());
+  EXPECT_FALSE(sub2.is_string());
+
+  j = R"({ "sub": ["abc", "cbd"] })"_json;
+  json sub3 = j["sub"];
+  EXPECT_TRUE(sub3.is_array());
+  for (const auto& item : sub3) {
+    EXPECT_TRUE(item.is_string());
+    cout << item.get<string>() << endl;
+  }
+
+  const json& sub4 = j["sub"];
+  EXPECT_TRUE(sub4.is_array());
+  for (const auto& item : sub4) {
+    EXPECT_TRUE(item.is_string());
+    cout << item.get<string>() << endl;
+  }
+
+  j = R"({ "sub": 123 })"_json;
+  // assert
+  // EXPECT_TRUE(sub4.is_array());
+
+
+  const json& sub5 = j["xxx"];
+  EXPECT_TRUE(sub5.is_null());
+}
+
+TEST_F(NlohmannJsonTest, reference) {
+  json j;
+  j["sub"] = 1;
+  EXPECT_EQ(j.dump(), R"({"sub":1})");
+
+  json sub = j["sub"];
+  sub = 2;
+  EXPECT_EQ(sub.dump(), "2");
+  EXPECT_EQ(j.dump(), R"({"sub":1})");
+
+  json& refsub = j["sub"];
+  refsub = 3;
+  EXPECT_EQ(refsub.dump(), "3");
+  EXPECT_EQ(j.dump(), R"({"sub":3})");
+  string key = "sub";
+  EXPECT_EQ(j[key].dump(), "3");
+}

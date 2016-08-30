@@ -368,15 +368,11 @@ namespace nodecpp {
 
       n_ = files.size();
       if (n_ == 0) {
-        return fs.rmdir(p_, [this](const Error& err) {
-          rmdirSelfCb(err);
-        });
+        return fs.rmdir(p_, bind(&RemoveWrap::rmdirSelfCb, this, _1));
       }
 
       for (auto& file : files) {
-        rmfile(path.join(p_, file), [this](const Error& err) {
-          rmfileCb(err);
-        });
+        rmfile(path.join(p_, file), bind(&RemoveWrap::rmfileCb, this, _1));
       }
     }
 
@@ -384,9 +380,7 @@ namespace nodecpp {
       if (err) err_ = err;
       if (--n_ == 0) {
         if (err_) return rmdirSelfCb(err_);
-        return fs.rmdir(p_, [this](const Error& err) {
-          rmdirSelfCb(err);
-        });
+        return fs.rmdir(p_, bind(&RemoveWrap::rmdirSelfCb, this, _1));
       }
     }
 
