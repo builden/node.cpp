@@ -61,9 +61,15 @@ namespace nodecpp {
     bool isPaused();
     Buffer read(int n = -1);
 
-    template <typename... Args>
-    void on(const string& type, function<void(Args...)> listener);
-    void on(const string& type, function<void()> listener);
+    template <typename T>
+    void on(const string& type, T listener) {
+      Stream::on(type, listener);
+      if (type == "data") {
+        // Start flowing on next tick if stream isn't explicitly paused
+        // if (_readableState.flowing != false)
+        resume();
+      }
+    }
 
     ReadableState _readableState;
 
@@ -89,13 +95,4 @@ namespace nodecpp {
     bool readable = true;
   };
 
-  template <typename... Args>
-  void Readable::on(const string& type, function<void(Args...)> listener) {
-    Stream::on(type, listener);
-    if (type == "data") {
-      // Start flowing on next tick if stream isn't explicitly paused
-      // if (_readableState.flowing != false)
-        resume();
-    }
-  }
 }

@@ -113,10 +113,6 @@ namespace nodecpp {
     return ret;
   }
 
-  void Readable::on(const string& type, function<void()> listener) {
-    Stream::on(type, listener);
-  }
-
   bool Readable::readableAddChunk(ReadableState& state, const Buffer& chunk, bool addToFront) {
     if (chunk.size() == 0) {
       state.reading = false;

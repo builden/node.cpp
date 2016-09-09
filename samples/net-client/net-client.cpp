@@ -32,11 +32,11 @@ void App::run() {
     });
   }
 
-  client_->on<const Error&>("error", [](const Error& err) {
+  client_->on("error", [](const Error& err) {
     cout << "client error: " << err.str() << endl;
   });
 
-  client_->on<const Buffer&>("data", [](const Buffer& buf) {
+  client_->on("data", [](const Buffer& buf) {
     cout << "recv from svr: " << buf.toString() << endl;
   });
 

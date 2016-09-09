@@ -23,7 +23,7 @@ void App::run() {
   server_ = net.createServer([this](SocketPtr_t sock) {
     cout << "have one client connected" << endl;
     client_ = sock;
-    sock->on<const Buffer&>("data", [this](const Buffer& buf) {
+    sock->on("data", [this](const Buffer& buf) {
       cout << "recv: " << buf.toString() << endl;
 
       client_->write(Buffer("welcome to server"));
@@ -40,7 +40,7 @@ void App::run() {
   }
 
 
-  server_->on<const Error&>("error", [](const Error& err) {
+  server_->on("error", [](const Error& err) {
     cout << "server err: " << err.str() << endl;
   });
 

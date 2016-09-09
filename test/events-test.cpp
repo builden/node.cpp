@@ -8,17 +8,17 @@ TEST_F(EventsTest, listeners) {
     std::cout << "on message" << std::endl;
   });
 
-  emitter.on<int>("param_int", [](int i) {
+  emitter.on("param_int", [](int i) {
     std::cout << "on param_int" << std::endl;
     EXPECT_EQ(i, 1);
   });
 
-  emitter.on<int>("param_int", [](int i) {
+  emitter.on("param_int", [](int i) {
     std::cout << "on param_int2" << std::endl;
     EXPECT_EQ(i, 1);
   });
 
-  emitter.on<int, const std::string&>("param_int_str", [](int i, const std::string& str) {
+  emitter.on("param_int_str", [](int i, const std::string& str) {
     std::cout << "on param_int_str" << std::endl;
     EXPECT_EQ(i, 2);
     EXPECT_EQ(str, "test msg");
@@ -40,7 +40,7 @@ TEST_F(EventsTest, event_inherit) {
   };
 
   Child child;
-  child.on<const std::string&>("hello", [](const std::string& str) {
+  child.on("hello", [](const std::string& str) {
     std::cout << "on hello " << str << std::endl;
   });
   child.hello();

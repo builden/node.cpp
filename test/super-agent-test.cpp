@@ -4,10 +4,12 @@
 
 TEST_F(SuperAgentTest, get) {
   // sa.get("http://localhost:3000/abc/dad?que=xx&ad=xddx#hash")
-  sa.get("http://ip.qq.com")
+  // sa.get("http://ip.qq.com")
+  sa.get("http://dir.minigame.qq.com/cgi-bin/QQGameOpen/qqgame_comm_count_opr?prefix=mod&fieldname=subscribe&id=1&gameid=30012&opr=0")
     .set("User-Agent", "haha")
     .set("www", "xx")
-    .setCookie("uin=123")
+    .setCookie(fmt::format("uin=o{}", 149911602))
+    .setCookie("skey=@W2TQzVhHi")
     .onProgress([](uint32_t currByte, uint32_t totalByte) {
       cout << "progress: " << currByte << "/" << totalByte << endl;
     })
@@ -19,6 +21,7 @@ TEST_F(SuperAgentTest, get) {
     for (auto& header : res.headers) {
       cout << header.first << ": " << header.second << endl;
     }
+    cout << res.data.toString() << endl;
     // fs.writeFileSync("D:/ip.html", res.data);
   });
 

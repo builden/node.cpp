@@ -7,7 +7,7 @@ TEST_F(StreamTest, readable) {
   r->push(Buffer("world!"));
   r->push();
 
-  r->on<const Buffer&>("data", [](const Buffer& buf) {
+  r->on("data", [](const Buffer& buf) {
     cout << buf.toString() << endl;
   });
 
