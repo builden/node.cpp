@@ -40,6 +40,8 @@ namespace nodecpp {
     string toString(const string& encoding, uint32_t start, uint32_t end) const;
     wstring toWstring(uint32_t start = 0) const;
     wstring toWstring(uint32_t start, uint32_t end) const;
+    string toU8string(uint32_t start = 0) const;
+    string toU8string(uint32_t start, uint32_t end) const;
 
     string format(uint32_t num = 50) const;
     const char* data() const;

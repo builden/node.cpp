@@ -105,7 +105,7 @@ namespace nodecpp {
   }
 
   string Buffer::toString(const string& encoding /*= "ansi"*/, uint32_t start /*= 0*/) const {
-    int end = buf_.size();
+    uint32_t end = buf_.size();
     return toString(encoding, start, end);
   }
 
@@ -132,8 +132,21 @@ namespace nodecpp {
     return rst;
   }
 
+  string Buffer::toU8string(uint32_t start /*= 0*/) const {
+    uint32_t end = buf_.size();
+    return toU8string(start, end);
+  }
+
+  string Buffer::toU8string(uint32_t start, uint32_t end) const {
+    const char* str = buf_.data();
+
+    string rst;
+    if (end > start && start < static_cast<int>(buf_.size())) rst = string(str + start, str + end);
+    return rst;
+  }
+
   wstring Buffer::toWstring(uint32_t start /*= 0*/) const {
-    int end = buf_.size();
+    uint32_t end = buf_.size();
     return toWstring(start, end);
   }
 
