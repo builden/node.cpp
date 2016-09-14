@@ -7,7 +7,7 @@ TEST_F(SuperAgentTest, get) {
   // sa.get("http://ip.qq.com")
   sa.get("http://dir.minigame.qq.com/cgi-bin/QQGameOpen/qqgame_comm_count_opr?prefix=mod&fieldname=subscribe&id=1&gameid=30012&opr=0")
     .set("User-Agent", "haha")
-    .set("www", "xx")
+    .set("Referer", "http://www.qq.com")
     .setCookie(fmt::format("uin=o{}", 149911602))
     .setCookie("skey=@W2TQzVhHi")
     .onProgress([](uint32_t currByte, uint32_t totalByte) {
