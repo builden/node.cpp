@@ -164,7 +164,6 @@
     <ClCompile Include="core-math-test.cpp" />
     <ClCompile Include="core-test.cpp" />
     <ClCompile Include="crypto-test.cpp" />
-    <ClCompile Include="detours-test.cpp" />
     <ClCompile Include="dns-test.cpp" />
     <ClCompile Include="events-test.cpp" />
     <ClCompile Include="file-url-test.cpp" />

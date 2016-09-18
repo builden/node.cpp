@@ -32,7 +32,6 @@
     <ClInclude Include="core-math.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="crypto.h" />
-    <ClInclude Include="detours-hooker.h" />
     <ClInclude Include="dll-util.h" />
     <ClInclude Include="dns.h" />
     <ClInclude Include="error.h" />
@@ -105,7 +104,6 @@
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
-    <ClCompile Include="detours-hooker.cpp" />
     <ClCompile Include="dll-util.cpp" />
     <ClCompile Include="dns.cpp" />
     <ClCompile Include="error.cpp" />
@@ -229,7 +227,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -261,7 +259,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/detours/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

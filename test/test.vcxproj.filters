@@ -27,9 +27,6 @@
     <ClCompile Include="crypto-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="detours-test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dns-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

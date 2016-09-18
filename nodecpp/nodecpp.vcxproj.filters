@@ -72,9 +72,6 @@
     <ClInclude Include="crypto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="detours-hooker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="dll-util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -288,9 +285,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="crypto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="detours-hooker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dll-util.cpp">
