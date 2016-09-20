@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="async-test.cpp" />
     <ClCompile Include="buffer-test.cpp" />
     <ClCompile Include="core-math-test.cpp" />
     <ClCompile Include="core-test.cpp" />
@@ -196,11 +197,11 @@
     <ClCompile Include="zlib-test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="async-test.h" />
     <ClInclude Include="buffer-test.h" />
     <ClInclude Include="core-math-test.h" />
     <ClInclude Include="core-test.h" />
     <ClInclude Include="crypto-test.h" />
-    <ClInclude Include="detours-test.h" />
     <ClInclude Include="dns-test.h" />
     <ClInclude Include="events-test.h" />
     <ClInclude Include="file-url-test.h" />

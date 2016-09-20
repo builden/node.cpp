@@ -117,6 +117,9 @@
     <ClCompile Include="super-agent-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="async-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer-test.h">
@@ -129,9 +132,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="crypto-test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="detours-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dns-test.h">
@@ -222,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="super-agent-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="async-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
