@@ -59,7 +59,7 @@ TEST_F(UvThreadTest, workQueue) {
   run();
 }
 
-uv_async_t async;
+uv_async_t gasync;
 TEST_F(UvThreadTest, progress) {
   auto fake_download = [](uv_work_t *req) {
     int size = *((int*)req->data);
@@ -67,8 +67,8 @@ TEST_F(UvThreadTest, progress) {
     double percentage;
     while (downloaded < size) {
       percentage = downloaded*100.0 / size;
-      async.data = (void*)&percentage;
-      uv_async_send(&async);
+      gasync.data = (void*)&percentage;
+      uv_async_send(&gasync);
 
       Sleep(10);
       downloaded += 600; // can only download max 1000bytes/sec,
@@ -78,7 +78,7 @@ TEST_F(UvThreadTest, progress) {
 
   auto after = [](uv_work_t *req, int status) {
     fprintf(stderr, "Download complete\n");
-    uv_close((uv_handle_t*)&async, NULL);
+    uv_close((uv_handle_t*)&gasync, NULL);
   };
 
   auto print_progress = [](uv_async_t *handle) {
@@ -90,7 +90,7 @@ TEST_F(UvThreadTest, progress) {
   int size = 10240;
   req.data = (void*)&size;
 
-  uv_async_init(uv_default_loop(), &async, print_progress);
+  uv_async_init(uv_default_loop(), &gasync, print_progress);
   uv_queue_work(uv_default_loop(), &req, fake_download, after);
 
   run();

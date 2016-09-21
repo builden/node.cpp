@@ -24,6 +24,7 @@
 
 #include "fs.h"
 #include "net.h"
+#include "async.h"
 
 namespace nodecpp {
   // nodecpp的消息循环，阻塞

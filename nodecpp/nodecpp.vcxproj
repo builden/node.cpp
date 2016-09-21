@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h" />
+    <ClInclude Include="async.h" />
     <ClInclude Include="base-object.h" />
     <ClInclude Include="base64\base64.h" />
     <ClInclude Include="base64\modp_b64.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="zlib\unzip.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="async.cpp" />
     <ClCompile Include="base64\base64.cpp" />
     <ClCompile Include="base64\modp_b64.cc" />
     <ClCompile Include="buffer.cpp" />

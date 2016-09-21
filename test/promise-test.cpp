@@ -45,7 +45,7 @@ TEST_F(PromiseTest, future) {
   t.join();
 }
 
-TEST_F(PromiseTest, async) {
+TEST_F(PromiseTest, gasync) {
   std::future<int> f1 = std::async(std::launch::async, []() {
     return 8;
   });

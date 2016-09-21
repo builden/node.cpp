@@ -261,6 +261,9 @@
     <ClInclude Include="zlib\unzip.h">
       <Filter>deps\zlib</Filter>
     </ClInclude>
+    <ClInclude Include="async.h">
+      <Filter>third</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -451,6 +454,9 @@
     </ClCompile>
     <ClCompile Include="zlib\unzip.c">
       <Filter>deps\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="async.cpp">
+      <Filter>third</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
