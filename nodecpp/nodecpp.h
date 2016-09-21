@@ -46,3 +46,5 @@ namespace nodecpp {
 #pragma comment(lib, "userenv.lib")
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "psapi.lib")
+#pragma comment(lib, "g3logger.lib")
+#pragma comment(lib, "dbghelp.lib")

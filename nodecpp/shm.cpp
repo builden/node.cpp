@@ -1,5 +1,6 @@
 #include "shm.h"
 #include "fmt/format.h"
+#include <g3log/g3log.hpp>
 
 namespace nodecpp {
 
@@ -16,6 +17,8 @@ namespace nodecpp {
     sa.bInheritHandle = FALSE;
     sa.lpSecurityDescriptor = &sd;
 
+    LOG(INFO) << "name: " << name << "; size: " << size;
+
     fileMapping_ = CreateFileMappingA(
       INVALID_HANDLE_VALUE,
       &sa,
@@ -25,13 +28,13 @@ namespace nodecpp {
       name.c_str()
       );
     if (fileMapping_ == NULL) {
-      fmt::odebug("[nodecpp] CreateFileMapping failed {}", GetLastError());
+      LOG(WARNING) << fmt::format("CreateFileMapping failed {}", GetLastError());
       return false;
     }
 
     buf_ = (char *)MapViewOfFile(fileMapping_, FILE_MAP_ALL_ACCESS, 0, 0, 0);
     if (buf_ == nullptr) {
-      fmt::odebug("[nodecpp] MapViewOfFile failed {}", GetLastError());
+      LOG(WARNING) << fmt::format("MapViewOfFile failed {}", GetLastError());
       CloseHandle(fileMapping_);
       fileMapping_ = NULL;
       return false;
@@ -43,13 +46,13 @@ namespace nodecpp {
   bool Shm::open(const string& name) {
     fileMapping_ = OpenFileMappingA(FILE_MAP_ALL_ACCESS, FALSE, name.c_str());
     if (fileMapping_ == NULL) {
-      fmt::odebug("[nodecpp] OpenFileMapping failed {}", GetLastError());
+      LOG(WARNING) << fmt::format("OpenFileMapping failed {}", GetLastError());
       return false;
     }
 
     buf_ = (char*)MapViewOfFile(fileMapping_, FILE_MAP_ALL_ACCESS, 0, 0, 0);
     if (buf_ == nullptr) {
-      fmt::odebug("[nodecpp] MapViewOfFile failed {}", GetLastError());
+      LOG(WARNING) << fmt::format("MapViewOfFile failed {}", GetLastError());
       CloseHandle(fileMapping_);
       fileMapping_ = NULL;
       return false;
