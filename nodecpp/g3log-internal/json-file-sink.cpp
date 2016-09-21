@@ -1,6 +1,6 @@
-#include "stdafx.h"
 #include "json-file-sink.h"
 #include "jsonfilesinkhelper.h"
+#include "../nodecpp-def.h"
 #include <cassert>
 
 namespace g3 {

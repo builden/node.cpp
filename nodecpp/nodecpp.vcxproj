@@ -41,6 +41,9 @@
     <ClInclude Include="fmt\format.h" />
     <ClInclude Include="fs-req-wrap.h" />
     <ClInclude Include="fs.h" />
+    <ClInclude Include="g3log-internal\json-file-sink.h" />
+    <ClInclude Include="g3log-internal\jsonfilesinkhelper.h" />
+    <ClInclude Include="g3log.h" />
     <ClInclude Include="handle-wrap.h" />
     <ClInclude Include="http-common.h" />
     <ClInclude Include="http-server.h" />
@@ -114,6 +117,9 @@
     <ClCompile Include="fmt\format.cc" />
     <ClCompile Include="fs-req-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
+    <ClCompile Include="g3log-internal\json-file-sink.cpp" />
+    <ClCompile Include="g3log-internal\jsonfilesinkhelper.cpp" />
+    <ClCompile Include="g3log.cpp" />
     <ClCompile Include="handle-wrap.cpp" />
     <ClCompile Include="http-common.cpp" />
     <ClCompile Include="http-server.cpp" />
@@ -229,7 +235,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/g3log/src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -262,7 +268,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../deps/uv/include;../deps/openssl/openssl/include;../deps/zlib;../deps/g3log/src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>

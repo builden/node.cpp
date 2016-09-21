@@ -40,6 +40,9 @@
     <Filter Include="deps\zlib">
       <UniqueIdentifier>{dc776985-0d23-47c7-8fe3-3b3e84ae4a3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third\internal">
+      <UniqueIdentifier>{3aa7a1cf-8107-48d6-990c-7b224f3f1db0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h">
@@ -264,6 +267,15 @@
     <ClInclude Include="async.h">
       <Filter>third</Filter>
     </ClInclude>
+    <ClInclude Include="g3log.h">
+      <Filter>third</Filter>
+    </ClInclude>
+    <ClInclude Include="g3log-internal\json-file-sink.h">
+      <Filter>third\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="g3log-internal\jsonfilesinkhelper.h">
+      <Filter>third\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer.cpp">
@@ -457,6 +469,15 @@
     </ClCompile>
     <ClCompile Include="async.cpp">
       <Filter>third</Filter>
+    </ClCompile>
+    <ClCompile Include="g3log.cpp">
+      <Filter>third</Filter>
+    </ClCompile>
+    <ClCompile Include="g3log-internal\json-file-sink.cpp">
+      <Filter>third\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="g3log-internal\jsonfilesinkhelper.cpp">
+      <Filter>third\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

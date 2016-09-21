@@ -2,15 +2,9 @@
 //
 
 #include "stdafx.h"
-#include <g3log/g3log.hpp>
-#include <g3log/logworker.hpp>
-#include <g3log/logmessage.hpp>
 #include <iostream>
 #include <iomanip>
-#include "json-file-sink.h"
-
-#pragma comment(lib, "g3logger.lib")
-#pragma comment(lib, "dbghelp.lib")
+#include <nodecpp/g3log.h>
 
 namespace example_fatal
 {
@@ -25,16 +19,12 @@ int _tmain(int argc, _TCHAR* argv[])
   double pi_d = 3.1415926535897932384626433832795;
   float pi_f = 3.1415926535897932384626433832795f;
 
-  auto worker = g3::LogWorker::createLogWorker();
-  // auto handle = worker->addDefaultLogger("log", "./logs");
-  auto handle = worker->addSink(std2::make_unique<g3::JsonFileSink>("log", "./logs"),
-    &g3::JsonFileSink::fileWrite);
-  g3::initializeLogging(worker.get());
-  std::future<std::string> log_file_name = handle->call(&g3::JsonFileSink::fileName);
+  g3log.init("log", "./logs");
+  
   std::cout << "*   This is an example of g3log. It WILL exit by a failed CHECK(...)" << std::endl;
   std::cout << "*   that acts as a FATAL trigger. Please see the generated log and " << std::endl;
   std::cout << "*   compare to the code at:\n*  \t g3log/test_example/main_contract.cpp" << std::endl;
-  std::cout << "*\n*   Log file: [" << log_file_name.get() << "]\n\n" << std::endl;
+  // std::cout << "*\n*   Log file: [" << log_file_name.get() << "]\n\n" << std::endl;
 
   LOGF(INFO, "Hi log %d", 123);
   LOG(INFO) << "Test SLOG INFO";
@@ -52,6 +42,7 @@ int _tmain(int argc, _TCHAR* argv[])
   int smaller = 1;
   int larger = 2;
   example_fatal::killWithContractIfNonEqual(smaller, larger);
+  g3log.finalize();
 
 	return 0;
 }

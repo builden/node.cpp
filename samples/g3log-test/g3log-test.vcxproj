@@ -155,13 +155,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="g3log-test.cpp" />
-    <ClCompile Include="json-file-sink.cpp" />
-    <ClCompile Include="jsonfilesinkhelper.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="json-file-sink.h" />
-    <ClInclude Include="jsonfilesinkhelper.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

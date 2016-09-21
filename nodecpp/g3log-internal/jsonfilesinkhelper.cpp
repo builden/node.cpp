@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "jsonfilesinkhelper.h"
 #include <g3log/time.hpp>
 
