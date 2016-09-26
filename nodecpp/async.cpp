@@ -9,13 +9,19 @@ namespace nodecpp {
       funcs_ = funcs;
       cb_ = cb;
       funcCount_ = funcs.size();
+      results_.resize(funcCount_);
 
-      for (size_t i = 0; i < funcCount_; ++i) {
-        auto func = funcs[i];
-        func([cb, i](const Error& err, json& j) {
-          cb(err, { R"({"a": "123"})"_json });
-        });
-      }
+      runSeriesFuncs();
+    }
+
+    void runSeriesFuncs() {
+      auto func = funcs_[currIdx_];
+      func([this](const Error& err, json& j) {
+        if (err) return cb_(err, results_);
+        results_[currIdx_] = j;
+        if (++currIdx_ == funcCount_) return cb_(err, results_);
+        runSeriesFuncs();
+      });
     }
 
   private:
@@ -23,11 +29,15 @@ namespace nodecpp {
     size_t funcCount_ = 0;
     AsyncFuncArr_t funcs_;
     AsyncResultCb_t cb_;
+    vector<json> results_;
   };
 
   void Async::series(AsyncFuncArr_t& funcs, AsyncResultCb_t cb) {
     auto inner = new AsyncInner();
-    inner->series(funcs, cb);
+    inner->series(funcs, [inner, cb](const Error& err, const vector<json>& results) {
+      cb(err, results);
+      delete inner;
+    });
   }
 
   void Async::parallel(AsyncFuncArr_t& funcs, AsyncResultCb_t cb) {

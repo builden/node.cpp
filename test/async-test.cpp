@@ -19,14 +19,25 @@ TEST_F(AsyncTest, tupleTest) {
 
   async.series(AsyncFuncArr_t{
     [](AsyncCb_t cb) {
-    cb(Error(0), json::object());
-  },
+      cout << "1: " << moment().format() << endl;
+      setTimeout([=] {
+        cout << "2: " << moment().format() << endl;
+        cb(Error(0), json::object());
+      }, 100);
+    },
     [](AsyncCb_t cb) {
-    cb(Error(0), json::object());
-  }
+      cout << "3: " << moment().format() << endl;
+      setTimeout([=] {
+        cout << "4: " << moment().format() << endl;
+        cb(Error(0), R"({ "a": "b" })"_json);
+      }, 100);
+    }
   }, [](const Error& err, const vector<json>& results) {
+    cout << "5: " << moment().format() << endl;
     for (auto& result : results) {
       cout << result.dump() << endl;
     }
   });
+
+  run();
 }
