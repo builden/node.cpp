@@ -19,22 +19,22 @@ TEST_F(AsyncTest, tupleTest) {
 }
 
 TEST_F(AsyncTest, series) {
-  async.series(AsyncFuncArr_t{
-    [](AsyncCb_t cb) {
+  async.series<json>(AsyncJsonFuncArr_t{
+    [](AsyncJsonCb_t cb) {
       cout << "series 1: " << moment().format() << endl;
       setTimeout([=] {
         cout << "series 2: " << moment().format() << endl;
         cb(Error(0), R"({ "a": 1 })"_json);
       }, 100);
     },
-    [](AsyncCb_t cb) {
+    [](AsyncJsonCb_t cb) {
       cout << "series 3: " << moment().format() << endl;
       setTimeout([=] {
         cout << "series 4: " << moment().format() << endl;
         cb(Error("p2"), R"({ "a": "b" })"_json);
       }, 200);
     },
-    [](AsyncCb_t cb) {
+    [](AsyncJsonCb_t cb) {
       cout << "series 5: " << moment().format() << endl;
       setTimeout([=] {
         cout << "series 6: " << moment().format() << endl;
@@ -49,26 +49,56 @@ TEST_F(AsyncTest, series) {
     }
   });
 
+  async.series<int>(AsyncIntFuncArr_t{
+    [](AsyncIntCb_t cb) {
+      cout << "series int 1: " << moment().format() << endl;
+      setTimeout([=] {
+        cout << "series int 2: " << moment().format() << endl;
+        cb(Error(0), 1);
+      }, 100);
+    },
+    [](AsyncIntCb_t cb) {
+      cout << "series int 3: " << moment().format() << endl;
+      setTimeout([=] {
+        cout << "series int 4: " << moment().format() << endl;
+        cb(Error(0), 2);
+      }, 200);
+    },
+    [](AsyncIntCb_t cb) {
+      cout << "series int 5: " << moment().format() << endl;
+      setTimeout([=] {
+        cout << "series int 6: " << moment().format() << endl;
+        cb(Error(0), 3);
+      }, 100);
+    }
+  }, [](const Error& err, const ivec_t& results) {
+    cout << "series int 10: " << moment().format() << endl;
+    if (err) cout << "series int err: " << err.str() << endl;
+    for (auto& result : results) {
+      cout << result << endl;
+    }
+  });
+
   run();
 }
 
 TEST_F(AsyncTest, parallel) {
-  async.parallel(AsyncFuncArr_t{
-    [](AsyncCb_t cb) {
+  async.parallel<json>(AsyncJsonFuncArr_t{
+    [](AsyncJsonCb_t cb) {
       cout << "parallel 1: " << moment().format() << endl;
       setTimeout([=] {
         cout << "parallel 2: " << moment().format() << endl;
         cb(Error(0), json::object());
       }, 200);
     },
-    [](AsyncCb_t cb) {
+    [](AsyncJsonCb_t cb) {
       cout << "parallel 3: " << moment().format() << endl;
       setTimeout([=] {
         cout << "parallel 4: " << moment().format() << endl;
         cb(Error("p3"), R"({ "a": "b" })"_json);
       }, 150);
     },
-    [](AsyncCb_t cb) {
+    [](AsyncJsonCb_t cb) {
       cout << "parallel 5: " << moment().format() << endl;
       setTimeout([=] {
         cout << "parallel 6: " << moment().format() << endl;
