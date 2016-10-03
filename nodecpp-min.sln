@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deps", "deps", "{219D9332-5FD1-4CB3-867C-461F3DB550D1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nodecpp-test", "nodecpp-test", "{4F5B1A88-4100-40EB-AC25-AAC4B43C1BA8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nodecpp", "nodecpp\nodecpp.vcxproj", "{AF7BEC68-0D53-4E17-B7AD-F57BB9AC1277}"

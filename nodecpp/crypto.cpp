@@ -1,6 +1,19 @@
 #include "crypto.h"
 #include <openssl/evp.h>
+
+#ifdef _DEBUG
+#ifdef _DLL
+#pragma comment(lib, "openssl-d.lib")
+#else  // _DLL
+#pragma comment(lib, "openssl-sd.lib")
+#endif // _DLL
+#else  // _DEBUG
+#ifdef _DLL
 #pragma comment(lib, "openssl.lib")
+#else  // _DLL
+#pragma comment(lib, "openssl-s.lib")
+#endif // _DLL
+#endif // _DEBUG
 
 namespace nodecpp {
 

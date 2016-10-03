@@ -249,9 +249,6 @@
     <ClInclude Include="nlohmann\json.hpp">
       <Filter>deps\nlohmann</Filter>
     </ClInclude>
-    <ClInclude Include="zctx.h">
-      <Filter>core\inner</Filter>
-    </ClInclude>
     <ClInclude Include="super-agent.h">
       <Filter>third</Filter>
     </ClInclude>
@@ -451,9 +448,6 @@
     </ClCompile>
     <ClCompile Include="fmt\format.cc">
       <Filter>deps\fmt</Filter>
-    </ClCompile>
-    <ClCompile Include="zctx.cpp">
-      <Filter>core\inner</Filter>
     </ClCompile>
     <ClCompile Include="super-agent.cpp">
       <Filter>third</Filter>

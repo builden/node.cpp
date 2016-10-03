@@ -5,7 +5,19 @@
 #include "http-parse-test.h"
 
 #include <http_parser.h>
-#pragma comment(lib, "http_parser")
+#ifdef _DEBUG
+#ifdef _DLL
+#pragma comment(lib, "http_parser-d.lib")
+#else  // _DLL
+#pragma comment(lib, "http_parser-sd.lib")
+#endif // _DLL
+#else  // _DEBUG
+#ifdef _DLL
+#pragma comment(lib, "http_parser.lib")
+#else  // _DLL
+#pragma comment(lib, "http_parser-s.lib")
+#endif // _DLL
+#endif // _DEBUG
 
 TEST_F(HttpParseTest, http_parser_parse_url) {
   string url = "http://user:pass@host.com:8080/p/a/t/h?query=string&for=bar#hash";

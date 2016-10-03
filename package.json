@@ -1,0 +1,33 @@
+{
+  "name": "node.cpp",
+  "version": "1.0.0",
+  "description": "* 用C++实现了Node.js的常用API接口\r * 底层使用libuv, 支持事件驱动、非阻塞IO\r * 实现了几个Node.js项目中被大量依赖的第三库\r * 使用方式基本上和Node.js保持一致，开发过程中可直接参考Node.js的API文档\r * 大量使用了C++11中的lambda，动态参数模版等特性，目前只在VS2015中编译通过",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/builden/node.cpp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/builden/node.cpp/issues"
+  },
+  "homepage": "https://github.com/builden/node.cpp#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "colors": "^1.1.2",
+    "debug": "^2.2.0",
+    "iconv-lite": "^0.4.13",
+    "lodash": "^4.16.2",
+    "underscore.string": "^3.3.4",
+    "xml2js": "^0.4.17"
+  }
+}

@@ -6,7 +6,19 @@
 #include "zlib/unzip.h"
 #include <zlib.h>
 #include <uv.h>
-#pragma comment(lib, "zlib")
+#ifdef _DEBUG
+#ifdef _DLL
+#pragma comment(lib, "zlib-d.lib")
+#else  // _DLL
+#pragma comment(lib, "zlib-sd.lib")
+#endif // _DLL
+#else  // _DEBUG
+#ifdef _DLL
+#pragma comment(lib, "zlib.lib")
+#else  // _DLL
+#pragma comment(lib, "zlib-s.lib")
+#endif // _DLL
+#endif // _DEBUG
 
 namespace nodecpp {
 

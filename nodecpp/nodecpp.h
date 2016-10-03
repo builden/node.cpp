@@ -40,11 +40,34 @@ namespace nodecpp {
   void runNoWait();
 }
 
+#ifdef _DEBUG
+
+#ifdef _DLL
+#pragma comment(lib, "g3logger-d.lib")
+#pragma comment(lib, "nodecpp-d.lib")
+#pragma comment(lib, "libuv-d.lib")
+#else  // _DLL
+#pragma comment(lib, "g3logger-sd.lib")
+#pragma comment(lib, "nodecpp-sd.lib")
+#pragma comment(lib, "libuv-sd.lib")
+#endif // _DLL
+
+#else  // _DEBUG
+
+#ifdef _DLL
+#pragma comment(lib, "g3logger.lib")
 #pragma comment(lib, "nodecpp.lib")
-#pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "libuv.lib")
+#else  // _DLL
+#pragma comment(lib, "g3logger-s.lib")
+#pragma comment(lib, "nodecpp-s.lib")
+#pragma comment(lib, "libuv-s.lib")
+#endif // _DLL
+
+#endif // _DEBUG
+
+#pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "userenv.lib")
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "psapi.lib")
-#pragma comment(lib, "g3logger.lib")
 #pragma comment(lib, "dbghelp.lib")
