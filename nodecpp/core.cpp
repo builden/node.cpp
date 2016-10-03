@@ -15,6 +15,9 @@ namespace nodecpp {
         if (cc == ' ') {
           dst += "%20";
         }
+        else if (cc == '"') {
+          dst += "%22";
+        }
         else
           dst += cc;
       }
@@ -74,7 +77,12 @@ namespace nodecpp {
     for (size_t i = 0; i < src.size(); ++i) {
       unsigned char cc = src[i];
       if (isascii(cc) && (strchr(uriReserved, cc) == nullptr)) {
-        dst += cc;
+        if (cc == '"') {
+          dst += "%22";
+        }
+        else {
+          dst += cc;
+        }
       }
       else {
         unsigned char c = static_cast<unsigned char>(src[i]);
