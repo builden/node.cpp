@@ -30,6 +30,7 @@
     <ClInclude Include="child_process.h" />
     <ClInclude Include="client-request.h" />
     <ClInclude Include="connection-wrap.h" />
+    <ClInclude Include="console.h" />
     <ClInclude Include="core-math.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="crypto.h" />
@@ -38,7 +39,7 @@
     <ClInclude Include="error.h" />
     <ClInclude Include="events.h" />
     <ClInclude Include="file-url.h" />
-    <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="fmtlib\fmt\format.h" />
     <ClInclude Include="fs-req-wrap.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="g3log-internal\json-file-sink.h" />
@@ -76,6 +77,12 @@
     <ClInclude Include="shm.h" />
     <ClInclude Include="shutdown-wrap.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="spdlog\async_logger.h" />
+    <ClInclude Include="spdlog\common.h" />
+    <ClInclude Include="spdlog\formatter.h" />
+    <ClInclude Include="spdlog\logger.h" />
+    <ClInclude Include="spdlog\spdlog.h" />
+    <ClInclude Include="spdlog\tweakme.h" />
     <ClInclude Include="stats-def.h" />
     <ClInclude Include="std-regex-ex.h" />
     <ClInclude Include="stream-base.h" />
@@ -105,6 +112,7 @@
     <ClCompile Include="child_process.cpp" />
     <ClCompile Include="client-request.cpp" />
     <ClCompile Include="connection-wrap.cpp" />
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="core-math.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="crypto.cpp" />
@@ -113,7 +121,7 @@
     <ClCompile Include="error.cpp" />
     <ClCompile Include="events.cpp" />
     <ClCompile Include="file-url.cpp" />
-    <ClCompile Include="fmt\format.cc" />
+    <ClCompile Include="fmtlib\fmt\format.cc" />
     <ClCompile Include="fs-req-wrap.cpp" />
     <ClCompile Include="fs.cpp" />
     <ClCompile Include="g3log-internal\json-file-sink.cpp" />
@@ -216,14 +224,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\libs</OutDir>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)-sd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\libs</OutDir>
     <IntDir>$(SolutionDir)tmp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)-s</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

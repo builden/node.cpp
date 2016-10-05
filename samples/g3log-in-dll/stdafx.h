@@ -11,16 +11,6 @@
 // Windows Header Files:
 #include <windows.h>
 
-#include <stdio.h>
-#include <tchar.h>
 
-#include <gtest/gtest.h>
-
-#include <nodecpp/nodecpp.h>
-using namespace nodecpp;
-
-#include <nodecpp/fmtlib/fmt/format.h>
-
-using namespace std;
 
 // TODO: reference additional headers your program requires here

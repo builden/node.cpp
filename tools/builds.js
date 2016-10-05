@@ -35,6 +35,10 @@ const projs = [
     targetProj: 'nodecpp/nodecpp.vcxproj',
     targetType: 'StaticLibrary',
   },
+  // {
+  //   targetProj: '../../qgutil/qgutil.vcxproj',
+  //   targetType: 'StaticLibrary',
+  // },
 ];
 
 async.eachOfLimit(projs, 1, (proj, idx, cb) => {

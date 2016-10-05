@@ -120,6 +120,9 @@
     <ClCompile Include="async-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="console-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer-test.h">
@@ -225,6 +228,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="async-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

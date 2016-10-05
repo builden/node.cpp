@@ -43,6 +43,9 @@
     <Filter Include="third\internal">
       <UniqueIdentifier>{3aa7a1cf-8107-48d6-990c-7b224f3f1db0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\spdlog">
+      <UniqueIdentifier>{6e7f769a-9e66-46ef-a0f7-7e8e68cba876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h">
@@ -243,9 +246,6 @@
     <ClInclude Include="base64\modp_b64_data.h">
       <Filter>deps\base64</Filter>
     </ClInclude>
-    <ClInclude Include="fmt\format.h">
-      <Filter>deps\fmt</Filter>
-    </ClInclude>
     <ClInclude Include="nlohmann\json.hpp">
       <Filter>deps\nlohmann</Filter>
     </ClInclude>
@@ -272,6 +272,30 @@
     </ClInclude>
     <ClInclude Include="g3log-internal\jsonfilesinkhelper.h">
       <Filter>third\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="fmtlib\fmt\format.h">
+      <Filter>deps\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\async_logger.h">
+      <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\common.h">
+      <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\formatter.h">
+      <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\logger.h">
+      <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\spdlog.h">
+      <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\tweakme.h">
+      <Filter>deps\spdlog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,9 +470,6 @@
     <ClCompile Include="base64\modp_b64.cc">
       <Filter>deps\base64</Filter>
     </ClCompile>
-    <ClCompile Include="fmt\format.cc">
-      <Filter>deps\fmt</Filter>
-    </ClCompile>
     <ClCompile Include="super-agent.cpp">
       <Filter>third</Filter>
     </ClCompile>
@@ -472,6 +493,12 @@
     </ClCompile>
     <ClCompile Include="g3log-internal\jsonfilesinkhelper.cpp">
       <Filter>third\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="fmtlib\fmt\format.cc">
+      <Filter>deps\fmt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

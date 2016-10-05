@@ -34,8 +34,8 @@ function getConfs(proj) {
     targetType: proj.targetType,
   };
   return [
-    createOneConf(tmpl, 'x86', 'Debug', 'MultiThreadedDebugDLL'),
-    createOneConf(tmpl, 'x86', 'Release', 'MultiThreadedDLL'),
+    // createOneConf(tmpl, 'x86', 'Debug', 'MultiThreadedDebugDLL'),
+    // createOneConf(tmpl, 'x86', 'Release', 'MultiThreadedDLL'),
     createOneConf(tmpl, 'x86', 'Debug', 'MultiThreadedDebug'),
     createOneConf(tmpl, 'x86', 'Release', 'MultiThreaded'),
     
