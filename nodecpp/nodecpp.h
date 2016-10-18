@@ -8,6 +8,7 @@
 #include "lodash.h"
 #include "core.h"
 #include "stream-readable.h"
+#include "console.h"
 
 #include "crypto.h"
 #include "timers.h"
@@ -43,11 +44,9 @@ namespace nodecpp {
 #ifdef _DEBUG
 
 #ifdef _DLL
-#pragma comment(lib, "g3logger-d.lib")
 #pragma comment(lib, "nodecpp-d.lib")
 #pragma comment(lib, "libuv-d.lib")
 #else  // _DLL
-#pragma comment(lib, "g3logger-sd.lib")
 #pragma comment(lib, "nodecpp-sd.lib")
 #pragma comment(lib, "libuv-sd.lib")
 #endif // _DLL
@@ -55,11 +54,9 @@ namespace nodecpp {
 #else  // _DEBUG
 
 #ifdef _DLL
-#pragma comment(lib, "g3logger.lib")
 #pragma comment(lib, "nodecpp.lib")
 #pragma comment(lib, "libuv.lib")
 #else  // _DLL
-#pragma comment(lib, "g3logger-s.lib")
 #pragma comment(lib, "nodecpp-s.lib")
 #pragma comment(lib, "libuv-s.lib")
 #endif // _DLL

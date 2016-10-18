@@ -27,7 +27,7 @@ namespace nodecpp {
   Buffer::Buffer(const string& str, const string& encoding /*= "ansi"*/) {
     string utf8str;
     if (encoding == "ansi") {
-      utf8str = iconv.strToUtf8(str);
+      utf8str = iconv.stou8(str);
     }
     else if (encoding == "utf8" || encoding == "utf-8") {
       utf8str = str;
@@ -47,7 +47,7 @@ namespace nodecpp {
   }
 
   Buffer::Buffer(const wstring& wstr) {
-    string utf8str = iconv.wstrToUtf8(wstr);
+    string utf8str = iconv.wtou8(wstr);
     buf_.assign(utf8str.begin(), utf8str.end());
   }
 
@@ -59,11 +59,11 @@ namespace nodecpp {
     buf_ = cvec;
   }
 
-  string Buffer::format(uint32_t num) const {
+  string Buffer::format(size_t num) const {
     fmt::MemoryWriter out;
     out << "<Buffer";
-    uint32_t showNum = Math.min(num, buf_.size());
-    for (uint32_t i = 0; i < showNum; i++) {
+    size_t showNum = Math.min(num, buf_.size());
+    for (size_t i = 0; i < showNum; i++) {
       out.write(" {:02x}", (uint8_t)buf_[i]);
     }
     if (showNum < buf_.size()) out << " ... ";
@@ -115,7 +115,7 @@ namespace nodecpp {
     string rst;
     if (end > start && start < static_cast<int>(buf_.size())) rst = string(str + start, str + end);
     if (encoding == "ansi") {
-      return iconv.utf8ToStr(rst);
+      return iconv.u8tos(rst);
     }
     else if (encoding == "base64") {
       string base64;
@@ -155,7 +155,7 @@ namespace nodecpp {
 
     string rst;
     if (end > start && start < static_cast<int>(buf_.size())) rst = string(str + start, str + end);
-    return iconv.utf8ToWstr(rst);
+    return iconv.u8tow(rst);
   }
 
   const char* Buffer::data() const {

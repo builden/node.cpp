@@ -31,10 +31,10 @@ const projs = [
   //   targetType: 'StaticLibrary',
   //   targetName: 'zlib',
   // },
-  {
-    targetProj: 'nodecpp/nodecpp.vcxproj',
-    targetType: 'StaticLibrary',
-  },
+  // {
+  //   targetProj: 'nodecpp/nodecpp.vcxproj',
+  //   targetType: 'StaticLibrary',
+  // },
   // {
   //   targetProj: '../../qgutil/qgutil.vcxproj',
   //   targetType: 'StaticLibrary',

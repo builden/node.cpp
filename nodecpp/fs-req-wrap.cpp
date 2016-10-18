@@ -150,7 +150,7 @@ namespace nodecpp {
           throw Error(UV_EINVAL);
           break;
         }
-        names.emplace_back(iconv.utf8ToStr(filename));
+        names.emplace_back(iconv.u8tos(filename));
       }
     }
     break;
@@ -321,7 +321,7 @@ namespace nodecpp {
         throw Error(UV_EINVAL);
       }
 
-      names.emplace_back(iconv.utf8ToStr(filename));
+      names.emplace_back(iconv.u8tos(filename));
     }
 
     return names;

@@ -83,7 +83,7 @@ namespace nodecpp {
       pimpl->ctx_ = qs.stringify(ctx);
     }
     else {
-      pimpl->ctx_ = iconv.strToUtf8(ctx.dump());
+      pimpl->ctx_ = iconv.stou8(ctx.dump());
     }
     return *this;
   }

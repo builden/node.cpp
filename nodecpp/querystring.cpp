@@ -10,9 +10,8 @@ namespace nodecpp {
   uint32_t maxPairs = 1000;
 
   Querystring::Querystring() {
-    hexTable.resize(256);
     for (int i = 0; i < 256; ++i) {
-      hexTable[i] = "%" + fmt::format("{:02X}", i);
+      hexTable.emplace_back(fmt::format("%{:02X}", i));
     }
   }
 
@@ -232,7 +231,7 @@ namespace nodecpp {
     // http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.4
     string out = "";
     size_t lastPos = 0;
-    wstring wstr = iconv.strToWstr(str);
+    wstring wstr = iconv.stow(str);
 
     for (size_t i = 0; i < wstr.length(); ++i) {
       uint32_t c = iconv.charCodeAt(wstr, i);
@@ -291,7 +290,7 @@ namespace nodecpp {
     if (lastPos == 0)
       return str;
     if (lastPos < wstr.length())
-      return out + iconv.wstrToStr(s.slice(wstr, lastPos));
+      return out + iconv.wtos(s.slice(wstr, lastPos));
     return out;
   }
 

@@ -1,4 +1,8 @@
 #include "process.h"
+#include "nodecpp-version.h"
+#include <uv.h>
+#include <zlib.h>
+
 #include <windows.h>
 #include <stdlib.h>
 #include "timers.h"
@@ -30,6 +34,19 @@ namespace nodecpp {
 
     pimpl->initArgv(argv);
     pimpl->initEnv(env);
+
+#ifdef _WIN64
+    arch = "x64";
+#else
+    arch = "ia32";
+#endif
+
+    version = NODECPP_VERSION;
+    versions = {
+      { "nodecpp", NODECPP_VERSION + 1 },
+      { "uv", uv_version_string() },
+      { "zlib", ZLIB_VERSION }
+    };
   }
 
   string Process::cwd() {
@@ -52,7 +69,7 @@ namespace nodecpp {
     }
     else {
       for (int i = 0; i < nArgs; i++) {
-        argv.emplace_back(iconv.wstrToStr(szArglist[i]));
+        argv.emplace_back(iconv.wtos(szArglist[i]));
         // printf("%d: %ws\n", i, szArglist[i]);
       }
     }
@@ -82,7 +99,7 @@ namespace nodecpp {
       
       std::wstring key(p, two_byte_buffer_len);
       std::wstring value = s + 1;
-      env[iconv.wstrToStr(key)] = iconv.wstrToStr(value);
+      env[iconv.wtos(key)] = iconv.wtos(value);
       
       p = s + wcslen(s) + 1;
     }

@@ -587,7 +587,7 @@ namespace nodecpp {
     // faster encodeURIComponent alternative for encoding auth uri components
     string out = "";
     uint32_t lastPos = 0;
-    wstring wstr = iconv.strToWstr(str);
+    wstring wstr = iconv.stow(str);
     uint32_t strLen = wstr.length();
     for (uint32_t i = 0; i < strLen; ++i) {
       uint32_t c = iconv.charCodeAt(wstr, i);

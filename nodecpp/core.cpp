@@ -5,7 +5,7 @@ namespace nodecpp {
   using std::ostringstream;
 
   string encodeURI(const string& str) {
-    string src = iconv.strToUtf8(str);
+    string src = iconv.stou8(str);
     char hex[] = "0123456789ABCDEF";
     string dst;
 
@@ -65,11 +65,11 @@ namespace nodecpp {
         break;
       }
     }
-    return iconv.utf8ToStr(result);
+    return iconv.u8tos(result);
   }
 
   string encodeURIComponent(const string& str) {
-    string src = iconv.strToUtf8(str);
+    string src = iconv.stou8(str);
     char hex[] = "0123456789ABCDEF";
     char uriReserved[] = ";,/?:@&=+$# ";
     string dst;
@@ -124,7 +124,7 @@ namespace nodecpp {
         break;
       }
     }
-    return iconv.utf8ToStr(result);
+    return iconv.u8tos(result);
   }
 
   string escape(const string& /*str*/) {

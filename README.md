@@ -90,7 +90,7 @@ git clone -b release-1.7.0 https://github.com/google/googletest.git gtest
 * g3log       -> cmake
 * http-parser -> gyp
 * zlib        -> cmake
-* openssl     -> 
+* openssl     -> gyp
 * libuv       -> vcbuild.bat
 * gtest       -> cmake
 

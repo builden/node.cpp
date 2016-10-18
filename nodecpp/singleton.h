@@ -1,5 +1,7 @@
-#ifndef __SINGLETON_H__
-#define __SINGLETON_H__
+#pragma once
+
+#include <memory>
+using std::unique_ptr;
 
 namespace nodecpp {
   class noncopyable {
@@ -15,14 +17,24 @@ namespace nodecpp {
   class Singleton : private noncopyable {
   public:
     static T& instance() {
-      static T ins;
-      return ins;
+      if (!ins_.get()) {
+        ins_.reset(new T);
+      }
+      return *(ins_.get());
+    }
+
+    static void destroy() {
+      if (ins_) {
+        ins_.reset();
+      }
     }
 
   protected:
     explicit Singleton<T>() = default;
     ~Singleton<T>() = default;
+    static unique_ptr<T> ins_;
   };
-}
 
-#endif // !__SINGLETON_H__
+  template<typename T>
+  std::unique_ptr<T> Singleton<T>::ins_ = nullptr;
+}

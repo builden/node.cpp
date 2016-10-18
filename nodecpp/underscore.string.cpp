@@ -61,12 +61,12 @@ namespace nodecpp {
     return v;
   }
 
-  bool UnderscoreString::startsWith(const string& str, const string& starts, uint32_t position /*= 0*/) {
+  bool UnderscoreString::startsWith(const string& str, const string& starts, size_t position /*= 0*/) {
     position = Math.min(position, str.length());
     return str.find(starts) == position;
   }
 
-  bool UnderscoreString::endsWith(const string& str, const string& ends, uint32_t position) {
+  bool UnderscoreString::endsWith(const string& str, const string& ends, size_t position) {
     position = Math.min(position, str.length()) - ends.length();
     return position >= 0 && str.rfind(ends) == position;
   }
@@ -236,9 +236,9 @@ namespace nodecpp {
   }
 
   string UnderscoreString::reverse(const string& str) {
-    wstring wstr = iconv.strToWstr(str);
+    wstring wstr = iconv.stow(str);
     std::reverse(wstr.begin(), wstr.end());
-    return iconv.wstrToStr(wstr);
+    return iconv.wtos(wstr);
   }
 
   string UnderscoreString::capitalize(const string& str, bool lowercaseRest /*= false*/) {

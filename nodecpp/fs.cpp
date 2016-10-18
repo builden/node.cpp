@@ -15,11 +15,11 @@ namespace nodecpp {
   void Fs::open(const string& p, const string& flags, int mode, OpenCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteResult = cb;
-    Open(iconv.strToUtf8(p), stringToFlags(flags), mode, reqWrap);
+    Open(iconv.stou8(p), stringToFlags(flags), mode, reqWrap);
   }
 
   int Fs::openSync(const string& p, const string& flags, int mode /*= 0*/) {
-    return Open(iconv.strToUtf8(p), stringToFlags(flags), mode);
+    return Open(iconv.stou8(p), stringToFlags(flags), mode);
   }
 
   void Fs::close(int fd, CloseCb_t cb) {
@@ -41,7 +41,7 @@ namespace nodecpp {
     req->onCompleteResult = [context](const Error& err, int fd) {
       context->readFileAfterOpen(err, fd);
     };
-    Open(iconv.strToUtf8(p), stringToFlags("r"), 0666, req);
+    Open(iconv.stou8(p), stringToFlags("r"), 0666, req);
   }
 
   void Fs::readFile(const string& p, const string& encoding, ReadStrCb_t cb) {
@@ -118,7 +118,7 @@ namespace nodecpp {
   }
 
   Buffer Fs::readFileSync(const string& p) {
-    int fd = openSync(iconv.strToUtf8(p), "r", 0666);
+    int fd = openSync(iconv.stou8(p), "r", 0666);
     Stats st = fstatSync(fd);
     uint32_t size = st.isFile() ? static_cast<uint32_t>(st.size) : 0;
     Buffer buffer;
@@ -192,21 +192,21 @@ namespace nodecpp {
   void Fs::stat(const string& p, StatCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteStats = cb;
-    Stat(iconv.strToUtf8(p), reqWrap);
+    Stat(iconv.stou8(p), reqWrap);
   }
 
   Stats Fs::statSync(const string& p) {
-    return Stat(iconv.strToUtf8(p));
+    return Stat(iconv.stou8(p));
   }
 
   void Fs::lstat(const string& p, StatCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteStats = cb;
-    LStat(iconv.strToUtf8(p), reqWrap);
+    LStat(iconv.stou8(p), reqWrap);
   }
 
   Stats Fs::lstatSync(const string& p) {
-    return LStat(iconv.strToUtf8(p));
+    return LStat(iconv.stou8(p));
   }
 
   void Fs::fstat(int fd, StatCb_t cb) {
@@ -242,11 +242,11 @@ namespace nodecpp {
   void Fs::mkdir(const string& p, int mode, MkdirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    MKDir(iconv.strToUtf8(p), mode, reqWrap);
+    MKDir(iconv.stou8(p), mode, reqWrap);
   }
 
   void Fs::mkdirSync(const string& p, int mode /*= 0777*/) {
-    MKDir(iconv.strToUtf8(p), mode);
+    MKDir(iconv.stou8(p), mode);
   }
 
   void Fs::mkdirs(const string& p, MkdirCb_t cb) {
@@ -308,31 +308,31 @@ namespace nodecpp {
   void Fs::readdir(const string& p, ReadDirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onCompleteReadDir = cb;
-    ReadDir(iconv.strToUtf8(p), reqWrap);
+    ReadDir(iconv.stou8(p), reqWrap);
   }
 
   svec_t Fs::readdirSync(const string& p) {
-    return ReadDir(iconv.strToUtf8(p));
+    return ReadDir(iconv.stou8(p));
   }
 
   void Fs::rmdir(const string& p, RmdirCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    RMDir(iconv.strToUtf8(p), reqWrap);
+    RMDir(iconv.stou8(p), reqWrap);
   }
 
   void Fs::rmdirSync(const string& p) {
-    RMDir(iconv.strToUtf8(p));
+    RMDir(iconv.stou8(p));
   }
 
   void Fs::unlink(const string& p, UnlinkCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Unlink(iconv.strToUtf8(p), reqWrap);
+    Unlink(iconv.stou8(p), reqWrap);
   }
 
   void Fs::unlinkSync(const string& p) {
-    Unlink(iconv.strToUtf8(p));
+    Unlink(iconv.stou8(p));
   }
 
   class RemoveWrap {
@@ -427,11 +427,11 @@ namespace nodecpp {
   void Fs::rename(const string& oldPath, const string& newPath, RenameCb_t cb) {
     auto reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Rename(iconv.strToUtf8(oldPath), iconv.strToUtf8(newPath), reqWrap);
+    Rename(iconv.stou8(oldPath), iconv.stou8(newPath), reqWrap);
   }
 
   void Fs::renameSync(const string& oldPath, const string& newPath) {
-    Rename(iconv.strToUtf8(oldPath), iconv.strToUtf8(newPath));
+    Rename(iconv.stou8(oldPath), iconv.stou8(newPath));
   }
 
   void Fs::access(const string& p, AccessCb_t cb) {
@@ -441,11 +441,11 @@ namespace nodecpp {
   void Fs::access(const string& p, int mode, AccessCb_t cb) {
     FSReqWrap* reqWrap = FSReqWrap::New(nullptr);
     reqWrap->onComplete = cb;
-    Access(iconv.strToUtf8(p), mode, reqWrap);
+    Access(iconv.stou8(p), mode, reqWrap);
   }
 
   void Fs::accessSync(const string& p, int mode /*= 0*/) {
-    Access(iconv.strToUtf8(p), mode);
+    Access(iconv.stou8(p), mode);
   }
 
 

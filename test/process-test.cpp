@@ -43,3 +43,9 @@ TEST_F(ProcessTest, env) {
   EXPECT_EQ(process.env["NOTEXIST"].is_null(), true);
   EXPECT_EQ(s.toLower(process.env["windir"].get<string>()), "c:\\windows");
 }
+
+TEST_F(ProcessTest, versions) {
+  cout << "version: " << process.version << endl;
+
+  cout << "versions: " << process.versions.dump() << endl;
+}

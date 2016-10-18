@@ -23,6 +23,10 @@ namespace nodecpp {
     return buf;
   }
 
+  string Os::arch() {
+    return process.arch;
+  }
+
   Os& os = Os::instance();
 
 }

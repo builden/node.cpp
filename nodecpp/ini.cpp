@@ -60,6 +60,18 @@ namespace nodecpp {
     }
   }
 
+  int64_t Ini::getInt64(const string& section, const string& key, int64_t defaultValue /*= 0*/) {
+    string str = pimpl->ini_.GetValue(section.c_str(), key.c_str(), "");
+
+    if (str.empty()) return defaultValue;
+    try {
+      return std::stoll(str);
+    }
+    catch (std::invalid_argument&) {
+      return defaultValue;
+    }
+  }
+
   bool Ini::getBool(const string& section, const string& key, bool defaultValue /*= false*/) {
     string str = pimpl->ini_.GetValue(section.c_str(), key.c_str(), "");
     return str.empty() ? defaultValue : (s.toLower(str) == "true");

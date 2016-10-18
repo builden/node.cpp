@@ -43,3 +43,10 @@ TEST_F(FmtTest, fmt_sprintf) {
   // 不支持宽字符到窄字符的转换
   // EXPECT_EQ(fmt::sprintf("%S", L"abc"), "abc");
 }
+
+TEST_F(FmtTest, error) {
+  // 不能接收nullptr，否则会崩溃
+  // fmt::format("{}", nullptr);
+
+  fmt::format("after error");
+}

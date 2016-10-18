@@ -180,3 +180,39 @@ TEST_F(NlohmannJsonTest, reference) {
   string key = "sub";
   EXPECT_EQ(j[key].dump(), "3");
 }
+
+TEST_F(NlohmannJsonTest, spec) {
+  json j = u8R"({
+  "ns": "chat",
+  "fn": "send_msg",
+  "cb": "",
+  "p": {
+    "conv_id": [
+      "3466982286"
+    ],
+    "msg_id": [
+      "3466982286_1476024718317"
+    ],
+    "conv_type": [
+      "C2C"
+    ],
+    "msg_type": "2",
+    "msg_elem_list": [
+      {
+        "msg_elem_type": "1",
+        "msg_elem_content": "{\"appid\":\"0\",\"msg_type\":\"2\"}"
+      },
+      {
+        "msg_elem_type": "1",
+        "msg_elem_content": "{\"tips\":{\"title\":\"邀请游戏\",\"img\":\"http://qgcdn3.gtimg.com/plat/appdirgame/images/app_ico/30245_icon_01.png\",\"content\":[{\"type\":\"\",\"text\":\"水手.柯察金邀请您加入游戏\"},{\"type\":\"link\",\"url\":\"qqgameprotocol:///pcgame appid:30245 cmd:invite invitepara:eyJNZXRhRGF0YSI6Ilwic2VydmVyX3BvcnRcIjpcIlwiIiwiQ21kTGluZSI6IiIsIlJlbW90ZUlEIjo0MzI5MzAwfQ__\",\"text\":\"饥荒：联机版\"}],\"btn\":[{\"type\":\"btn\",\"text\":\"进入游戏\",\"url\":\"qqgameprotocol:///pcgame appid:30245 cmd:invite invitepara:eyJNZXRhRGF0YSI6Ilwic2VydmVyX3BvcnRcIjpcIlwiIiwiQ21kTGluZSI6IiIsIlJlbW90ZUlEIjo0MzI5MzAwfQ__\",\"close\":\"1\"}]},\"msg\":{\"roomurl\":\"qqgameprotocol:///pcgame appid:30245 cmd:invite invitepara:eyJNZXRhRGF0YSI6Ilwic2VydmVyX3BvcnRcIjpcIlwiIiwiQ21kTGluZSI6IiIsIlJlbW90ZUlEIjo0MzI5MzAwfQ__\",\"img\":\"http://qgcdn3.gtimg.com/plat/appdirgame/images/app_ico/30245_icon_01.png\",\"appid\":\"30245\",\"appname\":\"饥荒：联机版\"},\"invite_type\":\"3\",\"invite_time\":\"1476024718\"}"
+      }
+    ]
+  }
+})"_json;
+
+  string context = j["p"]["msg_elem_list"][1]["msg_elem_content"].get<string>();
+  json ctx = json::parse(context);
+  cout << context << endl;
+  cout << ctx["tips"].dump() << endl;
+  cout << iconv.u8tos(ctx["tips"]["title"].get<string>()) << endl;
+}

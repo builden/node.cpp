@@ -43,7 +43,7 @@ namespace nodecpp {
     string toU8string(uint32_t start = 0) const;
     string toU8string(uint32_t start, uint32_t end) const;
 
-    string format(uint32_t num = 50) const;
+    string format(size_t num = 50) const;
     const char* data() const;
     uint32_t length() const;
     uint32_t size() const;

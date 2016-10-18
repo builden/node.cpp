@@ -28,13 +28,13 @@ TEST_F(BufferTest, constructor) {
 
   Buffer buf2(std::string("中文abcd"));
   EXPECT_EQ(buf2.toString(), "中文abcd");
-  EXPECT_EQ(buf2.length(), iconv.strToUtf8("中文abcd").length());
+  EXPECT_EQ(buf2.length(), iconv.stou8("中文abcd").length());
 
   Buffer buf3(std::wstring(L"abcdef"));
   EXPECT_EQ(buf3.length(), 6);
 
   Buffer buf4(std::wstring(L"中文abcd"));
-  EXPECT_EQ(buf4.length(), iconv.strToUtf8("中文abcd").length());
+  EXPECT_EQ(buf4.length(), string(u8"中文abcd").length());
 
   Buffer buf5("abcdef", 4);
   EXPECT_EQ(buf5.toString(), "abcd");

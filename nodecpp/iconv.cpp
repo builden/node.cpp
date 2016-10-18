@@ -76,38 +76,56 @@ namespace nodecpp {
     return buf;
   }
 
-  wstring Iconv::strToWstr(const string& s) {
-    wstring_convert<codecvt<wchar_t, char, mbstate_t>> converter(new codecvt<wchar_t, char, mbstate_t>("CHS"));
-
-    return converter.from_bytes(s);
+  wstring Iconv::stow(const string& s) {
+    try {
+      wstring_convert<codecvt<wchar_t, char, mbstate_t>> converter(new codecvt<wchar_t, char, mbstate_t>("CHS"));
+      return converter.from_bytes(s);
+    }
+    catch (std::exception&) {
+      return L"";
+    }
   }
 
-  string Iconv::wstrToStr(const wstring& ws) {
-    wstring_convert<codecvt<wchar_t, char, mbstate_t>> converter(new codecvt<wchar_t, char, mbstate_t>("CHS"));
-
-    return converter.to_bytes(ws);
+  string Iconv::wtos(const wstring& ws) {
+    try {
+      wstring_convert<codecvt<wchar_t, char, mbstate_t>> converter(new codecvt<wchar_t, char, mbstate_t>("CHS"));
+      return converter.to_bytes(ws);
+    }
+    catch (std::exception&) {
+      return "";
+    }
   }
 
-  wstring Iconv::utf8ToWstr(const string& s) {
-    wstring_convert<codecvt_utf8<wchar_t>> converter;
-    return converter.from_bytes(s);
+  wstring Iconv::u8tow(const string& s) {
+    try {
+      wstring_convert<codecvt_utf8<wchar_t>> converter;
+      return converter.from_bytes(s);
+    }
+    catch (std::exception&) {
+      return L"";
+    }
   }
 
-  string Iconv::wstrToUtf8(const wstring& ws) {
-    wstring_convert<codecvt_utf8<wchar_t>> converter;
-    return converter.to_bytes(ws);
+  string Iconv::wtou8(const wstring& ws) {
+    try {
+      wstring_convert<codecvt_utf8<wchar_t>> converter;
+      return converter.to_bytes(ws);
+    }
+    catch (std::exception&) {
+      return "";
+    }
   }
 
-  string Iconv::utf8ToStr(const string& s) {
-    return wstrToStr(utf8ToWstr(s));
+  string Iconv::u8tos(const string& s) {
+    return wtos(u8tow(s));
   }
 
-  string Iconv::strToUtf8(const string& s) {
-    return wstrToUtf8(strToWstr(s));
+  string Iconv::stou8(const string& s) {
+    return wtou8(stow(s));
   }
 
   uint32_t Iconv::charCodeAt(const string& ansiStr, uint32_t idx) {
-    return strToWstr(ansiStr)[idx];
+    return stow(ansiStr)[idx];
   }
 
   uint32_t Iconv::charCodeAt(const wstring& ws, uint32_t idx) {
@@ -116,7 +134,7 @@ namespace nodecpp {
 
   Iconv &iconv = Iconv::instance();
 
-  uint32_t Iconv::utf8Length(const string& u8Str) {
+  uint32_t Iconv::u8Length(const string& u8Str) {
     uint32_t len = 0;
     auto begin = u8Str.begin(), end = u8Str.end();
     while (begin != end) {
@@ -142,7 +160,7 @@ namespace nodecpp {
     return len;
   }
 
-  uint32_t Iconv::ansiLength(const string& str) {
+  uint32_t Iconv::sLength(const string& str) {
     return _bstr_t(str.c_str()).length();
   }
 

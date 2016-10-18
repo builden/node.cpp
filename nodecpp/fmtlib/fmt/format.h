@@ -3128,10 +3128,6 @@ inline std::wstring format(WCStringRef format_str, ArgList args) {
   return w.str();
 }
 
-
-void odebug(CStringRef format_str, ArgList args);
-void odebug(WCStringRef format_str, ArgList args);
-
 /**
   \rst
   Prints formatted data to the file *f*.

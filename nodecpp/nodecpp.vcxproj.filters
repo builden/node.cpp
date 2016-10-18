@@ -46,6 +46,12 @@
     <Filter Include="deps\spdlog">
       <UniqueIdentifier>{6e7f769a-9e66-46ef-a0f7-7e8e68cba876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="deps\spdlog\details">
+      <UniqueIdentifier>{2a60ed75-737f-443a-a3f6-cc913b7904f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helper">
+      <UniqueIdentifier>{7fd324f7-e0ec-4ff9-b12b-705f1ace5587}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="async-wrap.h">
@@ -186,9 +192,6 @@
     <ClInclude Include="shutdown-wrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stats-def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -264,15 +267,6 @@
     <ClInclude Include="async.h">
       <Filter>third</Filter>
     </ClInclude>
-    <ClInclude Include="g3log.h">
-      <Filter>third</Filter>
-    </ClInclude>
-    <ClInclude Include="g3log-internal\json-file-sink.h">
-      <Filter>third\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="g3log-internal\jsonfilesinkhelper.h">
-      <Filter>third\internal</Filter>
-    </ClInclude>
     <ClInclude Include="console.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -296,6 +290,57 @@
     </ClInclude>
     <ClInclude Include="spdlog\tweakme.h">
       <Filter>deps\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\async_log_helper.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\async_logger_impl.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\file_helper.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\log_msg.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\logger_impl.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\mpmc_bounded_q.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\null_mutex.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\os.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\pattern_formatter_impl.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\registry.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="spdlog\details\spdlog_impl.h">
+      <Filter>deps\spdlog\details</Filter>
+    </ClInclude>
+    <ClInclude Include="g3log-internal\json-file-sink.h">
+      <Filter>third\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="g3log-internal\jsonfilesinkhelper.h">
+      <Filter>third\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="g3log.h">
+      <Filter>third</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>helper</Filter>
+    </ClInclude>
+    <ClInclude Include="win-ver.h">
+      <Filter>helper</Filter>
+    </ClInclude>
+    <ClInclude Include="nodecpp-version.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -485,8 +530,11 @@
     <ClCompile Include="async.cpp">
       <Filter>third</Filter>
     </ClCompile>
-    <ClCompile Include="g3log.cpp">
-      <Filter>third</Filter>
+    <ClCompile Include="console.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="fmtlib\fmt\format.cc">
+      <Filter>deps\fmt</Filter>
     </ClCompile>
     <ClCompile Include="g3log-internal\json-file-sink.cpp">
       <Filter>third\internal</Filter>
@@ -494,11 +542,8 @@
     <ClCompile Include="g3log-internal\jsonfilesinkhelper.cpp">
       <Filter>third\internal</Filter>
     </ClCompile>
-    <ClCompile Include="console.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="fmtlib\fmt\format.cc">
-      <Filter>deps\fmt</Filter>
+    <ClCompile Include="g3log.cpp">
+      <Filter>third</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,9 +13,9 @@ namespace nodecpp {
     svec_t split(const string& str, const string& separator = " ", int limit = -1);
     string join(const svec_t& svec, const string& separator = "");
 
-    bool startsWith(const string& str, const string& starts, uint32_t position = 0);
+    bool startsWith(const string& str, const string& starts, size_t position = 0);
     bool endsWith(const string& str, const string& end);
-    bool endsWith(const string& str, const string& ends, uint32_t position);
+    bool endsWith(const string& str, const string& ends, size_t position);
 
     string ltrim(const string& str, const string& characters = " \t\r\n");
     string rtrim(const string& str, const string& characters = " \t\r\n");

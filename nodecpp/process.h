@@ -21,6 +21,9 @@ namespace nodecpp {
     svec_t argv;
     json env;
     string platform = "win32";
+    string arch;
+    string version;
+    json versions;
 
   private:
     class impl;

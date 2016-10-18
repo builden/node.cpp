@@ -16,6 +16,7 @@ namespace nodecpp {
 
     string getString(const string& section, const string& key, const string& defaultValue = "");
     int getInt(const string& section, const string& key, int defaultValue = 0);
+    int64_t getInt64(const string& section, const string& key, int64_t defaultValue = 0);
     bool getBool(const string& section, const string& key, bool defaultValue = false);
 
     bool setValue(const string& section, const string& key, const string& value);

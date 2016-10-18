@@ -20,20 +20,26 @@ namespace nodecpp {
     Buffer encode(const string& str, const string& encoding, bool stripBOM = false);
     Buffer encode(const wstring& str, const string& encoding, bool stripBOM = false);
 
-    wstring strToWstr(const string& s);
-    string wstrToStr(const wstring& ws);
+    // string to wstring
+    wstring stow(const string& s);
+    // wstring to string
+    string wtos(const wstring& ws);
 
-    wstring utf8ToWstr(const string& s);
-    string wstrToUtf8(const wstring& ws);
+    // utf8 to wstring
+    wstring u8tow(const string& s);
+    // wstring to utf8
+    string wtou8(const wstring& ws);
 
-    string utf8ToStr(const string& s);
-    string strToUtf8(const string& s);
+    // utf8 to string
+    string u8tos(const string& s);
+    // string to utf8
+    string stou8(const string& s);
 
     uint32_t charCodeAt(const string& ansiStr, uint32_t idx);
     uint32_t charCodeAt(const wstring& ws, uint32_t idx);
 
-    uint32_t utf8Length(const string& u8Str);
-    uint32_t ansiLength(const string& str);
+    uint32_t u8Length(const string& u8Str);
+    uint32_t sLength(const string& str);
   };
 
   extern Iconv &iconv;

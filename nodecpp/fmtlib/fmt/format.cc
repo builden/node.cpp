@@ -432,17 +432,6 @@ class PrintfArgFormatter :
 };
 }  // namespace internal
 
-void odebug(CStringRef format_str, ArgList args) {
-  MemoryWriter w;
-  w.write(format_str, args);
-  OutputDebugStringA(w.str().c_str());
-}
-
-void odebug(WCStringRef format_str, ArgList args) {
-  WMemoryWriter w;
-  w.write(format_str, args);
-  OutputDebugStringW(w.str().c_str());
-}
 
 }  // namespace fmt
 

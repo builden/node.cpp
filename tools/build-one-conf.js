@@ -9,27 +9,27 @@ require('colors');
 
 function replaceProjectFile(conf) {
   let buf = fs.readFileSync(conf.targetProj, 'utf-8');
-  switch(conf.runtimeLibrary) {
+  switch (conf.runtimeLibrary) {
     case 'MultiThreadedDebugDLL':
       buf = s.replaceAll(buf, /(<RuntimeLibrary>)(MultiThreadedDebug)(<\/RuntimeLibrary>)/, `$1${conf.runtimeLibrary}$3`);
-    break;
+      break;
     case 'MultiThreadedDLL':
       buf = s.replaceAll(buf, /(<RuntimeLibrary>)(MultiThreaded)(<\/RuntimeLibrary>)/, `$1${conf.runtimeLibrary}$3`);
-    break;
+      break;
     case 'MultiThreadedDebug':
       buf = s.replaceAll(buf, /(<RuntimeLibrary>)(MultiThreadedDebugDLL)(<\/RuntimeLibrary>)/, `$1${conf.runtimeLibrary}$3`);
-    break;
+      break;
     case 'MultiThreaded':
       buf = s.replaceAll(buf, /(<RuntimeLibrary>)(MultiThreadedDLL)(<\/RuntimeLibrary>)/, `$1${conf.runtimeLibrary}$3`);
-    break;
+      break;
     default: break;
   }
-  
+
   fs.writeFileSync(conf.targetProj, buf);
 }
 
 function getSuffixTargetName(conf) {
-  switch(conf.runtimeLibrary) {
+  switch (conf.runtimeLibrary) {
     case 'MultiThreadedDebugDLL': return '-d';
     case 'MultiThreaded': return '-s';
     case 'MultiThreadedDebug': return '-sd';
@@ -58,13 +58,19 @@ function buildOneConf(conf, cb) {
   const args = getArgs(conf);
   const child = spawn(msbuild, args);
   const outChunks = [];
-  child.stdout.on('data', chunk => {
-    outChunks.push(chunk);
-  });
-  
-  child.stderr.on('data', chunk => {
-    console.error(iconv.decode(chunk, 'gbk').red);
-  });
+  child.stdout
+    .pipe(iconv.decodeStream('gbk'))
+    .pipe(process.stdout);
+  child.stderr
+    .pipe(iconv.decodeStream('gbk'))
+    .pipe(process.stderr);
+  // child.stdout.on('data', chunk => {
+  //   outChunks.push(chunk);
+  // });
+
+  // child.stderr.on('data', chunk => {
+  //   console.error(iconv.decode(chunk, 'gbk').red);
+  // });
 
   child.on('close', (code) => {
     console.log(iconv.decode(Buffer.concat(outChunks), 'gbk'));
