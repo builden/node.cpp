@@ -118,7 +118,7 @@ namespace nodecpp {
   }
 
   Buffer Fs::readFileSync(const string& p) {
-    int fd = openSync(iconv.stou8(p), "r", 0666);
+    int fd = openSync(p, "r", 0666);
     Stats st = fstatSync(fd);
     uint32_t size = st.isFile() ? static_cast<uint32_t>(st.size) : 0;
     Buffer buffer;

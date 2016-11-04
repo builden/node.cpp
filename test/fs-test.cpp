@@ -255,3 +255,23 @@ TEST_F(FsTest, remove) {
   });
   run();
 }
+
+TEST_F(FsTest, chinesePath) {
+  string testPath = "D:\\中文 测试目录";
+  fs.mkdirsSync(testPath);
+  EXPECT_TRUE(fs.existsSync(testPath));
+  string filePath = path.join(testPath, "中文2 中文.txt");
+  fs.writeFileSync(filePath, Buffer("中文内容"));
+  
+  EXPECT_TRUE(fs.existsSync(filePath));
+
+  Buffer buf = fs.readFileSync(filePath);
+  EXPECT_EQ(buf.toU8string(), u8"中文内容");
+
+  fs.unlinkSync(filePath);
+  EXPECT_FALSE(fs.existsSync(filePath));
+  EXPECT_TRUE(fs.existsSync(testPath));
+
+  fs.removeSync(testPath);
+  EXPECT_FALSE(fs.existsSync(testPath));
+}

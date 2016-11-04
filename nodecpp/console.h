@@ -30,73 +30,73 @@ namespace nodecpp {
     template <typename... Args> void trace(const char* fmt, const Args&... args) {
       if (console_) console_->trace(fmt, args...);
       if (fileConsole_) fileConsole_->trace(fmt, args...);
-      if (outputDbgViewLevel_ <= level::trace) OutputDebugStringA(fmt::format(fmt::format("[trace] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::trace) OutputDebugStringA(fmt::format(fmt::format("[trace] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename... Args> void debug(const char* fmt, const Args&... args) {
       if (console_) console_->debug(fmt, args...);
       if (fileConsole_) fileConsole_->debug(fmt, args...);
-      if (outputDbgViewLevel_ <= level::debug) OutputDebugStringA(fmt::format(fmt::format("[debug] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::debug) OutputDebugStringA(fmt::format(fmt::format("[debug] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename... Args> void log(const char* fmt, const Args&... args) {
       if (console_) console_->info(fmt, args...);
       if (fileConsole_) fileConsole_->info(fmt, args...);
-      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format(fmt::format("[log] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format(fmt::format("[log] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename... Args> void info(const char* fmt, const Args&... args) {
       if (console_) console_->info(fmt, args...);
       if (fileConsole_) fileConsole_->info(fmt, args...);
-      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format(fmt::format("[info] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format(fmt::format("[info] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename... Args> void warn(const char* fmt, const Args&... args) {
       if (console_) console_->warn(fmt, args...);
       if (fileConsole_) fileConsole_->warn(fmt, args...);
-      if (outputDbgViewLevel_ <= level::warn) OutputDebugStringA(fmt::format(fmt::format("[warn] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::warn) OutputDebugStringA(fmt::format(fmt::format("[warn] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename... Args> void error(const char* fmt, const Args&... args) {
       if (console_) console_->error(fmt, args...);
       if (fileConsole_) fileConsole_->error(fmt, args...);
-      if (outputDbgViewLevel_ <= level::err) OutputDebugStringA(fmt::format(fmt::format("[error] {}", fmt), args...).c_str());
+      if (outputDbgViewLevel_ <= level::err) OutputDebugStringA(fmt::format(fmt::format("[error] [{}] {}", GetCurrentThreadId(), fmt), args...).c_str());
     }
 
     template <typename T> void trace(const T& msg) {
       if (console_) console_->trace(msg);
       if (fileConsole_) fileConsole_->trace(msg);
-      if (outputDbgViewLevel_ <= level::trace) OutputDebugStringA(fmt::format("[trace] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::trace) OutputDebugStringA(fmt::format("[trace] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
     template <typename T> void debug(const T& msg) {
       if (console_) console_->debug(msg);
       if (fileConsole_) fileConsole_->debug(msg);
-      if (outputDbgViewLevel_ <= level::debug) OutputDebugStringA(fmt::format("[debug] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::debug) OutputDebugStringA(fmt::format("[debug] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
     template <typename T> void info(const T& msg) {
       if (console_) console_->info(msg);
       if (fileConsole_) fileConsole_->info(msg);
-      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format("[info] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format("[info] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
     template <typename T> void log(const T& msg) {
       if (console_) console_->info(msg);
       if (fileConsole_) fileConsole_->info(msg);
-      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format("[log] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::info) OutputDebugStringA(fmt::format("[log] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
     template <typename T> void warn(const T& msg) {
       if (console_) console_->warn(msg);
       if (fileConsole_) fileConsole_->warn(msg);
-      if (outputDbgViewLevel_ <= level::warn) OutputDebugStringA(fmt::format("[warn] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::warn) OutputDebugStringA(fmt::format("[warn] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
     template <typename T> void error(const T& msg) {
       if (console_) console_->error(msg);
       if (fileConsole_) fileConsole_->error(msg);
-      if (outputDbgViewLevel_ <= level::err) OutputDebugStringA(fmt::format("[error] {}", msg).c_str());
+      if (outputDbgViewLevel_ <= level::err) OutputDebugStringA(fmt::format("[error] [{}] {}", GetCurrentThreadId(), msg).c_str());
     }
 
   private:
