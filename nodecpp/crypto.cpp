@@ -34,7 +34,7 @@ namespace nodecpp {
 
     bool update(const Buffer& buf) {
       if (!initialised_) return false;
-      EVP_DigestUpdate(&mdctx_, buf.data(), buf.size());
+      EVP_DigestUpdate(&mdctx_, (buf.size() == 0) ? nullptr : buf.data(), buf.size());
       return true;
     }
 
