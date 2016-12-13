@@ -210,66 +210,66 @@ namespace nodecpp {
 
   int16_t Buffer::readInt16BE(uint32_t offset /*= 0*/) const {
     if (offset + 2 > buf_.size()) return 0;
-    int16_t rst = buf_[offset + 1] | (buf_[offset] << 8);
+    int16_t rst = (uint8_t)buf_[offset + 1] | ((uint8_t)buf_[offset] << 8);
     return rst;
   }
 
   int16_t Buffer::readInt16LE(uint32_t offset /*= 0*/) const {
     if (offset + 2 > buf_.size()) return 0;
-    int16_t rst = buf_[offset] | (buf_[offset + 1] << 8);
+    int16_t rst = (uint8_t)buf_[offset] | ((uint8_t)buf_[offset + 1] << 8);
     return rst;
   }
 
   int32_t Buffer::readInt32BE(uint32_t offset /*= 0*/) const {
     if (offset + 4 > buf_.size()) return 0;
-    int32_t rst = (buf_[offset] << 24) |
-      (buf_[offset + 1] << 16) |
-      (buf_[offset + 2] << 8) |
-      (buf_[offset + 3]);
+    int32_t rst = ((uint8_t)buf_[offset] << 24) |
+      ((uint8_t)buf_[offset + 1] << 16) |
+      ((uint8_t)buf_[offset + 2] << 8) |
+      ((uint8_t)buf_[offset + 3]);
     return rst;
   }
 
   int32_t Buffer::readInt32LE(uint32_t offset /*= 0*/) const {
     if (offset + 4 > buf_.size()) return 0;
-    int32_t rst = (buf_[offset]) |
-      (buf_[offset + 1] << 8) |
-      (buf_[offset + 2] << 16) |
-      (buf_[offset + 3] << 24);
+    int32_t rst = ((uint8_t)buf_[offset]) |
+      ((uint8_t)buf_[offset + 1] << 8) |
+      ((uint8_t)buf_[offset + 2] << 16) |
+      ((uint8_t)buf_[offset + 3] << 24);
     return rst;
   }
 
   uint8_t Buffer::readUInt8(uint32_t offset /*= 0*/) const {
     if (offset >= buf_.size()) return 0;
-    return buf_[offset];
+    return (uint8_t)(buf_[offset]);
   }
 
   uint16_t Buffer::readUInt16BE(uint32_t offset /*= 0*/) const {
     if (offset + 2 > buf_.size()) return 0;
-    uint16_t rst = (buf_[offset] << 8) | buf_[offset + 1];
+    uint16_t rst = ((uint8_t)buf_[offset] << 8) | (uint8_t)buf_[offset + 1];
     return rst;
   }
 
   uint16_t Buffer::readUInt16LE(uint32_t offset /*= 0*/) const {
     if (offset + 2 > buf_.size()) return 0;
-    uint16_t rst = buf_[offset] | (buf_[offset + 1] << 8);
+    uint16_t rst = (uint8_t)buf_[offset] | ((uint8_t)buf_[offset + 1] << 8);
     return rst;
   }
 
   uint32_t Buffer::readUInt32BE(uint32_t offset /*= 0*/) const {
     if (offset + 4 > buf_.size()) return 0;
-    uint32_t rst = (buf_[offset] * 0x1000000) +
-      (buf_[offset + 1] << 16) |
-      (buf_[offset + 2] << 8) |
-      (buf_[offset + 3]);
+    uint32_t rst = ((uint8_t)buf_[offset] * 0x1000000) +
+      ((uint8_t)buf_[offset + 1] << 16) |
+      ((uint8_t)buf_[offset + 2] << 8) |
+      ((uint8_t)buf_[offset + 3]);
     return rst;
   }
 
   uint32_t Buffer::readUInt32LE(uint32_t offset /*= 0*/) const {
     if (offset + 4 > buf_.size()) return 0;
-    uint32_t rst = (buf_[offset]) |
-      (buf_[offset + 1] << 8) |
-      (buf_[offset + 2] << 16) +
-      (buf_[offset + 3] * 0x1000000);
+    uint32_t rst = ((uint8_t)buf_[offset]) |
+      ((uint8_t)buf_[offset + 1] << 8) |
+      ((uint8_t)buf_[offset + 2] << 16) +
+      ((uint8_t)buf_[offset + 3] * 0x1000000);
     return rst;
   }
 

@@ -101,6 +101,52 @@ TEST_F(BufferTest, write_read) {
   EXPECT_EQ(buf5.readUInt32BE(2), 4281620088);
 }
 
+TEST_F(BufferTest, writeAndRead) {
+  Buffer buf1(1);
+  buf1.writeUInt8(129);
+  EXPECT_EQ(buf1.readUInt8(), 129);
+  EXPECT_EQ(buf1.readInt8(), -127);
+  buf1.writeInt8(-1);
+  EXPECT_EQ(buf1.readUInt8(), 255);
+  EXPECT_EQ(buf1.readInt8(), -1);
+
+  Buffer buf2(2);
+  buf2.writeUInt16LE(129);
+  EXPECT_EQ(buf2.readUInt16LE(), 129);
+  EXPECT_EQ(buf2.readInt16LE(), 129);
+  buf2.writeUInt16LE(32769);
+  EXPECT_EQ(buf2.readUInt16LE(), 32769);
+  EXPECT_EQ(buf2.readInt16LE(), -32767);
+  buf2.writeInt16LE(-1);
+  EXPECT_EQ(buf2.readUInt16LE(), 65535);
+  EXPECT_EQ(buf2.readInt16LE(), -1);
+
+  buf2.writeUInt16BE(32769);
+  EXPECT_EQ(buf2.readUInt16BE(), 32769);
+  EXPECT_EQ(buf2.readInt16BE(), -32767);
+  buf2.writeInt16BE(-1);
+  EXPECT_EQ(buf2.readUInt16BE(), 65535);
+  EXPECT_EQ(buf2.readInt16BE(), -1);
+
+  Buffer buf3(4);
+  buf3.writeUInt32LE(2147483649);
+  EXPECT_EQ(buf3.readUInt32LE(), 2147483649);
+  EXPECT_EQ(buf3.readInt32LE(), -2147483647);
+  buf3.writeUInt32LE(32769);
+  EXPECT_EQ(buf3.readUInt32LE(), 32769);
+  EXPECT_EQ(buf3.readInt32LE(), 32769);
+  buf3.writeInt32LE(-1);
+  EXPECT_EQ(buf3.readUInt32LE(), 4294967295);
+  EXPECT_EQ(buf3.readInt32LE(), -1);
+
+  buf3.writeUInt32BE(2147483649);
+  EXPECT_EQ(buf3.readUInt32BE(), 2147483649);
+  EXPECT_EQ(buf3.readInt32BE(), -2147483647);
+  buf3.writeInt32BE(-1);
+  EXPECT_EQ(buf3.readUInt32BE(), 4294967295);
+  EXPECT_EQ(buf3.readInt32BE(), -1);
+}
+
 TEST_F(BufferTest, from) {
 
 }

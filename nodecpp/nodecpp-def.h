@@ -21,6 +21,7 @@ using nlohmann::json;
 typedef std::set<int> iset_t;
 typedef std::vector<int> ivec_t;
 typedef std::vector<char> cvec_t;
+typedef std::vector<uint8_t> ucvec_t;
 typedef std::vector<std::string> svec_t;
 typedef std::map<int, std::string> ismap_t;
 typedef std::map<std::string, std::string> ssmap_t;

@@ -24,6 +24,16 @@ TEST_F(EventsTest, listeners) {
     EXPECT_EQ(str, "test msg");
   });
 
+  using EmitCb_t = function<void(const json&)>;
+  emitter.on("param_int_func", [](const json& i, EmitCb_t cb) {
+    cout << "on param_int_func" << endl;
+    EXPECT_EQ(i.dump(), R"({"a":"b"})");
+    cb(json::object({ {"a", "b"} }));
+  });
+
+  emitter.emit<const json&, EmitCb_t>("param_int_func", json::object({ { "a", "b" } }), [](const json& str) {
+    cout << "on emit callback " << str.dump() << endl;
+  });
   emitter.emit("message"); 
   emitter.emit<int>("param_int", 1);
   emitter.emit<int, const std::string&>("param_int_str", 2, "test msg");
