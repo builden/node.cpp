@@ -31,6 +31,12 @@ namespace nodecpp {
       , const string& path1 = ""
       , const string& path2 = ""
       , const string& path3 = "");
+
+    // It will solve the relative path from `from` to `to`, for instance:
+    //  from = 'C:\\orandea\\test\\aaa'
+    //  to = 'C:\\orandea\\impl\\bbb'
+    // The output of the function should be: '..\\..\\impl\\bbb'
+    string relative(const string& from, const string& to);
   public:
     string sep;
 

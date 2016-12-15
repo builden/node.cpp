@@ -3,6 +3,7 @@
 #include "process.h"
 #include "std-regex-ex.h"
 #include "fmt/format.h"
+#include "iconv.h"
 
 namespace nodecpp {
 
@@ -715,6 +716,117 @@ namespace nodecpp {
     string rst = (resolvedDevice + (resolvedAbsolute ? "\\" : "") + resolvedTail);
     if (rst.empty()) rst = ".";
     return rst;
+  }
+
+  string Path::relative(const string& from, const string& to) {
+    if (from == to) return "";
+
+    string fromOrig = resolve(from);
+    string toOrig = resolve(to);
+    if (fromOrig == toOrig) return "";
+
+    string fromLow = s.toLower(fromOrig);
+    string toLow = s.toLower(toOrig);
+    if (fromLow == toLow) return "";
+    
+    // Trim any leading backslashes
+    size_t fromStart = 0;
+    for (; fromStart < fromLow.length(); ++fromStart) {
+      if (iconv.charCodeAt(fromLow, fromStart) != 92/*\*/)
+        break;
+    }
+    // Trim trailing backslashes (applicable to UNC paths only)
+    size_t fromEnd = fromLow.length();
+    for (; fromEnd - 1 > fromStart; --fromEnd) {
+      if (iconv.charCodeAt(fromLow, fromEnd - 1) != 92/*\*/)
+        break;
+    }
+    size_t fromLen = (fromEnd - fromStart);
+
+    // Trim any leading backslashes
+    size_t toStart = 0;
+    for (; toStart < to.length(); ++toStart) {
+      if (iconv.charCodeAt(toLow, toStart) != 92/*\*/)
+        break;
+    }
+    // Trim trailing backslashes (applicable to UNC paths only)
+    size_t toEnd = to.length();
+    for (; toEnd - 1 > toStart; --toEnd) {
+      if (iconv.charCodeAt(toLow, toEnd - 1) != 92/*\*/)
+        break;
+    }
+    size_t toLen = (toEnd - toStart);
+
+    // Compare paths to find the longest common path from root
+    size_t length = (fromLen < toLen ? fromLen : toLen);
+    int lastCommonSep = -1;
+    size_t i = 0;
+    for (; i <= length; ++i) {
+      if (i == length) {
+        if (toLen > length) {
+          if (iconv.charCodeAt(toLow, toStart + i) == 92/*\*/) {
+            // We get here if `from` is the exact base path for `to`.
+            // For example: from='C:\\foo\\bar'; to='C:\\foo\\bar\\baz'
+            return s.slice(toOrig, toStart + i + 1);
+          }
+          else if (i == 2) {
+            // We get here if `from` is the device root.
+            // For example: from='C:\\'; to='C:\\foo'
+            return s.slice(toOrig, toStart + i);
+          }
+        }
+        if (fromLen > length) {
+          if (iconv.charCodeAt(fromLow, fromStart + i) == 92/*\*/) {
+            // We get here if `to` is the exact base path for `from`.
+            // For example: from='C:\\foo\\bar'; to='C:\\foo'
+            lastCommonSep = i;
+          }
+          else if (i == 2) {
+            // We get here if `to` is the device root.
+            // For example: from='C:\\foo\\bar'; to='C:\\'
+            lastCommonSep = 3;
+          }
+        }
+        break;
+      }
+      uint32_t fromCode = iconv.charCodeAt(fromLow, fromStart + i);
+      uint32_t toCode = iconv.charCodeAt(toLow, toStart + i);
+      if (fromCode != toCode)
+        break;
+      else if (fromCode == 92/*\*/)
+        lastCommonSep = i;
+    }
+
+    // We found a mismatch before the first common path separator was seen, so
+    // return the original `to`.
+    if (i != length && lastCommonSep == -1) {
+      return toOrig;
+    }
+
+    string out = "";
+    if (lastCommonSep == -1)
+      lastCommonSep = 0;
+    // Generate the relative path based on the path difference between `to` and
+    // `from`
+    for (i = fromStart + lastCommonSep + 1; i <= fromEnd; ++i) {
+      if (i == fromEnd || iconv.charCodeAt(fromLow, i) == 92/*\*/) {
+        if (out.length() == 0)
+          out += "..";
+        else
+          out += "\\..";
+      }
+    }
+
+    // Lastly, append the rest of the destination (`to`) path that comes after
+    // the common path parts
+    if (out.length() > 0)
+      return out + s.slice(toOrig, toStart + lastCommonSep, toEnd);
+    else {
+      toStart += lastCommonSep;
+      if (iconv.charCodeAt(toOrig, toStart) == 92/*\*/)
+        ++toStart;
+      return s.slice(toOrig, toStart, toEnd);
+    }
   }
 
   Path &path = Path::instance();

@@ -107,6 +107,9 @@ namespace nodecpp {
 
     json readJsonSync(const string& file);
 
+    // just files, have not dir
+    svec_t walkSync(const string& p);
+
     // link    创建hard link, 创建备份
     // symlink 创建符号链接（软链接）快捷方式
     // 创建文件夹的快捷方式 fs.symlink(srcPath, destPath, "dir")
@@ -114,6 +117,7 @@ namespace nodecpp {
     int stringToFlags(const string& p);
     uint32_t tryReadSync(int fd, Buffer& buffer, uint32_t pos, uint32_t len);
     void writeAll(int fd, bool isUserFd, const Buffer& buffer, uint32_t offset, uint32_t length, int64_t position, WriteCb_t cb);
+    svec_t recursiveWalkSync(const string& p, svec_t& filelist);
   };
 
   extern Fs &fs;

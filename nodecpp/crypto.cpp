@@ -53,6 +53,16 @@ namespace nodecpp {
       return Buffer();
     }
 
+    Buffer sha1(const Buffer& buf) {
+      if (createHash("sha1") && update(buf)) return digest();
+      return Buffer();
+    }
+
+    Buffer sha256(const Buffer& buf) {
+      if (createHash("sha256") && update(buf)) return digest();
+      return Buffer();
+    }
+
   private:
     const EVP_MD* md_ = nullptr;
     EVP_MD_CTX mdctx_;
@@ -82,6 +92,14 @@ namespace nodecpp {
 
   nodecpp::Buffer Crypto::md5(const Buffer& buf) {
     return pimpl->md5(buf);
+  }
+
+  nodecpp::Buffer Crypto::sha1(const Buffer& buf) {
+    return pimpl->sha1(buf);
+  }
+
+  nodecpp::Buffer Crypto::sha256(const Buffer& buf) {
+    return pimpl->sha256(buf);
   }
 
   svec_t Crypto::getHashes() {

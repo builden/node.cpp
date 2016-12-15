@@ -470,4 +470,32 @@ namespace nodecpp {
     return json::parse(readFileSync(file).toString());
   }
 
+  svec_t Fs::walkSync(const string& p) {
+    svec_t files = fs.readdirSync(p);
+    svec_t filelist;
+    for (const auto& file : files) {
+      auto nestedPath = path.join(p, file);
+      if (fs.lstatSync(nestedPath).isDirectory()) {
+        filelist = recursiveWalkSync(nestedPath, filelist);
+      }
+      else {
+        filelist.emplace_back(nestedPath);
+      }
+    }
+    return filelist;
+  }
+
+  svec_t Fs::recursiveWalkSync(const string& p, svec_t& filelist) {
+    svec_t files = fs.readdirSync(p);
+    for (const auto& file : files) {
+      auto nestedPath = path.join(p, file);
+      if (fs.lstatSync(nestedPath).isDirectory()) {
+        filelist = recursiveWalkSync(nestedPath, filelist);
+      }
+      else {
+        filelist.emplace_back(nestedPath);
+      }
+    }
+    return filelist;
+  }
 }

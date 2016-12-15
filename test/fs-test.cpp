@@ -275,3 +275,12 @@ TEST_F(FsTest, chinesePath) {
   fs.removeSync(testPath);
   EXPECT_FALSE(fs.existsSync(testPath));
 }
+
+TEST_F(FsTest, walkSync) {
+  try {
+    svec_t filelist = fs.walkSync("D:\\1");
+  }
+  catch (std::exception&) {
+
+  }
+}

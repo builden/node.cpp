@@ -115,3 +115,22 @@ TEST_F(AsyncTest, parallel) {
 
   run();
 }
+
+TEST_F(AsyncTest, mapLimit) {
+  vector<int> arr = { 2, 4, 1, 3, 1 };
+  async.mapLimit<int, int>(arr, 2, [](int item, function<void(const Error&, int)> cb) {
+    cout << "in mapLimit func beg " << item << "; " << moment().format() << endl;
+    setTimeout([cb, item]() {
+      cout << "in mapLimit func end " << item << "; " << moment().format() << endl;
+      if (3 == item) cb(Error("dd"), item);
+      else cb(Error(), item);
+    }, item * 10);
+  }, [](const Error& err, const vector<int>& results) {
+    cout << "mapLimit end " << (err) << "; " << moment().format() << endl;
+    for (auto i : results) {
+      cout << "mapLimit result " << i << endl;
+    }
+  });
+  
+  run();
+}

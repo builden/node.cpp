@@ -18,6 +18,8 @@ namespace nodecpp {
 
     // utility
     Buffer md5(const Buffer& buf);
+    Buffer sha1(const Buffer& buf);
+    Buffer sha256(const Buffer& buf);
 
   private:
     class impl;

@@ -40,3 +40,8 @@ TEST_F(PathTest, resolve) {
 
   EXPECT_EQ(s.toLower(path.resolve("%windir%")), "c:\\windows");
 }
+
+TEST_F(PathTest, relative) {
+  EXPECT_EQ(path.relative("D:/123/", "D:/123/321/1.txt"), "321\\1.txt");
+  // EXPECT_EQ(path.relative("D:/123/321/1.txt", "D:/123/"), "..\\..");
+}
